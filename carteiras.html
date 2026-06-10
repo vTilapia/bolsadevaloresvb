@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang='pt-BR'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Simulador de Bolsa - Consulta de Carteiras</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121214; color: #fff; padding: 40px; margin: 0; }
+        .container { max-width: 750px; margin: auto; background: #1e1e22; padding: 35px; border-radius: 12px; border: 1px solid #29292e; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+        h2 { margin-top: 0; color: #e1e1e6; font-weight: 600; font-size: 24px; padding-bottom: 12px; border-bottom: 1px solid #29292e; }
+        p { color: #7c7c8a; font-size: 14px; margin-bottom: 25px; }
+        .search-group { display: flex; gap: 12px; margin-bottom: 30px; }
+        input { flex: 1; background: #121214; border: 1px solid #4e4e54; padding: 14px; border-radius: 6px; color: #fff; font-size: 16px; }
+        button { background: #00b37e; color: #fff; border: none; padding: 14px 28px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px; }
+        button:hover { background: #008f63; }
+        .grid-carteira { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .card { background: #29292e; padding: 20px; border-radius: 8px; border-left: 5px solid #ffb84d; }
+        .card.total { border-left-color: #00b37e; }
+        .card-title { font-size: 12px; color: #9c9cba; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px; }
+        .card-value { font-size: 24px; font-weight: bold; margin-top: 8px; color: #fff; }
+        h3 { margin-top: 35px; color: #e1e1e6; font-size: 18px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #19191c; border-radius: 6px; overflow: hidden; }
+        th, td { text-align: left; padding: 14px; border-bottom: 1px solid #29292e; }
+        th { background: #202024; color: #7c7c8a; font-size: 13px; text-transform: uppercase; font-weight: 600; }
+        .erro { color: #f75a68; font-weight: bold; margin-top: 15px; display: block; font-size: 15px; }
+    </style>
+</head>
+<body>
+    <div class='container'>
+        <h2>Área do Aluno - Consulta de Carteira</h2>
+        <p>Insira o número da sua conta para verificar seu patrimônio atualizado e suas ações.</p>
+        <div class='search-group'>
+            <input type='text' id='codigoAluno' placeholder='Ex: 1001' onkeypress='verificarEnter(event)'>
+            <button onclick='buscarCarteira()'>Consultar</button>
+        </div>
+        <div id='resultadoCarteira' style='display:none;'>
+            <div class='grid-carteira'>
+                <div class='card'><div class='card-title'>Patrimônio Ocioso (Saldo Livre)</div><div class='card-value' id='valOcioso'>--</div></div>
+                <div class='card total'><div class='card-title'>Patrimônio Total (Saldo + Ações)</div><div class='card-value' id='valTotal'>--</div></div>
+            </div>
+            <h3>Ativos na Carteira</h3>
+            <table id='tabelaAcoes'><thead><tr><th>Empresa</th><th>Quantidade Detida</th></tr></thead><tbody></tbody></table>
+        </div>
+        <div id='mensagemErro' class='erro'></div>
+    </div>
+    <script>
+        const dadosAlunos = {
+            '1027': { ociosoRaw: '0', acoes: {
+                'PIZZ4': '25',
+                'ROBO3': '50',
+                'MLUA3': '0',
+                'AGRD3': '0',
+                'AMAR3': '0',
+                'ECOE3': '0',
+                'MECH3': '0',
+                'FAST3': '0',
+                'STUR3': '0',
+                'OCIOSO': '833,62',
+                'VALOR EM AÇÕES': '75',
+                'TOTAL': '11.125,18',
+            }},
+        };
+        const cotacaoAtual = {'TechPato':  82.9964340704588,'Pizza Cósmica':  120.005477718188,'RoboFarma':  145.828491962944,'Mineração Lunar':  290.329252727506,'AgroDino':  111.419472315476,'Águas de Marte':  123.272711385933,'EcoEnergia':  115.610872428505,'MegaChip':  209.441374996667,'FastDrone Express':  92.3385596226537,'SpaceTur':  36.0558919122634};
+        function verificarEnter(event) {
+            if (event.key === 'Enter') {
+                buscarCarteira();
+            }
+        }
+        function limparNumero(val) {
+            if (!val) return 0;
+            let limpo = val.toString().replace(/R\$\s?/, '').replace(/\s/g, '').trim();
+            if (limpo.includes(',') && limpo.includes('.')) {
+                limpo = limpo.replace(/\./g, '').replace(',', '.');
+            } else if (limpo.includes(',')) {
+                limpo = limpo.replace(',', '.');
+            }
+            const num = parseFloat(limpo);
+            return isNaN(num) ? 0 : num;
+        }
+        function buscarCarteira() {
+            const cod = document.getElementById('codigoAluno').value.trim();
+            const divResultado = document.getElementById('resultadoCarteira');
+            const divErro = document.getElementById('mensagemErro');
+            const tbody = document.getElementById('tabelaAcoes').querySelector('tbody');
+            
+            tbody.innerHTML = '';
+            divErro.innerHTML = '';
+            
+            if (!dadosAlunos[cod]) {
+                divResultado.style.display = 'none';
+                divErro.innerHTML = '? Código de conta inválido ou não localizado.';
+                return;
+            }
+            
+            const aluno = dadosAlunos[cod];
+            const ocioso = limparNumero(aluno.ociosoRaw);
+            let patrimonioInvestido = 0;
+            
+            for (const [empresa, qtdRaw] of Object.entries(aluno.acoes)) {
+                const qtd = limparNumero(qtdRaw);
+                if (qtd > 0) {
+                    const preco = cotacaoAtual[empresa] || 0;
+                    patrimonioInvestido += (qtd * preco);
+                    
+                    const row = `<tr><td style='font-weight:600; color:#e1e1e6;'>${empresa}</td><td>${qtd}</td></tr>`;
+                    tbody.innerHTML += row;
+                }
+            }
+            
+            const total = ocioso + patrimonioInvestido;
+            
+            document.getElementById('valOcioso').innerHTML = 'R$ ' + ocioso.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('valTotal').innerHTML = 'R$ ' + total.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            divResultado.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

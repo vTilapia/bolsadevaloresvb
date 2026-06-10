@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Risco - Simulador de Bolsa V3</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #07090e;
+            color: #f1f5f9;
+            line-height: 1.5;
+            padding-bottom: 40px;
+        }
+
+        /* CONTAINER DO TOPO (NÃO FIXO NO MOBILE PARA NÃO TAPAR A TELA) */
+        header {
+            background: linear-gradient(180deg, #0f172a 0%, #07090e 100%);
+            border-bottom: 1px solid #1e293b;
+            padding: 20px 15px;
+            text-align: center;
+        }
+
+        .header-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .back-link {
+            display: inline-block;
+            color: #38bdf8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        header p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        /* MENU RESPONSIVO (GRID FLUIDO) */
+        .nav-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 colunas no celular */
+            gap: 8px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .nav-btn {
+            background: #111827;
+            color: #cbd5e1;
+            border: 1px solid #1f2937;
+            padding: 10px 8px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; /* Evita quebra de texto esquisita no celular */
+        }
+
+        .nav-btn:hover, .nav-btn:active {
+            color: #ffffff;
+            background: #1f2937;
+            border-color: #38bdf8;
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+        }
+
+        /* CONTAINER DE CONTEÚDO */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        /* SEÇÕES DE SETORES */
+        .sector-title {
+            color: #38bdf8;
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin: 35px 0 15px 0;
+            padding-left: 8px;
+            border-left: 3px solid #38bdf8;
+        }
+
+        /* CARDS TOTALMENTE ADAPTÁVEIS */
+        .card {
+            background-color: #0f172a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            
+            /* Ajuste de scroll dinâmico baseado em telas */
+            scroll-margin-top: 20px; 
+        }
+
+        /* Cores de borda viva por risco */
+        .card.card-muito-baixo { border-left: 5px solid #10b981; border-top: 1px solid rgba(16, 185, 129, 0.3); border-right: 1px solid rgba(16, 185, 129, 0.1); border-bottom: 1px solid rgba(16, 185, 129, 0.1); }
+        .card.card-baixo { border-left: 5px solid #34d399; border-top: 1px solid rgba(52, 211, 153, 0.3); border-right: 1px solid rgba(52, 211, 153, 0.1); border-bottom: 1px solid rgba(52, 211, 153, 0.1); }
+        .card.card-medio { border-left: 5px solid #f59e0b; border-top: 1px solid rgba(245, 158, 11, 0.3); border-right: 1px solid rgba(245, 158, 11, 0.1); border-bottom: 1px solid rgba(245, 158, 11, 0.1); }
+        .card.card-alto { border-left: 5px solid #ef4444; border-top: 1px solid rgba(239, 68, 68, 0.3); border-right: 1px solid rgba(239, 68, 68, 0.1); border-bottom: 1px solid rgba(239, 68, 68, 0.1); }
+        .card.card-muito-alto { border-left: 5px solid #f87171; border-top: 1px solid rgba(248, 113, 113, 0.4); border-right: 1px solid rgba(248, 113, 113, 0.1); border-bottom: 1px solid rgba(248, 113, 113, 0.1); }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .company-info {
+            display: flex;
+            flex-direction: column; /* Nome em cima, código embaixo no mobile ajuda a economizar espaço */
+            gap: 2px;
+        }
+
+        .company-name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #ffffff;
+        }
+
+        .company-code {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #38bdf8;
+            align-self: flex-start;
+            background-color: rgba(56, 189, 248, 0.1);
+            padding: 1px 6px;
+            border-radius: 4px;
+        }
+
+        /* BADGES COMPACTAS E NEON */
+        .risk-badge {
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 6px;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .risk-muito-baixo { background-color: #064e3b; color: #34d399; box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+        .risk-baixo { background-color: #064e3b; color: #6ee7b7; box-shadow: 0 0 10px rgba(52, 211, 153, 0.2); }
+        .risk-medio { background-color: #78350f; color: #fbbf24; box-shadow: 0 0 10px rgba(245, 158, 11, 0.3); }
+        .risk-alto { background-color: #7f1d1d; color: #fca5a5; box-shadow: 0 0 10px rgba(239, 68, 68, 0.3); }
+        .risk-muito-alto { 
+            background-color: #991b1b; 
+            color: #fee2e2; 
+            box-shadow: 0 0 12px rgba(220, 38, 38, 0.5);
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { opacity: 0.8; }
+            to { opacity: 1; box-shadow: 0 0 18px rgba(220, 38, 38, 0.8); }
+        }
+
+        .card-body {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            text-align: left; /* Alinhamento à esquerda fica muito melhor em telas estreitas */
+            background: rgba(7, 9, 14, 0.5);
+            padding: 12px;
+            border-radius: 8px;
+        }
+
+        /* ==========================================
+           MEDIA QUERIES PARA ADAPTAÇÃO DE TELAS (PC)
+           ========================================== */
+        @media (min-width: 600px) {
+            header {
+                position: fixed; /* Só fica fixo no topo se for tela grande (PC/Tablet) */
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+                box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+                background: rgba(15, 23, 42, 0.95);
+                backdrop-filter: blur(10px);
+                padding: 20px;
+            }
+
+            header h1 { font-size: 1.8rem; }
+
+            .nav-buttons {
+                grid-template-columns: repeat(5, 1fr); /* 5 colunas no PC */
+                gap: 10px;
+            }
+
+            .nav-btn {
+                font-size: 0.85rem;
+                padding: 8px 12px;
+            }
+
+            .container {
+                margin-top: 240px; /* Margem grande só no PC devido ao header fixo */
+            }
+
+            .card {
+                scroll-margin-top: 240px; /* Scroll compensado só no PC */
+                padding: 24px;
+            }
+
+            .company-info {
+                flex-direction: row; /* Alinha lado a lado no PC */
+                align-items: center;
+            }
+
+            .company-name { font-size: 1.4rem; }
+            .company-code { font-size: 0.9rem; }
+            .card-body { font-size: 1rem; }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="back-link">← Voltar ao Painel</a>
+            <h1>Análise de Risco das Empresas</h1>
+            <p>Selecione uma empresa para conferir os dados de volatilidade.</p>
+            
+            <nav class="nav-buttons">
+                <a href="#tcpt3" class="nav-btn">TCPT3</a>
+                <a href="#robo3" class="nav-btn">ROBO3</a>
+                <a href="#mech3" class="nav-btn">MECH3</a>
+                <a href="#pizz4" class="nav-btn">PIZZ4</a>
+                <a href="#fast3" class="nav-btn">FAST3</a>
+                <a href="#agrd3" class="nav-btn">AGRD3</a>
+                <a href="#ecoe3" class="nav-btn">ECOE3</a>
+                <a href="#mlua3" class="nav-btn">MLUA3</a>
+                <a href="#amar3" class="nav-btn">AMAR3</a>
+                <a href="#stur3" class="nav-btn">STUR3</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <!-- SETOR: TECNOLOGIA E INOVAÇÃO -->
+        <div class="sector-title">Tecnologia e Inovação</div>
+
+        <div class="card card-alto" id="tcpt3">
+            <div class="card-header">
+                <div class="company-info">
+                    <span class="company-name">TechPato</span>
+                    <span class="company-code">TCPT3</span>
+                </div>
+                <span class="risk-badge risk-alto">Risco Alto</span>
+            </div>
+            <div class="card-body">
+                A TechPato é uma <em>tech company</em> focada no desenvolvimento de softwares e plataformas digitais de produtividade. Por estar em um setor altamente competitivo e dinâmico, a empresa gasta muito do seu caixa em Pesquisa e Desenvolvimento (P&D) para não ficar obsoleta. Seu valor de mercado é muito atrelado à expectativa de lucros futuros, o que torna suas ações voláteis e sensíveis a mudanças nas taxas de juros e à perda de usuários para concorrentes.
+            </div>
+        </div>
+
+        <div class="card card-medio" id="robo3">
+            <div class="card-header">
+                <div class="company-info">
+                    <span class="company-name">RoboFarma</span>
+                    <span class="company-code">ROBO3</span>
+                </div>
+                <span class="risk-badge risk-medio">Risco Médio</span>
+            </div>
+            <div class="card-body">
+                Pioneira na automação de processos logísticos para a indústria farmacêutica e de biotecnologia. A RoboFarma equilibra a estabilidade do setor de saúde (que possui demanda constante) com as incertezas do setor de tecnologia. O risco é moderado porque, embora tenha contratos de longo prazo com grandes laboratórios, seus resultados dependem do sucesso e da aceitação de suas novas patentes e robôs cirúrgicos.
+            </div>
+        </div>
+
+        <div class="card card-alto" id="mech3">
+            <div class="card-header">
+                <div class="company-info">
+                    <span class="company-name">MegaChip</span>
+                    <span class="company-code">MECH3</span>
+                </div>
+                <span class="risk-badge risk-alto">Risco Alto</span>
+            </div>
+            <div class="card-body">
+                Fabricante de semicondutores e microchips de alta performance. A MegaChip opera em um mercado com barreiras de entrada gigantescas, mas sofre com a alta ciclicidade global e com a volatilidade no preço das matérias-primas. Disputas geopolíticas por componentes eletrônicos e gargalos na cadeia de suprimentos tornam as ações da MECH3 um prato cheio para fortes oscilações.
+            </div>
+        </div>
+
+
+        <!-- SETOR: CONSUMO E SERVIÇOS -->
+        <div class="sector-title">Consumo e Serviços</div>
+
+        <div class="card card-muito-baixo" id="pizz4">
+            <div class="card-header">
+                <div class="company-info">
+                    <span class="company-name">Pizza Cósmica</span>
+                    <span class="company-code">PIZZ4</span>
+                </div>
+                <span class="risk-badge risk-muito-baixo">Risco Muito Baixo</span>
+            </div>
+            <div class="card-body">
+                Uma das maiores redes de <em>fast-food</em> e franquias de alimentação do simulado. A Pizza Cósmica opera no setor de consumo não-cíclico: mesmo em momentos de crise econômica, as pessoas continuam consumindo seus produtos. Possui um fluxo de caixa previsível, marcas consolidadas e baixa necessidade de endividamento. É a clássica ação defensiva para momentos de incerteza no mercado.
+            </div>
+        </div>
+
+        <div class="card card-alto" id="fast3">
+            <div class="card-header">
+                <div class="company-info">
+                    <span class="company-name">FastDrone Express</span>
+                    <span class="company-code">FAST3</span>
+                </div>
+                <span class="risk-badge risk-alto">Risco Alto</span>
+            </div>
+            <div class="card-body">
+                Empresa de logística expressa focada em entregas urbanas e intermunicipais via drones autônomos. Embora o potencial de crescimento seja disruptivo, o risco é elevado devido à forte dependência de regulamentações governamentais de tráfego aéreo, custos com seguros e a possibilidade de acidentes técnicos que podem paralisar as operações da noite para o dia.
+            </div>
+        </div>
+
+
+        <!-- SETOR: COMMODITIES E AGRONEGÓCIO -->
+        <div class="sector-title">Commodities e Agronegócio</div>
+
+        <div class="card card-baixo" id="agrd3">
+            <div class="card-header">
+                <div class="company-info">
+                    <span class="company-name">AgroDino</span>
+                    <span class="company-code">AGRD3</span>
+                </div>
+                <span class="risk-badge risk-baixo">Risco Baixo</span>
+            </div>
+            <div class="card-body">
+                Gigante do agronegócio focada na produção e exportação de grãos e biotecnologia agrícola. O risco é considerado baixo porque a empresa possui terras ultraprodutivas e os alimentos são itens de primeira necessidade global. O investidor deve ficar atento apenas a fatores climáticos pontuais e à variação cambial (dólar), mas historicamente é uma empresa resiliente.
+            </div>
+        </div>
+
+        <div class="card card-baixo" id="ecoe3">
+            <div class="card-header">
+                <div class="company-info">
+                    <span class="company-name">EcoEnergia</span>
+                    <span class="company-code">ECOE3</span>
+                </div>
+                <span class="risk-badge risk-baixo">Risco Baixo</span>
+            </div>
+            <div class="card-body">
+                Atua na geração e transmissão de energia limpa (solar e eólica). Empresas do setor elétrico são conhecidas pela previsibilidade por operarem por meio de concessões públicas de longo prazo e contratos reajustados pela inflação. O risco é baixo, tornando a ECOE3 uma escolha voltada para investidores focados em dividendos e estabilidade.
+            </div>
+        </div>
+
+
+        <!-- SETOR: FRONTEIRA ESPACIAL E RECURSOS NATURAIS -->
+        <div class="sector-title">Fronteira Espacial e Recursos Naturais</div>
+
+        <div class="card card-muito-alto" id="mlua3">
+            <div class="card-header">
+                <div class="company-info">
+                    <span class="company-name">Mineração Lunar</span>
+                    <span class="company-code">MLUA3</span>
+                </div>
+                <span class="risk-badge risk-muito-alto">Risco Muito Alto</span>
+            </div>
+            <div class="card-body">
+                Empresa focada na extração de minérios raros e hélio-3 fora da Terra. É uma ação puramente especulativa. O potencial de valorização é astronômico caso novas jazidas sejam exploradas com sucesso, mas o risco de ruína também é altíssimo devido aos custos exorbitantes de missões espaciais, falhas tecnológicas de lançamento e a falta de um marco regulatório claro para a propriedade espacial.
+            </div>
+        </div>
+
+        <div class="card card-medio" id="amar3">
+            <div class="card-header">
+                <div class="company-info">
+                    <span class="company-name">Águas de Marte</span>
+                    <span class="company-code">AMAR3</span>
+                </div>
+                <span class="risk-badge risk-medio">Risco Médio</span>
+            </div>
+            <div class="card-body">
+                Responsável pelo saneamento, captação e purificação de recursos hídricos em ambientes áridos e projetos de terraformação. Por lidar com um recurso vital (água), possui uma demanda cativa. No entanto, o risco é médio por conta dos elevados investimentos em infraestrutura pesada que exigem alto endividamento no curto prazo para gerar retornos no longo prazo.
+            </div>
+        </div>
+
+        <div class="card card-muito-alto" id="stur3">
+            <div class="card-header">
+                <div class="company-info">
+                    <span class="company-name">SpaceTur</span>
+                    <span class="company-code">STUR3</span>
+                </div>
+                <span class="risk-badge risk-muito-alto">Risco Muito Alto</span>
+            </div>
+            <div class="card-body">
+                Agência de turismo espacial voltada para o público de altíssima renda, oferecendo voos suborbitais e estadias em estações privadas. Trata-se de um mercado de nicho de luxo extremamente sensível a crises macroeconômicas. O risco é máximo porque qualquer incidente operacional grave pode destruir a reputação da marca e zerar o valor das ações instantaneamente.
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

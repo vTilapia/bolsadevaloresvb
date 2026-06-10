@@ -1,0 +1,38 @@
+[
+  {
+    "dia": "Dia 2",
+    "empresa": "MECH3",
+    "titulo": "MegaChip (MECH3) fecha parceria de exclusividade com gigante internacional de hardware",
+    "impacto": "Impacto em Tecnologia e Semicondutores",
+    "evento": 0.35,
+    "justificativa_evento": "Evento positivo expressivo. Um contrato excelente que garante o ano, mas longe de mudar o patamar global da existência da empresa.",
+    "texto": "A MegaChip anunciou oficialmente a assinatura de um contrato de exclusividade de cinco anos com um dos maiores conglomerados globais de tecnologia para o fornecimento de seus novos microcomponentes de alta performance. A parceria estratégica garante que a MECH3 seja a única fornecedora de silício customizado para a nova linha de dispositivos móveis da multinacional, gerando uma receita projetada que supera o faturamento total da empresa no ano anterior. O mercado financeiro reagiu com otimismo, resultando em um forte movimento de compra que valorizou as ações no pregão. Analistas apontam que este movimento consolida a saúde financeira da MegaChip, transformando-a em uma peça-chave na cadeia de suprimentos tecnológicos."
+  },
+  {
+    "dia": "Dia 2",
+    "empresa": "AGRD3",
+    "titulo": "AgroDino (AGRD3) enfrenta quebra de safra devido a estiagem severa nas regiões produtoras",
+    "impacto": "Impacto em Agronegócio e Alimentos",
+    "evento": -0.25,
+    "justificativa_evento": "Evento negativo moderado. Afeta a produção do ano e reduz margens, mas a empresa tem estrutura para absorver o golpe sem risco de quebra.",
+    "texto": "A diretoria da AgroDino emitiu um fato relevante comunicando ao mercado uma revisão em suas projeções de colheita para o atual trimestre devido a uma seca prolongada que atingiu suas principais fazendas polo. Estimativas iniciais apontam para uma perda de produtividade de cerca de 15% do volume total esperado, impactando diretamente as margens operacionais de curto prazo. Para mitigar os danos, a companhia informou que está acionando suas apólices de seguro agrícola e renegociando prazos de entrega com parceiros, mas alertou que os custos logísticos adicionais afetarão o balanço. A notícia gerou cautela entre os investidores, provocando uma desvalorização natural nos papéis AGRD3."
+  },
+  {
+    "dia": "Dia 2",
+    "empresa": "AMAR3",
+    "titulo": "Águas de Marte (AMAR3) conclui nova adutora e reduz custos de distribuição em 15%",
+    "impacto": "Impacto em Saneamento e Utilidade Pública",
+    "evento": 0.15,
+    "justificativa_evento": "Evento levemente positivo. Uma melhora operacional interna saudável, que gera valor mas de forma sutil e previsível.",
+    "texto": "A Águas de Marte anunciou a conclusão antecipada das obras de sua nova adutora de alta capacidade, projetada para otimizar o abastecimento e o fluxo logístico de seus centers de distribuição urbana. Com a infraestrutura operando em capacidade total, a empresa projeta uma redução imediata de 15% nos custos de bombeamento e tratamento, o que deve expandir ligeiramente a margem Ebitda nos próximos meses. Setores defensivos como o de saneamento básico costumam atrair investidores em momentos de volatilidade, e a melhora na eficiência operacional da AMAR3 consolidou essa tendência no dia de hoje. Os papéis da companhia registraram uma alta consistente e suave, refletindo a previsibilidade do fluxo de caixa."
+  },
+  {
+    "dia": "Dia 2",
+    "empresa": "GERAL",
+    "titulo": "Discussão sobre nova reforma tributária eleva impostos sobre dividendos e traz cautela à bolsa",
+    "impacto": "Impacto Geral no Mercado (Macroeconômico)",
+    "evento": -0.20,
+    "justificativa_evento": "Evento geral negativo moderado. Pressiona o mercado como um todo, reduzindo o ímpeto comprador, mas não causa um crash generalizado.",
+    "texto": "O Congresso Nacional avançou na votação do texto da reforma tributária, que inclui a taxação direta sobre a distribuição de lucros e dividendos corporativos a uma alíquota de 15%. A medida trouxe um clima de forte cautela para a bolsa, já que os gestores de fundos começaram a projetar uma redução na rentabilidade líquida das empresas listadas frente aos títulos de renda fixa. Setores que historicamente pagam proventos generosos, como o financeiro e o de energia, lideraram as leves perdas e puxaram o índice geral para baixo. Economistas alertam que a maior carga tributária pode desacelerar novos investimentos privados e segurar o fluxo de capital estrangeiro no país nos próximos meses."
+  }
+]

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang='pt-BR'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Simulador de Bolsa - Gráficos Históricos</title>
+    <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+    <style>body { font-family: sans-serif; background: #121214; color: #fff; padding: 40px; } .container { max-width: 1000px; margin: auto; background: #202024; padding: 20px; border-radius: 8px; }</style>
+</head>
+<body>
+    <div class='container'>
+        <h2>Histórico de Ações da Simulação</h2>
+        <canvas id='graficoBolsa'></canvas>
+    </div>
+    <script>
+        const ctx = document.getElementById('graficoBolsa').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1,00','2,00','3,00','4,00'],
+                datasets: [
+                    {
+                        label: 'TechPato',
+                        data: [115.311664577748,126.628926620343,159.80203621455,182.363289812039],
+                        borderColor: '#00b37e',
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Pizza Cósmica',
+                        data: [106.60765759491,115.958037855088,125.042288243812,132.811882226075],
+                        borderColor: '#f75a68',
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'RoboFarma',
+                        data: [115.885767452283,137.125149843486,143.782724877506,141.101588381599],
+                        borderColor: '#4e8fe7',
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Mineração Lunar',
+                        data: [72.9385332493589,68.9804741157998,48.8525059868031,48.1800678685686],
+                        borderColor: '#ffb84d',
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'AgroDino',
+                        data: [101.758014975051,105.041837067898,108.441539117222,118.005434690011],
+                        borderColor: '#9966ff',
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Águas de Marte',
+                        data: [106.994906156782,93.7295350020346,91.6354516983524,96.8139889804696],
+                        borderColor: '#00b37e',
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'EcoEnergia',
+                        data: [106.897720669967,107.099577921982,116.697959350352,129.324596005334],
+                        borderColor: '#f75a68',
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'MegaChip',
+                        data: [118.02179043532,103.496068069488,94.2172466790296,94.9785191703592],
+                        borderColor: '#4e8fe7',
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'FastDrone Express',
+                        data: [111.827130679837,101.584348225529,91.582589229393,78.2964235517624],
+                        borderColor: '#ffb84d',
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'SpaceTur',
+                        data: [89.0278501708059,71.5300522031993,74.9508874082555,97.7234408980891],
+                        borderColor: '#9966ff',
+                        backgroundColor: 'transparent',
+                        tension: 0.1
+                    },
+                ]
+            },
+            options: { responsive: true, plugins: { legend: { labels: { color: '#fff' } } }, scales: { x: { grid: { color: '#29292e' }, ticks: { color: '#c4c4cc' } }, y: { grid: { color: '#29292e' }, ticks: { color: '#c4c4cc' } } } }
+        });
+    </script>
+</body>
+</html>

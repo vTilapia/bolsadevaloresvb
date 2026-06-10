@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bolsa Escolar</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#111827;
+    color:white;
+}
+
+/* TOPO */
+
+header{
+    background:linear-gradient(135deg,#1f2937,#111827);
+    padding:40px 20px;
+    text-align:center;
+    border-bottom:2px solid #f4b400;
+}
+
+header h1{
+    margin:0;
+    font-size:38px;
+}
+
+header p{
+    color:#9ca3af;
+    margin-top:10px;
+}
+
+/* MENU */
+
+.menu{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    padding:20px;
+    flex-wrap:wrap;
+}
+
+.menu a{
+    text-decoration:none;
+    background:#f4b400;
+    color:black;
+    padding:12px 22px;
+    border-radius:10px;
+    font-weight:bold;
+    transition:0.2s;
+}
+
+.menu a:hover{
+    transform:scale(1.05);
+}
+
+/* HERO */
+
+.hero{
+    padding:30px 20px;
+    text-align:center;
+}
+
+.hero h2{
+    font-size:30px;
+    margin-bottom:10px;
+}
+
+.hero p{
+    color:#d1d5db;
+    max-width:700px;
+    margin:auto;
+    line-height:1.6;
+}
+
+/* CARDS */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    padding:30px;
+}
+
+.card{
+    background:#1f2937;
+    border-radius:15px;
+    padding:25px;
+    transition:0.2s;
+    border:1px solid #374151;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    border-color:#f4b400;
+}
+
+.card h3{
+    margin-top:0;
+    font-size:24px;
+}
+
+.card p{
+    color:#d1d5db;
+    line-height:1.5;
+}
+
+.card a{
+    display:inline-block;
+    margin-top:15px;
+    text-decoration:none;
+    background:#f4b400;
+    color:black;
+    padding:10px 18px;
+    border-radius:8px;
+    font-weight:bold;
+}
+
+/* INDICADORES */
+
+.indicadores{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    padding:20px;
+}
+
+.indicador{
+    background:#1f2937;
+    padding:20px;
+    border-radius:12px;
+    min-width:180px;
+    text-align:center;
+    border:1px solid #374151;
+}
+
+.indicador h2{
+    margin:0;
+    font-size:28px;
+}
+
+.alta{
+    color:#22c55e;
+}
+
+.baixa{
+    color:#ef4444;
+}
+
+/* RODAPÉ */
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:#9ca3af;
+}
+
+/* MOBILE */
+
+@media screen and (max-width:600px){
+
+    header h1{
+        font-size:28px;
+    }
+
+    .hero h2{
+        font-size:22px;
+    }
+
+    .menu a{
+        width:100%;
+        text-align:center;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>📈 Bolsa Escolar</h1>
+
+    <p>Simulação de mercado financeiro em tempo real</p>
+
+</header>
+
+<div class="menu">
+
+ 
+
+    <a href="mercado.html"> Mercado</a>
+
+    <a href="graficos.html"> Gráficos</a>
+	
+	<a href="empresas.html"> Empresas</a>
+
+    <a href="noticias.html"> Notícias</a>
+
+
+</div>
+
+<section class="hero">
+
+    <h2>Bem-vindo ao pregão</h2>
+
+    <p>
+        Acompanhe as ações, notícias econômicas e o desempenho das empresas
+        na Bolsa Escolar. Atualizações em tempo real diretamente do sistema
+        do pregão.
+    </p>
+
+</section>
+
+<section class="indicadores">
+
+    <div class="indicador">
+
+        <h3>IBOV Escolar</h3>
+
+        <h2 class="alta">+2.4%</h2>
+
+    </div>
+
+    <div class="indicador">
+
+        <h3>Maior Alta</h3>
+
+        <h2 class="alta">PETR4</h2>
+
+    </div>
+
+    <div class="indicador">
+
+        <h3>Maior Queda</h3>
+
+        <h2 class="baixa">VALE3</h2>
+
+    </div>
+
+</section>
+
+<section class="cards">
+
+    <div class="card">
+
+        <h3>📊 Mercado</h3>
+
+        <p>
+            Veja as ações, cotações, variações e desempenho das empresas
+            durante o pregão.
+        </p>
+
+        <a href="mercado.html">Abrir mercado</a>
+
+    </div>
+
+    <div class="card">
+
+        <h3>📰 Notícias</h3>
+
+        <p>
+            Acompanhe notícias econômicas e acontecimentos que afetam
+            o mercado financeiro.
+        </p>
+
+        <a href="noticias.html">Ver notícias</a>
+
+    </div>
+
+</section>
+
+<footer>
+
+    Bolsa Escolar • Projeto educacional de mercado financeiro
+
+</footer>
+
+</body>
+
+</html>

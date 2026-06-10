@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Simulador de Bolsa - Painel Hist&oacute;rico</title>
+    <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121214; color: #fff; padding: 30px; margin: 0; }
+        .container { max-width: 1100px; margin: 30px auto; background: #1e1e22; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); border: 1px solid #29292e; }
+        h2 { margin: 0 0 5px 0; color: #e1e1e6; font-weight: 600; }
+        p { color: #7c7c8a; font-size: 14px; margin: 0 0 30px 0; }
+        
+        .back-link {
+            display: inline-block;
+            color: #38bdf8;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">&larr; Voltar ao Painel</a>
+    <div class='container'>
+        <h2>Hist&oacute;rico de A&ccedil;&otilde;es da Simula&ccedil;&atilde;o</h2>
+        <p>&#128161; Sele&ccedil;&atilde;o: Clique nos nomes das empresas &agrave; direita para ocultar ou exibir as linhas no gr&aacute;fico.</p>
+        <canvas id='graficoBolsa'></canvas>
+    </div>
+    <script>
+        const ctx = document.getElementById('graficoBolsa').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['1,00','2,00','3,00','4,00'],
+                datasets: [
+                    {
+                        label: 'TechPato',
+                        data: [97.2334212871837,76.4265664341866,75.7616403744887,82.9964340704588],
+                        borderColor: '#00b37e',
+                        backgroundColor: 'transparent',
+                        tension: 0.2,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Pizza Cósmica',
+                        data: [101.466909413639,103.314001617463,110.139786832101,120.005477718188],
+                        borderColor: '#f75a68',
+                        backgroundColor: 'transparent',
+                        tension: 0.2,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'RoboFarma',
+                        data: [109.846168049834,130.599135008877,144.987239895266,145.828491962944],
+                        borderColor: '#4e8fe7',
+                        backgroundColor: 'transparent',
+                        tension: 0.2,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'Minera&ccedil;&atilde;o Lunar',
+                        data: [131.109697393937,173.841733576985,216.759511210523,290.329252727506],
+                        borderColor: '#ffb84d',
+                        backgroundColor: 'transparent',
+                        tension: 0.2,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'AgroDino',
+                        data: [95.5212268140898,91.2980447584149,101.583231452721,111.419472315476],
+                        borderColor: '#9966ff',
+                        backgroundColor: 'transparent',
+                        tension: 0.2,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        borderWidth: 2
+                    },
+                    {
+                        label: '&Aacute;guas de Marte',
+                        data: [108.052460462129,107.169906841338,121.706862021176,123.272711385933],
+                        borderColor: '#00d2df',
+                        backgroundColor: 'transparent',
+                        tension: 0.2,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'EcoEnergia',
+                        data: [105.604191283537,107.829105680705,110.758683425224,115.610872428505],
+                        borderColor: '#ff79c6',
+                        backgroundColor: 'transparent',
+                        tension: 0.2,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'MegaChip',
+                        data: [125.043065467211,140.991673916047,171.186568749671,209.441374996667],
+                        borderColor: '#50fa7b',
+                        backgroundColor: 'transparent',
+                        tension: 0.2,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'FastDrone Express',
+                        data: [102.119200636685,115.563795003138,101.73651335707,92.3385596226537],
+                        borderColor: '#ffb86c',
+                        backgroundColor: 'transparent',
+                        tension: 0.2,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        borderWidth: 2
+                    },
+                    {
+                        label: 'SpaceTur',
+                        data: [87.2537396372263,53.2812211564621,35.2338539239883,36.0558919122634],
+                        borderColor: '#bd93f9',
+                        backgroundColor: 'transparent',
+                        tension: 0.2,
+                        pointRadius: 3,
+                        pointHoverRadius: 6,
+                        borderWidth: 2
+                    },
+                ]
+            },
+            options: {
+                responsive: true,
+                interaction: { mode: 'index', intersect: false },
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        align: 'center',
+                        labels: {
+                            color: '#e1e1e6',
+                            font: { size: 13, family: 'Segoe UI' },
+                            padding: 20,
+                            usePointStyle: true,
+                            pointStyle: 'circle'
+                        }
+                    }
+                },
+                scales: {
+                    x: { grid: { color: '#29292e' }, ticks: { color: '#7c7c8a' } },
+                    y: { grid: { color: '#29292e' }, ticks: { color: '#7c7c8a' } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
