@@ -33,7 +33,7 @@
 
     <div class="container">
         <a href="index.html" class="back-link">? Voltar ao Painel</a>
-        <h1>Consulta de Carteira</h1>
+        <h1>Consulta de Carteira (CSV)</h1>
 
         <div class="busca-box">
             <input type="text" id="inputConta" placeholder="Digite o número da conta (Ex: 1027)">
@@ -52,7 +52,7 @@
                 <span class="valor total-destaque" id="resTotal">R$ 0,00</span>
             </div>
             <div style="margin-top: 20px;">
-                <span class="label" style="display:block; margin-bottom:10px;">Ativos em Carteira (Quantidade e Valor):</span>
+                <span class="label" style="display:block; margin-bottom:10px;">Ativos em Carteira:</span>
                 <div class="acoes-lista" id="resAcoes">
                     </div>
             </div>
@@ -60,14 +60,21 @@
     </div>
 
     <script>
-        let dadosContas = [];
+        let linhasCsv = [];
 
-        async function carregarDadosJson() {
+        // Função que lê o arquivo CSV gerado automaticamente pela macro
+        async function carregarDadosCsv() {
             try {
-                const resposta = await fetch('carteiras.json');
-                dadosContas = await resposta.json();
+                // Adiciona um número aleatório (timestamp) no final para forçar o navegador
+                // a baixar o ficheiro mais recente, evitando que ele use o histórico antigo (cache)
+                const resposta = await fetch('carteiras.csv?v=' + new Date().getTime());
+                const texto = await resposta.text();
+                
+                // Divide o ficheiro por quebras de linha e depois por ponto e vírgula (;)
+                linhasCsv = texto.split('\n')
+                                 .map(linha => linha.replace('\r', '').split(';'));
             } catch (erro) {
-                mostrarErro("Erro ao carregar o arquivo 'carteiras.json'. Suba o arquivo gerado pela nova macro no Netlify.");
+                mostrarErro("Erro ao carregar o ficheiro 'carteiras.csv'. Certifica-te de que executaste a macro e enviaste o ficheiro para o GitHub.");
             }
         }
 
@@ -83,31 +90,65 @@
 
             divErro.style.display = "none";
 
-            // Procura a conta ignorando espaços extras
-            const contaAchada = dadosContas.find(c => c.conta.trim() === termoBusca);
+            if (linhasCsv.length < 2) {
+                mostrarErro("O arquivo de dados parece estar vazio ou não foi carregado corretamente.");
+                return;
+            }
+
+            // A primeira linha do CSV (índice 0) contém os nomes das empresas
+            const cabecalho = linhasCsv[0];
+            
+            let contaAchada = false;
+            let totalInvestido = 0;
+            let listaAtivosHtml = "";
+
+            // Procura o número da conta nas linhas do CSV
+            for (let r = 1; r < linhasCsv.length; r++) {
+                let contaLinha = linhasCsv[r][0] ? linhasCsv[r][0].replace(/"/g, '').trim() : "";
+
+                // Se encontrou a linha com a quantidade de ações da conta pesquisada
+                if (contaLinha === termoBusca) {
+                    contaAchada = true;
+                    
+                    let linhaQtd = linhasCsv[r];
+                    let linhaVal = linhasCsv[r + 1]; // A linha de baixo tem o valor em R$
+
+                    // Varre as colunas a partir da coluna B (índice 1)
+                    for (let c = 1; c < cabecalho.length; c++) {
+                        let empresaNome = cabecalho[c] ? cabecalho[c].replace(/"/g, '').trim() : "";
+                        if (empresaNome === "") continue;
+
+                        // Extrai a quantidade e o valor limpando aspas e ajustando formato numérico
+                        let qtdTexto = linhaQtd[c] ? linhaQtd[c].replace(/"/g, '').trim() : "0";
+                        let valTexto = (linhaVal && linhaVal[c]) ? linhaVal[c].replace(/"/g, '').trim() : "0";
+
+                        let qtd = parseFloat(qtdTexto.replace(',', '.'));
+                        let val = parseFloat(valTexto.replace(',', '.'));
+
+                        // Se o aluno tiver uma quantidade maior do que 0 daquela empresa
+                        if (!isNaN(qtd) && qtd > 0) {
+                            if (isNaN(val)) val = 0;
+                            totalInvestido += val;
+
+                            listaAtivosHtml += `
+                                <div class="acao-item">
+                                    <span class="acao-nome">${empresaNome}</span>
+                                    <span style="color: #94a3b8;">${qtd} ações (R$ ${val.toLocaleString('pt-BR', {minimumFractionDigits: 2})})</span>
+                                </div>
+                            `;
+                        }
+                    }
+                    break; // Sai do loop principal pois já encontrou a conta do aluno
+                }
+            }
 
             if (contaAchada) {
-                document.getElementById("resConta").textContent = contaAchada.conta;
-                document.getElementById("resTotal").textContent = `R$ ${parseFloat(contaAchada.total_investido).toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+                document.getElementById("resConta").textContent = termoBusca;
+                document.getElementById("resTotal").textContent = `R$ ${totalInvestido.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
                 
                 const containerAcoes = document.getElementById("resAcoes");
-                containerAcoes.innerHTML = "";
-                
-                if (contaAchada.acoes && contaAchada.acoes !== "Nenhuma") {
-                    // Separa as ações formatadas pela macro
-                    const lista = contaAchada.acoes.split(", ");
-                    lista.forEach(item => {
-                        const divItem = document.createElement("div");
-                        divItem.className = "acao-item";
-                        
-                        // Divide o nome do ativo do resto do texto (Quantidade/Valor) para ficar bonito
-                        const partes = item.split(": ");
-                        divItem.innerHTML = `
-                            <span class="acao-nome">${partes[0]}</span>
-                            <span style="color: #94a3b8;">${partes[1]}</span>
-                        `;
-                        containerAcoes.appendChild(divItem);
-                    });
+                if (listaAtivosHtml !== "") {
+                    containerAcoes.innerHTML = listaAtivosHtml;
                 } else {
                     containerAcoes.innerHTML = "<p style='color: #7c7c8a; font-size: 0.95rem; padding: 10px 0;'>Nenhum ativo comprado nesta conta.</p>";
                 }
@@ -115,7 +156,7 @@
                 divResultado.style.display = "block";
             } else {
                 divResultado.style.display = "none";
-                mostrarErro(`A conta ${termoBusca} não foi encontrada ou não possui dados registrados.`);
+                mostrarErro(`A conta ${termoBusca} não foi encontrada no arquivo de dados.`);
             }
         }
 
@@ -125,7 +166,7 @@
             divErro.style.display = "block";
         }
 
-        window.onload = carregarDadosJson;
+        window.onload = carregarDadosCsv;
     </script>
 </body>
 </html>
