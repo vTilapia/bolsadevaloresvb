@@ -1,172 +1,227 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Bolsa - Consulta de Carteiras</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
-        body { background-color: #0f172a; color: #f1f5f9; padding: 20px 15px; }
-        .container { max-width: 650px; margin: 40px auto; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-        .back-link { display: inline-block; color: #38bdf8; text-decoration: none; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
-        h1 { font-size: 1.6rem; color: #ffffff; margin-bottom: 20px; text-align: center; }
-        
-        .busca-box { display: flex; gap: 10px; margin-bottom: 25px; }
-        input { flex: 1; background: #0f172a; border: 1px solid #374151; padding: 12px; border-radius: 8px; color: white; font-size: 1rem; outline: none; text-align: center; }
-        input:focus { border-color: #38bdf8; }
-        button { background: #38bdf8; color: #0f172a; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: 0.2s; }
-        button:hover { background: #0ea5e9; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .resultado-carteira { display: none; border-top: 2px solid #374151; padding-top: 20px; }
-        .info-linha { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 1.05rem; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .label { color: #94a3b8; }
-        .valor { font-weight: bold; color: #ffffff; }
-        .total-destaque { color: #f4b400; font-size: 1.25rem; }
-        
-        .acoes-lista { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
-        .acao-item { background: #0f172a; border-left: 3px solid #38bdf8; padding: 10px 15px; border-radius: 0 6px 6px 0; font-size: 0.95rem; display: flex; justify-content: space-between; }
-        .acao-nome { font-weight: bold; color: #e2e8f0; }
-        .erro-msg { color: #ef4444; text-align: center; margin-top: 15px; font-weight: bold; display: none; }
-    </style>
+<title>Minha Carteira</title>
+
+<script src="C:\Users\victo\OneDrive\Desktop\BOLSA\carteiras.js"></script>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:20px;
+    background:#111827;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.busca{
+    display:flex;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+input{
+    flex:1;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    font-size:18px;
+}
+
+button{
+    padding:12px 20px;
+    border:none;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    cursor:pointer;
+    font-size:18px;
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+.card{
+    background:#1f2937;
+    padding:20px;
+    border-radius:15px;
+}
+
+.table-container{
+    overflow-x:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#374151;
+}
+
+th,td{
+    padding:12px;
+    text-align:center;
+    border-bottom:1px solid #374151;
+}
+
+tr:hover{
+    background:#2a3441;
+}
+
+.total{
+    margin-top:20px;
+    font-size:22px;
+    font-weight:bold;
+}
+
+</style>
+
 </head>
+
 <body>
 
-    <div class="container">
-        <a href="index.html" class="back-link">? Voltar ao Painel</a>
-        <h1>Consulta de Carteira (CSV)</h1>
+<div class="container">
 
-        <div class="busca-box">
-            <input type="text" id="inputConta" placeholder="Digite o número da conta (Ex: 1027)">
-            <button onclick="buscarConta()">Buscar</button>
-        </div>
+<h1>?? Minha Carteira</h1>
 
-        <div id="erro" class="erro-msg"></div>
+<div class="busca">
 
-        <div id="resultado" class="resultado-carteira">
-            <div class="info-linha">
-                <span class="label">Nº da Conta Pesquisada:</span>
-                <span class="valor" id="resConta">---</span>
-            </div>
-            <div class="info-linha">
-                <span class="label">Total Investido em Ações:</span>
-                <span class="valor total-destaque" id="resTotal">R$ 0,00</span>
-            </div>
-            <div style="margin-top: 20px;">
-                <span class="label" style="display:block; margin-bottom:10px;">Ativos em Carteira:</span>
-                <div class="acoes-lista" id="resAcoes">
-                    </div>
-            </div>
-        </div>
-    </div>
+<input
+ type="text"
+ id="conta"
+ placeholder="Digite o número da conta">
 
-    <script>
-        let linhasCsv = [];
+<button onclick="consultar()">
+Consultar
+</button>
 
-        // Função que lê o arquivo CSV gerado automaticamente pela macro
-        async function carregarDadosCsv() {
-            try {
-                // Adiciona um número aleatório (timestamp) no final para forçar o navegador
-                // a baixar o ficheiro mais recente, evitando que ele use o histórico antigo (cache)
-                const resposta = await fetch('carteiras.csv?v=' + new Date().getTime());
-                const texto = await resposta.text();
-                
-                // Divide o ficheiro por quebras de linha e depois por ponto e vírgula (;)
-                linhasCsv = texto.split('\n')
-                                 .map(linha => linha.replace('\r', '').split(';'));
-            } catch (erro) {
-                mostrarErro("Erro ao carregar o ficheiro 'carteiras.csv'. Certifica-te de que executaste a macro e enviaste o ficheiro para o GitHub.");
-            }
-        }
+</div>
 
-        function buscarConta() {
-            const termoBusca = document.getElementById("inputConta").value.trim();
-            const divResultado = document.getElementById("resultado");
-            const divErro = document.getElementById("erro");
+<div id="resultado"></div>
 
-            if (termoBusca === "") {
-                mostrarErro("Por favor, digite o número de uma conta.");
-                return;
-            }
+</div>
 
-            divErro.style.display = "none";
+<script>
 
-            if (linhasCsv.length < 2) {
-                mostrarErro("O arquivo de dados parece estar vazio ou não foi carregado corretamente.");
-                return;
-            }
+function consultar(){
 
-            // A primeira linha do CSV (índice 0) contém os nomes das empresas
-            const cabecalho = linhasCsv[0];
-            
-            let contaAchada = false;
-            let totalInvestido = 0;
-            let listaAtivosHtml = "";
+    const conta =
+        document.getElementById("conta").value.trim();
 
-            // Procura o número da conta nas linhas do CSV
-            for (let r = 1; r < linhasCsv.length; r++) {
-                let contaLinha = linhasCsv[r][0] ? linhasCsv[r][0].replace(/"/g, '').trim() : "";
+    const carteira =
+        carteiras[conta];
 
-                // Se encontrou a linha com a quantidade de ações da conta pesquisada
-                if (contaLinha === termoBusca) {
-                    contaAchada = true;
-                    
-                    let linhaQtd = linhasCsv[r];
-                    let linhaVal = linhasCsv[r + 1]; // A linha de baixo tem o valor em R$
+    if(!carteira){
 
-                    // Varre as colunas a partir da coluna B (índice 1)
-                    for (let c = 1; c < cabecalho.length; c++) {
-                        let empresaNome = cabecalho[c] ? cabecalho[c].replace(/"/g, '').trim() : "";
-                        if (empresaNome === "") continue;
+        document.getElementById("resultado").innerHTML =
+        "<div class='card'>Conta não encontrada.</div>";
 
-                        // Extrai a quantidade e o valor limpando aspas e ajustando formato numérico
-                        let qtdTexto = linhaQtd[c] ? linhaQtd[c].replace(/"/g, '').trim() : "0";
-                        let valTexto = (linhaVal && linhaVal[c]) ? linhaVal[c].replace(/"/g, '').trim() : "0";
+        return;
+    }
 
-                        let qtd = parseFloat(qtdTexto.replace(',', '.'));
-                        let val = parseFloat(valTexto.replace(',', '.'));
+    let totalInvestido = 0;
 
-                        // Se o aluno tiver uma quantidade maior do que 0 daquela empresa
-                        if (!isNaN(qtd) && qtd > 0) {
-                            if (isNaN(val)) val = 0;
-                            totalInvestido += val;
+    let html = "";
 
-                            listaAtivosHtml += `
-                                <div class="acao-item">
-                                    <span class="acao-nome">${empresaNome}</span>
-                                    <span style="color: #94a3b8;">${qtd} ações (R$ ${val.toLocaleString('pt-BR', {minimumFractionDigits: 2})})</span>
-                                </div>
-                            `;
-                        }
-                    }
-                    break; // Sai do loop principal pois já encontrou a conta do aluno
+    html += "<div class='card'>";
+
+    html += "<h2>Conta " + conta + "</h2>";
+
+    html += "<div class='table-container'>";
+
+    html += "<table>";
+
+    html += "<tr>";
+    html += "<th>Empresa</th>";
+    html += "<th>Quantidade</th>";
+    html += "<th>Valor Investido</th>";
+    html += "</tr>";
+
+    for(const empresa in carteira){
+
+        const qtd =
+            carteira[empresa].qtd;
+
+        const investido =
+            carteira[empresa].investido;
+
+        totalInvestido += investido;
+
+        html += "<tr>";
+
+        html += "<td>" + empresa + "</td>";
+
+        html += "<td>" + qtd + "</td>";
+
+        html += "<td>R$ " +
+            investido.toLocaleString(
+                "pt-BR",
+                {
+                    minimumFractionDigits:2,
+                    maximumFractionDigits:2
                 }
+            ) +
+            "</td>";
+
+        html += "</tr>";
+    }
+
+    html += "</table>";
+
+    html += "</div>";
+
+    html += "<div class='total'>";
+
+    html += "Total Investido: R$ " +
+        totalInvestido.toLocaleString(
+            "pt-BR",
+            {
+                minimumFractionDigits:2,
+                maximumFractionDigits:2
             }
+        );
 
-            if (contaAchada) {
-                document.getElementById("resConta").textContent = termoBusca;
-                document.getElementById("resTotal").textContent = `R$ ${totalInvestido.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
-                
-                const containerAcoes = document.getElementById("resAcoes");
-                if (listaAtivosHtml !== "") {
-                    containerAcoes.innerHTML = listaAtivosHtml;
-                } else {
-                    containerAcoes.innerHTML = "<p style='color: #7c7c8a; font-size: 0.95rem; padding: 10px 0;'>Nenhum ativo comprado nesta conta.</p>";
-                }
+    html += "</div>";
 
-                divResultado.style.display = "block";
-            } else {
-                divResultado.style.display = "none";
-                mostrarErro(`A conta ${termoBusca} não foi encontrada no arquivo de dados.`);
-            }
-        }
+    html += "</div>";
 
-        function mostrarErro(msg) {
-            const divErro = document.getElementById("erro");
-            divErro.textContent = msg;
-            divErro.style.display = "block";
-        }
+    document.getElementById("resultado").innerHTML =
+        html;
+}
 
-        window.onload = carregarDadosCsv;
-    </script>
+document.getElementById("conta").addEventListener("keypress",function(e){
+
+    if(e.key==="Enter"){
+
+        consultar();
+
+    }
+
+});
+
+</script>
+
 </body>
 </html>
