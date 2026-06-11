@@ -1,6 +1,968 @@
+Sub ProximaRodada
+
+Dim planilha
+Dim i As Integer
+Dim a As Integer
+
+planilha = ThisComponent.Sheets.getByName("BOLSA DE VALORES")
+
+For a = 1 to 10
+
+	antigo = planilha.getCellByPosition(5, a).Value
+	planilha.getCellByPosition(3, a).Value = antigo
+	
+Next a
+
+For i = 1 To 10
+
+
+    preco = planilha.getCellByPosition(3,i).Value
+    variacao = planilha.getCellByPosition(6,i).Value
+
+    novo = preco*(1+variacao)
+
+    planilha.getCellByPosition(5,i).Value = novo
+
+Next i
+
+ThisComponent.calculateAll
+
+
+    Dim doc As Object
+
+    Dim bolsa As Object
+    Dim mercado As Object
+
+    Dim linha As Integer
+
+
+    doc = ThisComponent
+
+
+    bolsa = doc.Sheets.getByName("BOLSA DE VALORES")
+
+    mercado = doc.Sheets.getByName("MERCADO")
+
+
+    ' limpa mercado
+
+    mercado.clearContents(7)
+
+
+    ' cabeçalhos
+
+    mercado.getCellByPosition(0,0).String = "Empresa"
+    mercado.getCellByPosition(1,0).String = "Código"
+    mercado.getCellByPosition(2,0).String = "Preço"
+    mercado.getCellByPosition(3,0).String = "Variação"
+
+
+    ' copia ações
+
+    For linha = 1 To 10
+
+
+        mercado.getCellByPosition(0, linha).String = _
+        bolsa.getCellByPosition(0, linha).String
+
+
+        mercado.getCellByPosition(1, linha).String = _
+        bolsa.getCellByPosition(1, linha).String
+
+
+        mercado.getCellByPosition(2, linha).Value = _
+        bolsa.getCellByPosition(5, linha).Value
+
+
+        mercado.getCellByPosition(3, linha).Value = _
+        bolsa.getCellByPosition(2, linha).Value
+
+
+    Next linha
+
+
+    MsgBox "Mercado atualizado!"
+
+
+
+
+
+
+
+End Sub
+
+Sub Reset
+
+Dim rreset
+Dim b As Integer
+
+rreset = ThisComponent.Sheets.getByName("BOLSA DE VALORES")
+
+For b = 1 To 10
+	
+	precoinicial = 100
+
+	rreset.getCellByPosition(3,b).Value = precoinicial
+
+    rreset.getCellByPosition(5,b).Value = precoinicial
+    
+    Next b
+    
+    ThisComponent.calculateAll
+    
+
+End Sub
+
+
+
+
+
+
+Sub ExecutarOrdens
+
+Dim ordens
+Dim alunos
+Dim carteira
+Dim mercado
+
+Dim i As Integer
+Dim linhaAluno As Integer
+Dim linhaMercado As Integer
+Dim colunaEmpresa As Integer
+Dim linhaInvestidor As Integer ' <--- Nova variável para alinhar a aba INVESTIDORES
+
+Dim conta As String
+Dim codigo As String
+Dim tipo As String
+Dim qtd As Double
+
+Dim saldo As Double
+Dim preco As Double
+Dim valor As Double
+Dim acoes As Double
+
+ordens=ThisComponent.Sheets.getByName("ORDENS")
+alunos=ThisComponent.Sheets.getByName("INVESTIDORES")
+carteira=ThisComponent.Sheets.getByName("CARTEIRAS")
+mercado=ThisComponent.Sheets.getByName("BOLSA DE VALORES")
+
+
+For i=1 To 30
+
+conta=ordens.getCellByPosition(1,i).String
+tipo=UCase(ordens.getCellByPosition(3,i).String)
+qtd=Val(Trim(ordens.getCellByPosition(4, i).String))
+codigo=ordens.getCellByPosition(2,i).String
+
+If conta<>"" Then
+
+linhaAluno=-1
+
+For j=1 To 100
+
+If carteira.getCellByPosition(0,j).String=conta Then
+linhaAluno=j
+Exit For
+End If
+
+Next j
+
+
+If linhaAluno=-1 Then
+MsgBox("Conta "& conta &" não encontrada")
+GoTo ProximaOrdem
+End If
+
+
+linhaMercado=-1
+
+For k=1 To 100
+
+If mercado.getCellByPosition(1,k).String=codigo Then
+linhaMercado=k
+Exit For
+End If
+
+Next k
+
+
+If linhaMercado=-1 Then
+MsgBox("Empresa "& codigo &" não encontrada")
+GoTo ProximaOrdem
+End If
+
+
+colunaEmpresa=-1
+
+For j=1 To 50
+
+If carteira.getCellByPosition(j,0).String=codigo Then
+colunaEmpresa=j
+Exit For
+End If
+
+Next j
+
+' =========================================================================
+' AQUI ESTÁ A ADEQUAÇÃO DE LINHAS:
+' No LibreOffice Basic, a Linha 2 da planilha é o índice 1 no código.
+' Se linhaAluno na CARTEIRAS é 2 (índice 2), na INVESTIDORES deve ser a linha 2 (índice 1).
+' Fórmula matemática de conversão de índices baseada em zero (0):
+' =========================================================================
+linhaInvestidor = (linhaAluno / 2)
+
+' Agora usamos a linhaInvestidor correta para ler o saldo na aba INVESTIDORES
+saldo=alunos.getCellByPosition(5, linhaInvestidor).Value
+
+preco=mercado.getCellByPosition(5,linhaMercado).Value
+
+valor=preco*qtd
+
+acoes=carteira.getCellByPosition(colunaEmpresa,linhaAluno).Value
+
+
+If tipo="COMPRA" Then
+
+If saldo>=valor Then
+
+saldo=saldo-valor
+acoes=acoes+qtd
+
+Else
+
+MsgBox("Saldo insuficiente: "&conta)
+
+End If
+
+ElseIf tipo="VENDA" Then
+
+If acoes>=qtd Then
+
+saldo=saldo+valor
+acoes=acoes-qtd
+
+Else
+
+MsgBox("Ações insuficientes: "&conta)
+
+End If
+
+End If
+
+' Usamos a linhaInvestidor para salvar o novo saldo no aluno correto
+alunos.getCellByPosition(5,linhaInvestidor).Value=saldo
+
+carteira.getCellByPosition(colunaEmpresa,linhaAluno).Value=acoes
+
+
+ProximaOrdem:
+
+End If
+
+Next i
+
+MsgBox("Ordens executadas!")
+
+End Sub
+
+
+
+
+Sub ExportarMercadoCSV
+
+Dim planilha
+Dim caminho As String
+Dim arquivo As Integer
+
+Dim linha As Integer
+Dim coluna As Integer
+
+Dim ultimaLinha As Integer
+Dim ultimaColuna As Integer
+
+Dim textoLinha As String
+Dim valor As String
+
+planilha = ThisComponent.Sheets.getByName("BOLSA DE VALORES")
+
+caminho = "C:\Users\victo\OneDrive\Desktop\BOLSA\bolsadevalores.csv"
+
+arquivo = FreeFile
+
+Open caminho For Output As #arquivo
+
+ultimaLinha = 20
+ultimaColuna = 3
+
+For linha = 0 To ultimaLinha
+
+    textoLinha = ""
+
+    For coluna = 0 To ultimaColuna
+
+        valor = planilha.getCellByPosition(coluna, linha).String
+
+        If coluna < ultimaColuna Then
+            textoLinha = textoLinha & valor & ";"
+        Else
+            textoLinha = textoLinha & valor
+        End If
+
+    Next coluna
+
+    Print #arquivo, textoLinha
+
+Next linha
+
+Close #arquivo
+
+MsgBox "bolsadevalores.csv exportado!"
+
+End Sub
+
+
+
+
+Sub AtualizarMercado
+
+    Dim doc As Object
+
+    Dim bolsa As Object
+    Dim mercado As Object
+
+    Dim linha As Integer
+
+
+    doc = ThisComponent
+
+
+    bolsa = doc.Sheets.getByName("BOLSA DE VALORES")
+
+    mercado = doc.Sheets.getByName("MERCADO")
+
+
+    ' limpa mercado
+
+    mercado.clearContents(7)
+
+
+    ' cabeçalhos
+
+    mercado.getCellByPosition(0,0).String = "Empresa"
+    mercado.getCellByPosition(1,0).String = "Código"
+    mercado.getCellByPosition(2,0).String = "Preço"
+    mercado.getCellByPosition(3,0).String = "Variação"
+
+
+    ' copia ações
+
+    For linha = 1 To 10
+
+
+        mercado.getCellByPosition(0, linha).String = _
+        bolsa.getCellByPosition(0, linha).String
+
+
+        mercado.getCellByPosition(1, linha).String = _
+        bolsa.getCellByPosition(1, linha).String
+
+
+        mercado.getCellByPosition(2, linha).Value = _
+        bolsa.getCellByPosition(3, linha).Value
+
+
+        mercado.getCellByPosition(3, linha).Value = _
+        bolsa.getCellByPosition(2, linha).Value
+
+
+    Next linha
+
+
+    MsgBox "Mercado atualizado!"
+
+End Sub
+
+
+Sub GerarHTML
+
+    Dim doc As Object
+    Dim aba As Object
+
+    Dim linha As Integer
+
+    Dim html As String
+
+    Dim codigo As String
+    Dim empresa As String
+
+    Dim preco As Double
+    Dim variacao As Double
+
+    Dim arquivo As Integer
+
+
+    doc = ThisComponent
+
+    aba = doc.Sheets.getByName("MERCADO")
+
+
+    html = "<html>"
+    html = html & "<head>"
+
+    html = html & "<meta charset='UTF-8'>"
+
+    html = html & "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
+
+
+    html = html & "<style>"
+
+html = html & "<style>"
+
+html = html & "body{"
+html = html & "margin:0;"
+html = html & "padding:10px;"
+html = html & "background:#111827;"
+html = html & "font-family:Arial,sans-serif;"
+html = html & "color:white;"
+html = html & "}"
+
+html = html & "h1{"
+html = html & "text-align:center;"
+html = html & "font-size:22px;"
+html = html & "margin-bottom:15px;"
+html = html & "}"
+
+html = html & ".container{"
+html = html & "overflow-x:auto;"
+html = html & "}"
+
+html = html & "table{"
+html = html & "width:100%;"
+html = html & "border-collapse:collapse;"
+html = html & "background:#1f2937;"
+html = html & "border-radius:12px;"
+html = html & "overflow:hidden;"
+html = html & "font-size:14px;"
+html = html & "}"
+
+html = html & "th{"
+html = html & "background:#f4b400;"
+html = html & "color:black;"
+html = html & "padding:10px 6px;"
+html = html & "}"
+
+html = html & "td{"
+html = html & "padding:10px 6px;"
+html = html & "text-align:center;"
+html = html & "border-bottom:1px solid #374151;"
+html = html & "color:white;"
+html = html & "}"
+
+html = html & "tr:hover{"
+html = html & "background:#374151;"
+html = html & "}"
+
+html = html & ".alta{"
+html = html & "color:#22c55e;"
+html = html & "font-weight:bold;"
+html = html & "}"
+
+html = html & ".baixa{"
+html = html & "color:#ef4444;"
+html = html & "font-weight:bold;"
+html = html & "}"
+
+html = html & "@media screen and (max-width:600px){"
+
+html = html & "h1{font-size:18px;}"
+
+html = html & "table{font-size:12px;}"
+
+html = html & "th,td{padding:8px 4px;}"
+
+html = html & "}"
+
+html = html & "</style>"
+
+    html = html & "</style>"
+
+    html = html & "</head>"
+
+    html = html & "<body>"
+
+    html = html & "<h1> Bolsa Escolar</h1>"
+
+    html = html & "<table>"
+
+
+    ' cabeçalho
+
+    html = html & "<tr>"
+
+    html = html & "<th>Código</th>"
+    html = html & "<th>Empresa</th>"
+    html = html & "<th>Preço</th>"
+    html = html & "<th>Variação</th>"
+
+    html = html & "</tr>"
+
+
+    ' dados
+
+    For linha = 1 To 10
+
+
+        codigo = aba.getCellByPosition(0, linha).String
+
+        empresa = aba.getCellByPosition(1, linha).String
+
+        preco = aba.getCellByPosition(2, linha).Value
+
+        variacao = aba.getCellByPosition(3, linha).Value
+
+
+        html = html & "<tr>"
+
+        html = html & "<td>" & codigo & "</td>"
+
+        html = html & "<td>" & empresa & "</td>"
+
+        html = html & "<td>R$ " & Format(preco, "0.00") & "</td>"
+
+
+        If variacao >= 0 Then
+
+            html = html & "<td class='alta'>▲ " & _
+            Format(variacao * 100, "0.00") & "%</td>"
+
+        Else
+
+            html = html & "<td class='baixa'>▼ " & _
+            Format(Abs(variacao * 100), "0.00") & "%</td>"
+
+        End If
+
+
+        html = html & "</tr>"
+
+
+    Next linha
+
+
+    html = html & "</table>"
+
+    html = html & "</body>"
+    html = html & "</html>"
+
+
+    arquivo = FreeFile
+
+    Open "C:\Users\victo\OneDrive\Desktop\BOLSA\mercado.html" For Output As #arquivo
+
+    Print #arquivo, html
+
+    Close #arquivo
+
+
+    MsgBox "HTML gerado com sucesso!"
+
+End Sub
+
+
+Sub SalvarHistorico
+
+    Dim doc As Object
+
+    Dim mercado As Object
+    Dim historico As Object
+
+    Dim ultimaLinha As Integer
+
+    Dim coluna As Integer
+
+    Dim codigo As String
+    Dim preco As Double
+
+    Dim numeroPregao As Integer
+
+
+    doc = ThisComponent
+
+
+    mercado = doc.Sheets.getByName("MERCADO")
+
+    historico = doc.Sheets.getByName("HISTÓRICO")
+
+
+    ' descobrir próxima linha vazia
+
+    ultimaLinha = 1
+
+    Do While historico.getCellByPosition(0, ultimaLinha).String <> ""
+
+        ultimaLinha = ultimaLinha + 1
+
+    Loop
+
+
+    ' número do pregão
+
+    numeroPregao = ultimaLinha
+
+
+    ' escrever número do pregão
+
+    historico.getCellByPosition(0, ultimaLinha).Value = numeroPregao
+
+
+    ' percorrer empresas
+
+    coluna = 1
+
+    Do While mercado.getCellByPosition(0, coluna).String <> ""
+
+
+        codigo = mercado.getCellByPosition(0, coluna).String
+
+        preco = mercado.getCellByPosition(2, coluna).Value
+
+
+        ' criar cabeçalho se necessário
+
+        If historico.getCellByPosition(coluna, 0).String = "" Then
+
+            historico.getCellByPosition(coluna, 0).String = codigo
+
+        End If
+
+
+        ' salvar preço
+
+        historico.getCellByPosition(coluna, ultimaLinha).Value = preco
+
+
+        coluna = coluna + 1
+
+    Loop
+
+
+    MsgBox "Histórico salvo!"
+
+End Sub
+Sub ExportarGraficoLegendaLateral
+    Dim oDoc As Object
+    Dim oSheet As Object
+    Dim iRow As Integer, iCol As Integer
+    Dim sDataLabels As String
+    Dim sCaminhoArquivo As String
+    Dim iNumeroArquivo As Integer
+    
+    ' --- CONFIGURAÇÃO ---
+    oDoc = ThisComponent
+    oSheet = oDoc.Sheets.getByName("HISTÓRICO") ' Garanta que o nome da aba está correto
+    sCaminhoArquivo = "C:\Users\victo\OneDrive\Desktop\BOLSA\graficos.html" ' Mude para o seu caminho de salvamento
+    ' ---------------------
+
+    sDataLabels = ""
+    
+    ' Captura as datas (Eixo X)
+    iRow = 1 
+    Do While oSheet.getCellByPosition(0, iRow).String <> ""
+        sDataLabels = sDataLabels & "'" & oSheet.getCellByPosition(0, iRow).String & "',"
+        iRow = iRow + 1
+    Loop
+    If Len(sDataLabels) > 0 Then sDataLabels = Left(sDataLabels, Len(sDataLabels) - 1)
+
+    iNumeroArquivo = FreeFile
+    Open sCaminhoArquivo For Output As #iNumeroArquivo
+    
+    ' Gerando o HTML com CSS aprimorado
+    Print #iNumeroArquivo, "<!DOCTYPE html>"
+    Print #iNumeroArquivo, "<html lang='pt-BR'>"
+    Print #iNumeroArquivo, "<head>"
+    Print #iNumeroArquivo, "    <meta charset='UTF-8'>"
+    Print #iNumeroArquivo, "    <title>Simulador de Bolsa - Painel Histórico</title>"
+    Print #iNumeroArquivo, "    <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>"
+    Print #iNumeroArquivo, "    <style>"
+    Print #iNumeroArquivo, "        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121214; color: #fff; padding: 30px; margin: 0; }"
+    Print #iNumeroArquivo, "        .container { max-width: 1100px; margin: 30px auto; background: #1e1e22; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); border: 1px solid #29292e; }"
+    Print #iNumeroArquivo, "        h2 { margin: 0 0 5px 0; color: #e1e1e6; font-weight: 600; }"
+    Print #iNumeroArquivo, "        p { color: #7c7c8a; font-size: 14px; margin: 0 0 30px 0; }"
+    Print #iNumeroArquivo, "    </style>"
+    Print #iNumeroArquivo, "</head>"
+    Print #iNumeroArquivo, "<body>"
+    Print #iNumeroArquivo, "    <div class='container'>"
+    Print #iNumeroArquivo, "        <h2>Histórico de Ações da Simulação</h2>"
+    Print #iNumeroArquivo, "        <p>📊 Seleção: Clique nos nomes das empresas à direita para ocultar ou exibir as linhas no gráfico.</p>"
+    Print #iNumeroArquivo, "        <canvas id='graficoBolsa'></canvas>"
+    Print #iNumeroArquivo, "    </div>"
+    Print #iNumeroArquivo, "    <script>"
+    Print #iNumeroArquivo, "        const ctx = document.getElementById('graficoBolsa').getContext('2d');"
+    Print #iNumeroArquivo, "        new Chart(ctx, {"
+    Print #iNumeroArquivo, "            type: 'line',"
+    Print #iNumeroArquivo, "            data: {"
+    Print #iNumeroArquivo, "                labels: [" & sDataLabels & "],"
+    Print #iNumeroArquivo, "                datasets: ["
+    
+    ' Loop pelas colunas (Empresas)
+    iCol = 1 
+    Dim sNomeEmpresa As String
+    Dim sValores As String
+    Dim sCores As Variant
+    
+    ' Paleta expandida com 10 cores marcantes e diferentes para o modo escuro
+    sCores = Array("#00b37e", "#f75a68", "#4e8fe7", "#ffb84d", "#9966ff", "#00d2df", "#ff79c6", "#50fa7b", "#ffb86c", "#bd93f9")
+    Dim iCorIdx As Integer
+    iCorIdx = 0
+
+    Do While oSheet.getCellByPosition(iCol, 0).String <> ""
+        sNomeEmpresa = oSheet.getCellByPosition(iCol, 0).String
+        sValores = ""
+        
+        For r = 1 To iRow - 1
+            sValores = sValores & Replace(oSheet.getCellByPosition(iCol, r).Value, ",", ".") & ","
+        Next r
+        If Len(sValores) > 0 Then sValores = Left(sValores, Len(sValores) - 1)
+        
+        Print #iNumeroArquivo, "                    {"
+        Print #iNumeroArquivo, "                        label: '" & sNomeEmpresa & "',"
+        Print #iNumeroArquivo, "                        data: [" & sValores & "],"
+        Print #iNumeroArquivo, "                        borderColor: '" & sCores(iCorIdx Mod 10) & "',"
+        Print #iNumeroArquivo, "                        backgroundColor: 'transparent',"
+        Print #iNumeroArquivo, "                        tension: 0.2,"
+        Print #iNumeroArquivo, "                        pointRadius: 3,"
+        Print #iNumeroArquivo, "                        pointHoverRadius: 6,"
+        Print #iNumeroArquivo, "                        borderWidth: 2"
+        Print #iNumeroArquivo, "                    },"
+        
+        iCorIdx = iCorIdx + 1
+        iCol = iCol + 1
+    Loop
+    
+    ' Fechamento com a legenda posicionada na lateral direita ('right')
+    Print #iNumeroArquivo, "                ]"
+    Print #iNumeroArquivo, "            },"
+    Print #iNumeroArquivo, "            options: {"
+    Print #iNumeroArquivo, "                responsive: true,"
+    Print #iNumeroArquivo, "                interaction: { mode: 'index', intersect: false },"
+    Print #iNumeroArquivo, "                plugins: {"
+    Print #iNumeroArquivo, "                    legend: {"
+    Print #iNumeroArquivo, "                        position: 'right',"
+    Print #iNumeroArquivo, "                        align: 'center',"
+    Print #iNumeroArquivo, "                        labels: {"
+    Print #iNumeroArquivo, "                            color: '#e1e1e6',"
+    Print #iNumeroArquivo, "                            font: { size: 13, family: 'Segoe UI' },"
+    Print #iNumeroArquivo, "                            padding: 20,"
+    Print #iNumeroArquivo, "                            usePointStyle: true,"
+    Print #iNumeroArquivo, "                            pointStyle: 'circle'"
+    Print #iNumeroArquivo, "                        }"
+    Print #iNumeroArquivo, "                    }"
+    Print #iNumeroArquivo, "                },"
+    Print #iNumeroArquivo, "                scales: {"
+    Print #iNumeroArquivo, "                    x: { grid: { color: '#29292e' }, ticks: { color: '#7c7c8a' } },"
+    Print #iNumeroArquivo, "                    y: { grid: { color: '#29292e' }, ticks: { color: '#7c7c8a' } }"
+    Print #iNumeroArquivo, "                }"
+    Print #iNumeroArquivo, "            }"
+    Print #iNumeroArquivo, "        });"
+    Print #iNumeroArquivo, "    </script>"
+    Print #iNumeroArquivo, "</body>"
+    Print #iNumeroArquivo, "</html>"
+    
+    Close #iNumeroArquivo
+    MsgBox "Painel atualizado! Abra o HTML para ver o novo design com legenda lateral.", 64, "Sucesso"
+End Sub
+
+
+
+
+Sub GerarMercadoHTML()
+
+    Dim doc As Object
+    Dim planilha As Object
+
+    Dim linha As Integer
+    Dim ultimaLinha As Integer
+
+    Dim codigo As String
+    Dim empresa As String
+    Dim preco As Double
+    Dim variacao As Double
+
+    Dim html As String
+
+    doc = ThisComponent
+
+    planilha = doc.Sheets.getByName("MERCADO")
+
+    ultimaLinha = 1
+
+    Do While planilha.getCellByPosition(0, ultimaLinha).String <> ""
+
+        ultimaLinha = ultimaLinha + 1
+
+    Loop
+
+    ultimaLinha = ultimaLinha - 1
+
+
+    html = "<!DOCTYPE html>"
+    html = html & "<html lang='pt-BR'>"
+    html = html & "<head>"
+    html = html & "<meta charset='UTF-8'>"
+    html = html & "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
+
+    html = html & "<style>"
+
+    html = html & "body{margin:0;padding:10px;background:#111827;font-family:Arial,sans-serif;color:white;}"
+
+    html = html & "h1{text-align:center;font-size:22px;margin-bottom:15px;}"
+
+    html = html & ".container{overflow-x:auto;}"
+
+    html = html & "table{width:100%;border-collapse:collapse;background:#1f2937;border-radius:12px;overflow:hidden;font-size:14px;}"
+
+    html = html & "th{background:#f4b400;color:black;padding:10px 6px;}"
+
+    html = html & "td{padding:10px 6px;text-align:center;border-bottom:1px solid #374151;color:white;}"
+
+    html = html & "tr:hover{background:#374151;}"
+
+    html = html & ".alta{color:#22c55e;font-weight:bold;}"
+
+    html = html & ".baixa{color:#ef4444;font-weight:bold;}"
+
+    html = html & "@media screen and (max-width:600px){"
+
+    html = html & "h1{font-size:18px;}"
+
+    html = html & "table{font-size:12px;}"
+
+    html = html & "th,td{padding:8px 4px;}"
+
+    html = html & "}"
+
+    html = html & "</style>"
+
+    html = html & "</head>"
+
+    html = html & "<body>"
+
+    html = html & "<h1>📈 Bolsa Escolar</h1>"
+
+    html = html & "<div class='container'>"
+
+    html = html & "<table>"
+
+    html = html & "<tr>"
+    html = html & "<th>Código</th>"
+    html = html & "<th>Empresa</th>"
+    html = html & "<th>Preço</th>"
+    html = html & "<th>Variação</th>"
+    html = html & "</tr>"
+
+
+    For linha = 1 To ultimaLinha
+
+        codigo = planilha.getCellByPosition(0, linha).String
+        empresa = planilha.getCellByPosition(1, linha).String
+
+        preco = planilha.getCellByPosition(2, linha).Value
+        variacao = planilha.getCellByPosition(3, linha).Value
+
+        html = html & "<tr>"
+
+        html = html & "<td>" & codigo & "</td>"
+
+        html = html & "<td>" & empresa & "</td>"
+
+        html = html & "<td>R$ " & Replace(Format(preco, "0.00"), ",", ".") & "</td>"
+
+        If variacao >= 0 Then
+
+            html = html & "<td class='alta'>&#9650; " & Replace(Format(variacao, "0.00"), ",", ".") & "%</td>"
+
+        Else
+
+            html = html & "<td class='baixa'>&#9660; " & Replace(Format(Abs(variacao), "0.00"), ",", ".") & "%</td>"
+
+        End If
+
+        html = html & "</tr>"
+
+    Next linha
+
+
+    html = html & "</table>"
+
+    html = html & "</div>"
+
+    html = html & "</body>"
+
+    html = html & "</html>"
+
+
+    Dim arquivo As Integer
+
+    arquivo = FreeFile
+
+    Open "C:\Users\victo\OneDrive\Desktop\BOLSA\mercado.html" For Output As #arquivo
+
+    Print #arquivo, html
+
+    Close #arquivo
+
+    MsgBox "mercado.html criado com sucesso!"
+
+End Sub
+
+Sub ImportarOrdensCSV()
+
+    Dim planilha
+    Dim arquivo As Integer
+    Dim linhaTexto As String
+    Dim campos()
+    Dim linhaDestino As Integer
+    Dim coluna As Integer
+
+    planilha = ThisComponent.Sheets.getByName("ORDENS")
+
+    planilha.getCellRangeByPosition(0,0,20,1000).clearContents(1023)
+
+    arquivo = FreeFile
+
+    Open "C:\Users\victo\OneDrive\Desktop\BOLSA\ordens.csv" For Input As #arquivo
+
+    linhaDestino = 0
+
+    Do Until EOF(arquivo)
+
+        Line Input #arquivo, linhaTexto
+
+        campos = Split(linhaTexto, ",")
+
+        For coluna = 0 To UBound(campos)
+
+            planilha.getCellByPosition(coluna, linhaDestino).String = Trim(campos(coluna))
+
+        Next coluna
+
+        linhaDestino = linhaDestino + 1
+
+    Loop
+
+    Close #arquivo
+
+    MsgBox "Ordens importadas!"
+
+End Sub
+
+
+
+
+
 Sub ExportarCarteirasJS()
 
-```
+
 Dim planilha As Object
 
 Dim ultimaLinha As Long
@@ -84,6 +1046,6 @@ Print #arquivo, js
 Close #arquivo
 
 MsgBox "carteiras.js criado com sucesso!"
-```
+
 
 End Sub
