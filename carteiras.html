@@ -1,227 +1,117 @@
 <!DOCTYPE html>
-
-<html lang="pt-BR">
+<html lang='pt-BR'>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Minha Carteira</title>
-
-<script src="carteiras.js"></script>
-
-<style>
-
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    padding:20px;
-    background:#111827;
-    color:white;
-    font-family:Arial,sans-serif;
-}
-
-.container{
-    max-width:1200px;
-    margin:auto;
-}
-
-h1{
-    text-align:center;
-    margin-bottom:30px;
-}
-
-.busca{
-    display:flex;
-    gap:10px;
-    margin-bottom:20px;
-}
-
-input{
-    flex:1;
-    padding:12px;
-    border:none;
-    border-radius:10px;
-    font-size:18px;
-}
-
-button{
-    padding:12px 20px;
-    border:none;
-    border-radius:10px;
-    background:#2563eb;
-    color:white;
-    cursor:pointer;
-    font-size:18px;
-}
-
-button:hover{
-    opacity:0.9;
-}
-
-.card{
-    background:#1f2937;
-    padding:20px;
-    border-radius:15px;
-}
-
-.table-container{
-    overflow-x:auto;
-}
-
-table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-th{
-    background:#374151;
-}
-
-th,td{
-    padding:12px;
-    text-align:center;
-    border-bottom:1px solid #374151;
-}
-
-tr:hover{
-    background:#2a3441;
-}
-
-.total{
-    margin-top:20px;
-    font-size:22px;
-    font-weight:bold;
-}
-
-</style>
-
+    <meta charset='UTF-8'>
+    <title>Simulador de Bolsa - Consulta de Carteiras</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121214; color: #fff; padding: 40px; margin: 0; }
+        .container { max-width: 750px; margin: auto; background: #1e1e22; padding: 35px; border-radius: 12px; border: 1px solid #29292e; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+        h2 { margin-top: 0; color: #e1e1e6; font-weight: 600; font-size: 24px; padding-bottom: 12px; border-bottom: 1px solid #29292e; }
+        p { color: #7c7c8a; font-size: 14px; margin-bottom: 25px; }
+        .search-group { display: flex; gap: 12px; margin-bottom: 30px; }
+        input { flex: 1; background: #121214; border: 1px solid #4e4e54; padding: 14px; border-radius: 6px; color: #fff; font-size: 16px; }
+        button { background: #00b37e; color: #fff; border: none; padding: 14px 28px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px; }
+        button:hover { background: #008f63; }
+        .grid-carteira { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .card { background: #29292e; padding: 20px; border-radius: 8px; border-left: 5px solid #ffb84d; }
+        .card.total { border-left-color: #00b37e; }
+        .card-title { font-size: 12px; color: #9c9cba; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px; }
+        .card-value { font-size: 24px; font-weight: bold; margin-top: 8px; color: #fff; }
+        h3 { margin-top: 35px; color: #e1e1e6; font-size: 18px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #19191c; border-radius: 6px; overflow: hidden; }
+        th, td { text-align: left; padding: 14px; border-bottom: 1px solid #29292e; }
+        th { background: #202024; color: #7c7c8a; font-size: 13px; text-transform: uppercase; font-weight: 600; }
+        .erro { color: #f75a68; font-weight: bold; margin-top: 15px; display: block; font-size: 15px; }
+    </style>
 </head>
-
 <body>
-
-<div class="container">
-
-<h1>?? Minha Carteira</h1>
-
-<div class="busca">
-
-<input
- type="text"
- id="conta"
- placeholder="Digite o número da conta">
-
-<button onclick="consultar()">
-Consultar
-</button>
-
-</div>
-
-<div id="resultado"></div>
-
-</div>
-
-<script>
-
-function consultar(){
-
-    const conta =
-        document.getElementById("conta").value.trim();
-
-    const carteira =
-        carteiras[conta];
-
-    if(!carteira){
-
-        document.getElementById("resultado").innerHTML =
-        "<div class='card'>Conta não encontrada.</div>";
-
-        return;
-    }
-
-    let totalInvestido = 0;
-
-    let html = "";
-
-    html += "<div class='card'>";
-
-    html += "<h2>Conta " + conta + "</h2>";
-
-    html += "<div class='table-container'>";
-
-    html += "<table>";
-
-    html += "<tr>";
-    html += "<th>Empresa</th>";
-    html += "<th>Quantidade</th>";
-    html += "<th>Valor Investido</th>";
-    html += "</tr>";
-
-    for(const empresa in carteira){
-
-        const qtd =
-            carteira[empresa].qtd;
-
-        const investido =
-            carteira[empresa].investido;
-
-        totalInvestido += investido;
-
-        html += "<tr>";
-
-        html += "<td>" + empresa + "</td>";
-
-        html += "<td>" + qtd + "</td>";
-
-        html += "<td>R$ " +
-            investido.toLocaleString(
-                "pt-BR",
-                {
-                    minimumFractionDigits:2,
-                    maximumFractionDigits:2
-                }
-            ) +
-            "</td>";
-
-        html += "</tr>";
-    }
-
-    html += "</table>";
-
-    html += "</div>";
-
-    html += "<div class='total'>";
-
-    html += "Total Investido: R$ " +
-        totalInvestido.toLocaleString(
-            "pt-BR",
-            {
-                minimumFractionDigits:2,
-                maximumFractionDigits:2
+    <div class='container'>
+        <h2>Área do Aluno - Consulta de Carteira</h2>
+        <p>Insira o número da sua conta para verificar seu patrimônio atualizado e suas ações.</p>
+        <div class='search-group'>
+            <input type='text' id='codigoAluno' placeholder='Ex: 1001' onkeypress='verificarEnter(event)'>
+            <button onclick='buscarCarteira()'>Consultar</button>
+        </div>
+        <div id='resultadoCarteira' style='display:none;'>
+            <div class='grid-carteira'>
+                <div class='card'><div class='card-title'>Patrimônio Ocioso (Saldo Livre)</div><div class='card-value' id='valOcioso'>--</div></div>
+                <div class='card total'><div class='card-title'>Patrimônio Total (Saldo + Ações)</div><div class='card-value' id='valTotal'>--</div></div>
+            </div>
+            <h3>Ativos na Carteira</h3>
+            <table id='tabelaAcoes'><thead><tr><th>Empresa</th><th>Quantidade Detida</th></tr></thead><tbody></tbody></table>
+        </div>
+        <div id='mensagemErro' class='erro'></div>
+    </div>
+    <script>
+        const dadosAlunos = {
+            '1027': { ociosoRaw: '0,00', acoes: {
+                'PIZZ4': '5,00',
+                'ROBO3': '0,00',
+                'MLUA3': '0,00',
+                'AGRD3': '0,00',
+                'AMAR3': '0,00',
+                'ECOE3': '0,00',
+                'MECH3': '0,00',
+                'FAST3': '0,00',
+                'STUR3': '0,00',
+                'OCIOSO': '9.501,49',
+                'VALOR EM AÇÕES': '5,00',
+                'TOTAL': '10.000,00',
+            }},
+        };
+        const cotacaoAtual = {'TechPato':  127.557848603968,'Pizza Cósmica':  108.569584420598,'RoboFarma':  100.713299833434,'Mineração Lunar':  92.7179360218672,'AgroDino':  110.835226787511,'Águas de Marte':  103.613786231138,'EcoEnergia':  101.331159773419,'MegaChip':  119.467068197474,'FastDrone Express':  98.4135735679505,'SpaceTur':  114.63588291842};
+        function verificarEnter(event) {
+            if (event.key === 'Enter') {
+                buscarCarteira();
             }
-        );
-
-    html += "</div>";
-
-    html += "</div>";
-
-    document.getElementById("resultado").innerHTML =
-        html;
-}
-
-document.getElementById("conta").addEventListener("keypress",function(e){
-
-    if(e.key==="Enter"){
-
-        consultar();
-
-    }
-
-});
-
-</script>
-
+        }
+        function limparNumero(val) {
+            if (!val) return 0;
+            let limpo = val.toString().replace(/R\$\s?/, '').replace(/\s/g, '').trim();
+            if (limpo.includes(',') && limpo.includes('.')) {
+                limpo = limpo.replace(/\./g, '').replace(',', '.');
+            } else if (limpo.includes(',')) {
+                limpo = limpo.replace(',', '.');
+            }
+            const num = parseFloat(limpo);
+            return isNaN(num) ? 0 : num;
+        }
+        function buscarCarteira() {
+            const cod = document.getElementById('codigoAluno').value.trim();
+            const divResultado = document.getElementById('resultadoCarteira');
+            const divErro = document.getElementById('mensagemErro');
+            const tbody = document.getElementById('tabelaAcoes').querySelector('tbody');
+            
+            tbody.innerHTML = '';
+            divErro.innerHTML = '';
+            
+            if (!dadosAlunos[cod]) {
+                divResultado.style.display = 'none';
+                divErro.innerHTML = '? Código de conta inválido ou não localizado.';
+                return;
+            }
+            
+            const aluno = dadosAlunos[cod];
+            const ocioso = limparNumero(aluno.ociosoRaw);
+            let patrimonioInvestido = 0;
+            
+            for (const [empresa, qtdRaw] of Object.entries(aluno.acoes)) {
+                const qtd = limparNumero(qtdRaw);
+                if (qtd > 0) {
+                    const preco = cotacaoAtual[empresa] || 0;
+                    patrimonioInvestido += (qtd * preco);
+                    
+                    const row = `<tr><td style='font-weight:600; color:#e1e1e6;'>${empresa}</td><td>${qtd}</td></tr>`;
+                    tbody.innerHTML += row;
+                }
+            }
+            
+            const total = ocioso + patrimonioInvestido;
+            
+            document.getElementById('valOcioso').innerHTML = 'R$ ' + ocioso.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById('valTotal').innerHTML = 'R$ ' + total.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            divResultado.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
