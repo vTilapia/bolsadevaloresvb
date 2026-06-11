@@ -1,8 +1,8 @@
 const carteiras = {
 "1027": {
 "TCPT3": {"qtd":0,"investido":0},
-"PIZZ4": {"qtd":25,"investido":3000,14},
-"ROBO3": {"qtd":50,"investido":7291,42},
+"PIZZ4": {"qtd":0,"investido":0},
+"ROBO3": {"qtd":0,"investido":0},
 "MLUA3": {"qtd":0,"investido":0},
 "AGRD3": {"qtd":0,"investido":0},
 "AMAR3": {"qtd":0,"investido":0},
@@ -10,9 +10,9 @@ const carteiras = {
 "MECH3": {"qtd":0,"investido":0},
 "FAST3": {"qtd":0,"investido":0},
 "STUR3": {"qtd":0,"investido":0},
-"OCIOSO": {"qtd":833,62,"investido":0},
-"VALOR EM A합ES": {"qtd":75,"investido":10291,56},
-"TOTAL": {"qtd":11125,18,"investido":0}
+"OCIOSO": {"qtd":10000,"investido":0},
+"VALOR EM A합ES": {"qtd":0,"investido":0},
+"TOTAL": {"qtd":10000,"investido":0}
 },
 "1348": {
 "TCPT3": {"qtd":0,"investido":0},
@@ -30,18 +30,18 @@ const carteiras = {
 "TOTAL": {"qtd":0,"investido":0}
 },
 "1582": {
-"TCPT3": {"qtd":11,"investido":912,96},
-"PIZZ4": {"qtd":2,"investido":0},
-"ROBO3": {"qtd":3,"investido":437,49},
-"MLUA3": {"qtd":4,"investido":1161,32},
-"AGRD3": {"qtd":5,"investido":557,1},
+"TCPT3": {"qtd":0,"investido":0},
+"PIZZ4": {"qtd":0,"investido":0},
+"ROBO3": {"qtd":0,"investido":0},
+"MLUA3": {"qtd":0,"investido":0},
+"AGRD3": {"qtd":0,"investido":0},
 "AMAR3": {"qtd":0,"investido":0},
 "ECOE3": {"qtd":0,"investido":0},
 "MECH3": {"qtd":0,"investido":0},
 "FAST3": {"qtd":0,"investido":0},
 "STUR3": {"qtd":0,"investido":0},
 "OCIOSO": {"qtd":0,"investido":0},
-"VALOR EM A합ES": {"qtd":25,"investido":3068,86},
+"VALOR EM A합ES": {"qtd":0,"investido":0},
 "TOTAL": {"qtd":0,"investido":0}
 },
 "2036": {
