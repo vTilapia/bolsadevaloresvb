@@ -1,117 +1,131 @@
 <!DOCTYPE html>
-<html lang='pt-BR'>
+<html lang="pt-BR">
 <head>
-    <meta charset='UTF-8'>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simulador de Bolsa - Consulta de Carteiras</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121214; color: #fff; padding: 40px; margin: 0; }
-        .container { max-width: 750px; margin: auto; background: #1e1e22; padding: 35px; border-radius: 12px; border: 1px solid #29292e; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-        h2 { margin-top: 0; color: #e1e1e6; font-weight: 600; font-size: 24px; padding-bottom: 12px; border-bottom: 1px solid #29292e; }
-        p { color: #7c7c8a; font-size: 14px; margin-bottom: 25px; }
-        .search-group { display: flex; gap: 12px; margin-bottom: 30px; }
-        input { flex: 1; background: #121214; border: 1px solid #4e4e54; padding: 14px; border-radius: 6px; color: #fff; font-size: 16px; }
-        button { background: #00b37e; color: #fff; border: none; padding: 14px 28px; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 16px; }
-        button:hover { background: #008f63; }
-        .grid-carteira { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
-        .card { background: #29292e; padding: 20px; border-radius: 8px; border-left: 5px solid #ffb84d; }
-        .card.total { border-left-color: #00b37e; }
-        .card-title { font-size: 12px; color: #9c9cba; text-transform: uppercase; font-weight: bold; letter-spacing: 0.5px; }
-        .card-value { font-size: 24px; font-weight: bold; margin-top: 8px; color: #fff; }
-        h3 { margin-top: 35px; color: #e1e1e6; font-size: 18px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #19191c; border-radius: 6px; overflow: hidden; }
-        th, td { text-align: left; padding: 14px; border-bottom: 1px solid #29292e; }
-        th { background: #202024; color: #7c7c8a; font-size: 13px; text-transform: uppercase; font-weight: 600; }
-        .erro { color: #f75a68; font-weight: bold; margin-top: 15px; display: block; font-size: 15px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body { background-color: #0f172a; color: #f1f5f9; padding: 20px 15px; }
+        .container { max-width: 650px; margin: 40px auto; background: #1e293b; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+        .back-link { display: inline-block; color: #38bdf8; text-decoration: none; font-size: 0.85rem; font-weight: 700; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 1px; }
+        h1 { font-size: 1.6rem; color: #ffffff; margin-bottom: 20px; text-align: center; }
+        
+        .busca-box { display: flex; gap: 10px; margin-bottom: 25px; }
+        input { flex: 1; background: #0f172a; border: 1px solid #374151; padding: 12px; border-radius: 8px; color: white; font-size: 1rem; outline: none; text-align: center; }
+        input:focus { border-color: #38bdf8; }
+        button { background: #38bdf8; color: #0f172a; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; font-size: 1rem; cursor: pointer; transition: 0.2s; }
+        button:hover { background: #0ea5e9; }
+
+        .resultado-carteira { display: none; border-top: 2px solid #374151; padding-top: 20px; }
+        .info-linha { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 1.05rem; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .label { color: #94a3b8; }
+        .valor { font-weight: bold; color: #ffffff; }
+        .total-destaque { color: #f4b400; font-size: 1.25rem; }
+        
+        .acoes-lista { margin-top: 10px; display: flex; flex-direction: column; gap: 8px; }
+        .acao-item { background: #0f172a; border-left: 3px solid #38bdf8; padding: 10px 15px; border-radius: 0 6px 6px 0; font-size: 0.95rem; display: flex; justify-content: space-between; }
+        .acao-nome { font-weight: bold; color: #e2e8f0; }
+        .erro-msg { color: #ef4444; text-align: center; margin-top: 15px; font-weight: bold; display: none; }
     </style>
 </head>
 <body>
-    <div class='container'>
-        <h2>Área do Aluno - Consulta de Carteira</h2>
-        <p>Insira o número da sua conta para verificar seu patrimônio atualizado e suas ações.</p>
-        <div class='search-group'>
-            <input type='text' id='codigoAluno' placeholder='Ex: 1001' onkeypress='verificarEnter(event)'>
-            <button onclick='buscarCarteira()'>Consultar</button>
+
+    <div class="container">
+        <a href="index.html" class="back-link">? Voltar ao Painel</a>
+        <h1>Consulta de Carteira</h1>
+
+        <div class="busca-box">
+            <input type="text" id="inputConta" placeholder="Digite o número da conta (Ex: 1027)">
+            <button onclick="buscarConta()">Buscar</button>
         </div>
-        <div id='resultadoCarteira' style='display:none;'>
-            <div class='grid-carteira'>
-                <div class='card'><div class='card-title'>Patrimônio Ocioso (Saldo Livre)</div><div class='card-value' id='valOcioso'>--</div></div>
-                <div class='card total'><div class='card-title'>Patrimônio Total (Saldo + Ações)</div><div class='card-value' id='valTotal'>--</div></div>
+
+        <div id="erro" class="erro-msg"></div>
+
+        <div id="resultado" class="resultado-carteira">
+            <div class="info-linha">
+                <span class="label">Nº da Conta Pesquisada:</span>
+                <span class="valor" id="resConta">---</span>
             </div>
-            <h3>Ativos na Carteira</h3>
-            <table id='tabelaAcoes'><thead><tr><th>Empresa</th><th>Quantidade Detida</th></tr></thead><tbody></tbody></table>
+            <div class="info-linha">
+                <span class="label">Total Investido em Ações:</span>
+                <span class="valor total-destaque" id="resTotal">R$ 0,00</span>
+            </div>
+            <div style="margin-top: 20px;">
+                <span class="label" style="display:block; margin-bottom:10px;">Ativos em Carteira (Quantidade e Valor):</span>
+                <div class="acoes-lista" id="resAcoes">
+                    </div>
+            </div>
         </div>
-        <div id='mensagemErro' class='erro'></div>
     </div>
+
     <script>
-        const dadosAlunos = {
-            '1027': { ociosoRaw: '0', acoes: {
-                'PIZZ4': '25',
-                'ROBO3': '50',
-                'MLUA3': '0',
-                'AGRD3': '0',
-                'AMAR3': '0',
-                'ECOE3': '0',
-                'MECH3': '0',
-                'FAST3': '0',
-                'STUR3': '0',
-                'OCIOSO': '833,62',
-                'VALOR EM AÇÕES': '75',
-                'TOTAL': '11.125,18',
-            }},
-        };
-        const cotacaoAtual = {'TechPato':  82.9964340704588,'Pizza Cósmica':  120.005477718188,'RoboFarma':  145.828491962944,'Mineração Lunar':  290.329252727506,'AgroDino':  111.419472315476,'Águas de Marte':  123.272711385933,'EcoEnergia':  115.610872428505,'MegaChip':  209.441374996667,'FastDrone Express':  92.3385596226537,'SpaceTur':  36.0558919122634};
-        function verificarEnter(event) {
-            if (event.key === 'Enter') {
-                buscarCarteira();
+        let dadosContas = [];
+
+        async function carregarDadosJson() {
+            try {
+                const resposta = await fetch('carteiras.json');
+                dadosContas = await resposta.json();
+            } catch (erro) {
+                mostrarErro("Erro ao carregar o arquivo 'carteiras.json'. Suba o arquivo gerado pela nova macro no Netlify.");
             }
         }
-        function limparNumero(val) {
-            if (!val) return 0;
-            let limpo = val.toString().replace(/R\$\s?/, '').replace(/\s/g, '').trim();
-            if (limpo.includes(',') && limpo.includes('.')) {
-                limpo = limpo.replace(/\./g, '').replace(',', '.');
-            } else if (limpo.includes(',')) {
-                limpo = limpo.replace(',', '.');
-            }
-            const num = parseFloat(limpo);
-            return isNaN(num) ? 0 : num;
-        }
-        function buscarCarteira() {
-            const cod = document.getElementById('codigoAluno').value.trim();
-            const divResultado = document.getElementById('resultadoCarteira');
-            const divErro = document.getElementById('mensagemErro');
-            const tbody = document.getElementById('tabelaAcoes').querySelector('tbody');
-            
-            tbody.innerHTML = '';
-            divErro.innerHTML = '';
-            
-            if (!dadosAlunos[cod]) {
-                divResultado.style.display = 'none';
-                divErro.innerHTML = '? Código de conta inválido ou não localizado.';
+
+        function buscarConta() {
+            const termoBusca = document.getElementById("inputConta").value.trim();
+            const divResultado = document.getElementById("resultado");
+            const divErro = document.getElementById("erro");
+
+            if (termoBusca === "") {
+                mostrarErro("Por favor, digite o número de uma conta.");
                 return;
             }
-            
-            const aluno = dadosAlunos[cod];
-            const ocioso = limparNumero(aluno.ociosoRaw);
-            let patrimonioInvestido = 0;
-            
-            for (const [empresa, qtdRaw] of Object.entries(aluno.acoes)) {
-                const qtd = limparNumero(qtdRaw);
-                if (qtd > 0) {
-                    const preco = cotacaoAtual[empresa] || 0;
-                    patrimonioInvestido += (qtd * preco);
-                    
-                    const row = `<tr><td style='font-weight:600; color:#e1e1e6;'>${empresa}</td><td>${qtd}</td></tr>`;
-                    tbody.innerHTML += row;
+
+            divErro.style.display = "none";
+
+            // Procura a conta ignorando espaços extras
+            const contaAchada = dadosContas.find(c => c.conta.trim() === termoBusca);
+
+            if (contaAchada) {
+                document.getElementById("resConta").textContent = contaAchada.conta;
+                document.getElementById("resTotal").textContent = `R$ ${parseFloat(contaAchada.total_investido).toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+                
+                const containerAcoes = document.getElementById("resAcoes");
+                containerAcoes.innerHTML = "";
+                
+                if (contaAchada.acoes && contaAchada.acoes !== "Nenhuma") {
+                    // Separa as ações formatadas pela macro
+                    const lista = contaAchada.acoes.split(", ");
+                    lista.forEach(item => {
+                        const divItem = document.createElement("div");
+                        divItem.className = "acao-item";
+                        
+                        // Divide o nome do ativo do resto do texto (Quantidade/Valor) para ficar bonito
+                        const partes = item.split(": ");
+                        divItem.innerHTML = `
+                            <span class="acao-nome">${partes[0]}</span>
+                            <span style="color: #94a3b8;">${partes[1]}</span>
+                        `;
+                        containerAcoes.appendChild(divItem);
+                    });
+                } else {
+                    containerAcoes.innerHTML = "<p style='color: #7c7c8a; font-size: 0.95rem; padding: 10px 0;'>Nenhum ativo comprado nesta conta.</p>";
                 }
+
+                divResultado.style.display = "block";
+            } else {
+                divResultado.style.display = "none";
+                mostrarErro(`A conta ${termoBusca} não foi encontrada ou não possui dados registrados.`);
             }
-            
-            const total = ocioso + patrimonioInvestido;
-            
-            document.getElementById('valOcioso').innerHTML = 'R$ ' + ocioso.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            document.getElementById('valTotal').innerHTML = 'R$ ' + total.toLocaleString('pt-BR', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            divResultado.style.display = 'block';
         }
+
+        function mostrarErro(msg) {
+            const divErro = document.getElementById("erro");
+            divErro.textContent = msg;
+            divErro.style.display = "block";
+        }
+
+        window.onload = carregarDadosJson;
     </script>
 </body>
 </html>
