@@ -2,10 +2,10 @@
 <html lang='pt-BR'>
 <head>
     <meta charset='UTF-8'>
-    <title>Simulador de Bolsa - Painel HistÛrico</title>
+    <title>Simulador de Bolsa - Painel Hist√≥rico</title>
     <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121214; color: #fff; padding: 30px; margin: 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #fff; padding: 30px; margin: 0; }
         .container { max-width: 1100px; margin: 30px auto; background: #1e1e22; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); border: 1px solid #29292e; }
         h2 { margin: 0 0 5px 0; color: #e1e1e6; font-weight: 600; }
         p { color: #7c7c8a; font-size: 14px; margin: 0 0 30px 0; }
@@ -13,8 +13,8 @@
 </head>
 <body>
     <div class='container'>
-        <h2>HistÛrico de AÁıes da SimulaÁ„o</h2>
-        <p>? SeleÁ„o: Clique nos nomes das empresas ‡ direita para ocultar ou exibir as linhas no gr·fico.</p>
+        <h2>Hist√≥rico de A√ß√µes da Simula√ß√£o</h2>
+        <p>üìä Sele√ß√£o: Clique nos nomes das empresas √† direita para ocultar ou exibir as linhas no gr√°fico.</p>
         <canvas id='graficoBolsa'></canvas>
     </div>
     <script>
@@ -22,11 +22,11 @@
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['1,00','2,00','3,00','4,00','5','6','7'],
+                labels: ['1,00','2,00'],
                 datasets: [
                     {
                         label: 'TechPato',
-                        data: [107.42525653769,127.557848603968,105.031413943746,92.0885739030508,98.1743708342549,84.8703465189493,75.6979626196432],
+                        data: [ 100, 103.053488710676],
                         borderColor: '#00b37e',
                         backgroundColor: 'transparent',
                         tension: 0.2,
@@ -35,8 +35,8 @@
                         borderWidth: 2
                     },
                     {
-                        label: 'Pizza CÛsmica',
-                        data: [99.702247150846,108.569584420598,115.964403128956,122.105243552731,132.500883368174,139.154262115151,140.799766341875],
+                        label: 'Pizza C√≥smica',
+                        data: [ 100, 100.421296262929],
                         borderColor: '#f75a68',
                         backgroundColor: 'transparent',
                         tension: 0.2,
@@ -46,7 +46,7 @@
                     },
                     {
                         label: 'RoboFarma',
-                        data: [104.189045570822,100.713299833434,102.742312647362,109.008529320134,121.184098531995,130.846563999417,130.396442205787],
+                        data: [ 100, 101.969236851582],
                         borderColor: '#4e8fe7',
                         backgroundColor: 'transparent',
                         tension: 0.2,
@@ -55,8 +55,8 @@
                         borderWidth: 2
                     },
                     {
-                        label: 'MineraÁ„o Lunar',
-                        data: [115.101877933142,92.7179360218672,104.181109508879,102.091818329471,79.4842287468389,95.8001970377875,64.8037194166989],
+                        label: 'Minera√ß√£o Lunar',
+                        data: [ 100, 95.8042812066425],
                         borderColor: '#ffb84d',
                         backgroundColor: 'transparent',
                         tension: 0.2,
@@ -66,7 +66,7 @@
                     },
                     {
                         label: 'AgroDino',
-                        data: [101.663151164662,110.835226787511,127.404701678836,135.907008284507,146.082565059213,154.053398279187,160.840730361639],
+                        data: [ 100, 98.6490337425234],
                         borderColor: '#9966ff',
                         backgroundColor: 'transparent',
                         tension: 0.2,
@@ -75,8 +75,8 @@
                         borderWidth: 2
                     },
                     {
-                        label: '¡guas de Marte',
-                        data: [110.800608196524,103.613786231138,101.607111502909,103.422021082318,105.567111443558,116.334866468892,114.337493880613],
+                        label: '√Åguas de Marte',
+                        data: [ 100, 97.2343722726127],
                         borderColor: '#00d2df',
                         backgroundColor: 'transparent',
                         tension: 0.2,
@@ -86,7 +86,7 @@
                     },
                     {
                         label: 'EcoEnergia',
-                        data: [99.0127963905526,101.331159773419,122.789132409837,134.152515779212,134.037152062808,140.302742909977,142.400315065803],
+                        data: [ 100, 100.127303366186],
                         borderColor: '#ff79c6',
                         backgroundColor: 'transparent',
                         tension: 0.2,
@@ -96,7 +96,7 @@
                     },
                     {
                         label: 'MegaChip',
-                        data: [103.088555289149,119.467068197474,101.348310449721,102.650539321242,120.789472148506,150.382590170214,187.384311007339],
+                        data: [ 100, 96.5145077388272],
                         borderColor: '#50fa7b',
                         backgroundColor: 'transparent',
                         tension: 0.2,
@@ -106,7 +106,7 @@
                     },
                     {
                         label: 'FastDrone Express',
-                        data: [107.620786891829,98.4135735679505,94.8723500207811,115.958010701056,126.88494105467,115.885207208237,118.100645002649],
+                        data: [ 100, 96.5201221577968],
                         borderColor: '#ffb86c',
                         backgroundColor: 'transparent',
                         tension: 0.2,
@@ -116,14 +116,14 @@
                     },
                     {
                         label: 'SpaceTur',
-                        data: [101.768477674026,114.63588291842,113.461877421706,119.020647379851,155.151625190685,206.016269432223,281.468120874668],
+                        data: [ 100, 105.416348812486],
                         borderColor: '#bd93f9',
                         backgroundColor: 'transparent',
                         tension: 0.2,
                         pointRadius: 3,
                         pointHoverRadius: 6,
                         borderWidth: 2
-                    },
+                    }
                 ]
             },
             options: {
