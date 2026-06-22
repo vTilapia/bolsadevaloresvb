@@ -81,7 +81,6 @@ ThisComponent.calculateAll
     Next linha
 
 
-    MsgBox "Mercado atualizado!"
 
 
 
@@ -378,196 +377,172 @@ Sub AtualizarMercado
     Next linha
 
 
-    MsgBox "Mercado atualizado!"
+
 
 End Sub
 
 
-Sub GerarHTML
-
-    Dim doc As Object
-    Dim aba As Object
-
-    Dim linha As Integer
-
-    Dim html As String
-
-    Dim codigo As String
-    Dim empresa As String
-
-    Dim preco As Double
-    Dim variacao As Double
-
-    Dim arquivo As Integer
-
-
-    doc = ThisComponent
-
-    aba = doc.Sheets.getByName("MERCADO")
-
-
-    html = "<html>"
-    html = html & "<head>"
-
-    html = html & "<meta charset='UTF-8'>"
-
-    html = html & "<meta name='viewport' content='width=device-width, initial-scale=1.0'>"
-
-
-    html = html & "<style>"
-
-html = html & "<style>"
-
-html = html & "body{"
-html = html & "margin:0;"
-html = html & "padding:10px;"
-html = html & "background:#111827;"
-html = html & "font-family:Arial,sans-serif;"
-html = html & "color:white;"
-html = html & "}"
-
-html = html & "h1{"
-html = html & "text-align:center;"
-html = html & "font-size:22px;"
-html = html & "margin-bottom:15px;"
-html = html & "}"
-
-html = html & ".container{"
-html = html & "overflow-x:auto;"
-html = html & "}"
-
-html = html & "table{"
-html = html & "width:100%;"
-html = html & "border-collapse:collapse;"
-html = html & "background:#1f2937;"
-html = html & "border-radius:12px;"
-html = html & "overflow:hidden;"
-html = html & "font-size:14px;"
-html = html & "}"
-
-html = html & "th{"
-html = html & "background:#f4b400;"
-html = html & "color:black;"
-html = html & "padding:10px 6px;"
-html = html & "}"
-
-html = html & "td{"
-html = html & "padding:10px 6px;"
-html = html & "text-align:center;"
-html = html & "border-bottom:1px solid #374151;"
-html = html & "color:white;"
-html = html & "}"
-
-html = html & "tr:hover{"
-html = html & "background:#374151;"
-html = html & "}"
-
-html = html & ".alta{"
-html = html & "color:#22c55e;"
-html = html & "font-weight:bold;"
-html = html & "}"
-
-html = html & ".baixa{"
-html = html & "color:#ef4444;"
-html = html & "font-weight:bold;"
-html = html & "}"
-
-html = html & "@media screen and (max-width:600px){"
-
-html = html & "h1{font-size:18px;}"
-
-html = html & "table{font-size:12px;}"
-
-html = html & "th,td{padding:8px 4px;}"
-
-html = html & "}"
-
-html = html & "</style>"
-
-    html = html & "</style>"
-
-    html = html & "</head>"
-
-    html = html & "<body>"
-
-    html = html & "<h1> Bolsa Escolar</h1>"
-
-    html = html & "<table>"
-
-
-    ' cabeçalho
-
-    html = html & "<tr>"
-
-    html = html & "<th>Código</th>"
-    html = html & "<th>Empresa</th>"
-    html = html & "<th>Preço</th>"
-    html = html & "<th>Variação</th>"
-
-    html = html & "</tr>"
-
-
-    ' dados
-
-    For linha = 1 To 10
-
-
-        codigo = aba.getCellByPosition(0, linha).String
-
-        empresa = aba.getCellByPosition(1, linha).String
-
-        preco = aba.getCellByPosition(2, linha).Value
-
-        variacao = aba.getCellByPosition(3, linha).Value
-
-
-        html = html & "<tr>"
-
-        html = html & "<td>" & codigo & "</td>"
-
-        html = html & "<td>" & empresa & "</td>"
-
-        html = html & "<td>R$ " & Format(preco, "0.00") & "</td>"
-
-
-        If variacao >= 0 Then
-
-            html = html & "<td class='alta'>▲ " & _
-            Format(variacao * 100, "0.00") & "%</td>"
-
+Sub GerarHtmlMercado
+    Dim oDoc As Object
+    Dim oSheet As Object
+    Dim sUrl As String, sPath As String
+    Dim i As Integer, barraPos As Integer
+    Dim caractere As String
+    Dim sHtmlPath As String
+    
+    Dim r As Integer
+    Dim empresaNome As String
+    Dim codigoAtivo As String
+    Dim precoTexto As String
+    Dim variacaoTexto As String
+    Dim classeVariacao As String
+    Dim setaVariacao As String
+    Dim tabelaHtml As String
+    Dim htmlCompleto As String
+    
+    oDoc = ThisComponent
+    ' Ajuste o índice da aba (0 para a primeira aba, 1 para a segunda, etc.) onde está o mercado
+    oSheet = oDoc.Sheets(5) 
+    
+    ' Descobre a pasta atual para salvar o mercado.html
+    If oDoc.hasLocation() Then
+        sUrl = oDoc.getLocation()
+        sPath = ConvertFromUrl(sUrl)
+        barraPos = 0
+        For i = Len(sPath) To 1 Step -1
+            caractere = Mid(sPath, i, 1)
+            If caractere = "\" Or caractere = "/" Then
+                barraPos = i
+                Exit For
+            End If
+        Next i
+        If barraPos > 0 Then
+            sHtmlPath = Left(sPath, barraPos) & "mercado.html"
         Else
-
-            html = html & "<td class='baixa'>▼ " & _
-            Format(Abs(variacao * 100), "0.00") & "%</td>"
-
+            sHtmlPath = sPath & ".html"
         End If
-
-
-        html = html & "</tr>"
-
-
-    Next linha
-
-
-    html = html & "</table>"
-
-    html = html & "</body>"
-    html = html & "</html>"
-
-
-    arquivo = FreeFile
-
-    Open "C:\Users\victo\OneDrive\Desktop\BOLSA\mercado.html" For Output As #arquivo
-
-    Print #arquivo, html
-
-    Close #arquivo
-
-
-    MsgBox "HTML gerado com sucesso!"
-
+    Else
+        MsgBox "Por favor, salve a sua planilha antes de gerar o HTML!", 48, "Erro"
+        Exit Sub
+    End If
+    
+    tabelaHtml = ""
+    r = 1 ' Começa na linha 2 (índice 1) para pular o cabeçalho
+    
+    ' Varre as linhas da tabela até encontrar uma célula vazia
+    Do
+        empresaNome = Trim(oSheet.getCellByPosition(0, r).String)
+        If empresaNome = "" Then Exit Do
+        
+        codigoAtivo  = Trim(oSheet.getCellByPosition(1, r).String)
+        precoTexto   = Trim(oSheet.getCellByPosition(2, r).String)
+        variacaoTexto = Trim(oSheet.getCellByPosition(3, r).String)
+        
+        ' Lógica para definir a cor e a setinha da variação (Alta ou Baixa)
+        If InStr(variacaoTexto, "-") > 0 Then
+            classeVariacao = "baixa"
+            setaVariacao = "▼ "
+        Else
+            classeVariacao = "alta"
+            setaVariacao = "▲ "
+        End If
+        
+        ' Remove hífens ou caracteres estranhos que possam quebrar o visual
+        variacaoTexto = Replace(variacaoTexto, "-", "")
+        variacaoTexto = Replace(variacaoTexto, "?", "")
+        
+        ' Monta a linha da tabela em HTML limpo
+        tabelaHtml = tabelaHtml & "            <tr>" & Chr(13)
+        tabelaHtml = tabelaHtml & "                <td>" & empresaNome & "</td>" & Chr(13)
+        tabelaHtml = tabelaHtml & "                <td>" & codigoAtivo & "</td>" & Chr(13)
+        tabelaHtml = tabelaHtml & "                <td>" & precoTexto & "</td>" & Chr(13)
+        tabelaHtml = tabelaHtml & "                <td class=""" & classeVariacao & """>" & setaVariacao & variacaoTexto & "</td>" & Chr(13)
+        tabelaHtml = tabelaHtml & "            </tr>" & Chr(13)
+        
+        r = r + 1
+    Loop
+    
+    ' MONTAGEM DO HTML (Fundo Escuro Fixo e sem tags duplicadas)
+    htmlCompleto = "<!DOCTYPE html>" & Chr(13)
+    htmlCompleto = htmlCompleto & "<html lang=""pt-BR"">" & Chr(13)
+    htmlCompleto = htmlCompleto & "<head>" & Chr(13)
+    htmlCompleto = htmlCompleto & "    <meta charset=""UTF-8"">" & Chr(13)
+    htmlCompleto = htmlCompleto & "    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">" & Chr(13)
+    htmlCompleto = htmlCompleto & "    <style>" & Chr(13)
+    htmlCompleto = htmlCompleto & "        body { margin: 0; padding: 10px; background: #0f172a; font-family: Arial, sans-serif; color: white; }" & Chr(13)
+    htmlCompleto = htmlCompleto & "        h1 { text-align: center; font-size: 22px; margin-bottom: 15px; color: #ffffff; }" & Chr(13)
+    htmlCompleto = htmlCompleto & "        .container { overflow-x: auto; max-width: 600px; margin: 0 auto; }" & Chr(13)
+    htmlCompleto = htmlCompleto & "        table { width: 100%; border-collapse: collapse; background: #1e293b; border-radius: 12px; overflow: hidden; font-size: 14px; }" & Chr(13)
+    htmlCompleto = htmlCompleto & "        th { background: #f4b400; color: black; padding: 12px 6px; font-weight: bold; }" & Chr(13)
+    htmlCompleto = htmlCompleto & "        td { padding: 12px 6px; text-align: center; border-bottom: 1px solid #374151; color: white; }" & Chr(13)
+    htmlCompleto = htmlCompleto & "        tr:hover { background: #374151; }" & Chr(13)
+    htmlCompleto = htmlCompleto & "        .alta { color: #22c55e; font-weight: bold; }" & Chr(13)
+    htmlCompleto = htmlCompleto & "        .baixa { color: #ef4444; font-weight: bold; }" & Chr(13)
+    htmlCompleto = htmlCompleto & "        @media screen and (max-width:600px) { h1 { font-size: 18px; } table { font-size: 12px; } th, td { padding: 8px 4px; } }" & Chr(13)
+    htmlCompleto = htmlCompleto & "    </style>" & Chr(13)
+    htmlCompleto = htmlCompleto & "</head>" & Chr(13)
+    htmlCompleto = htmlCompleto & "<body>" & Chr(13)
+    htmlCompleto = htmlCompleto & "    <div class=""container"">" & Chr(13)
+    htmlCompleto = htmlCompleto & "        <h1>Bolsa Escolar</h1>" & Chr(13)
+    htmlCompleto = htmlCompleto & "        <table>" & Chr(13)
+    htmlCompleto = htmlCompleto & "            <thead>" & Chr(13)
+    htmlCompleto = htmlCompleto & "                <tr>" & Chr(13)
+    htmlCompleto = htmlCompleto & "                    <th>Empresa</th>" & Chr(13)
+    htmlCompleto = htmlCompleto & "                    <th>Código</th>" & Chr(13)
+    htmlCompleto = htmlCompleto & "                    <th>Preço</th>" & Chr(13)
+    htmlCompleto = htmlCompleto & "                    <th>Variação</th>" & Chr(13)
+    htmlCompleto = htmlCompleto & "                </tr>" & Chr(13)
+    htmlCompleto = htmlCompleto & "            </thead>" & Chr(13)
+    htmlCompleto = htmlCompleto & "            <tbody>" & Chr(13)
+    
+    ' Injeta as linhas tratadas da tabela
+    htmlCompleto = htmlCompleto & tabelaHtml
+    
+    htmlCompleto = htmlCompleto & "            </tbody>" & Chr(13)
+    htmlCompleto = htmlCompleto & "        </table>" & Chr(13)
+    htmlCompleto = htmlCompleto & "    </div>" & Chr(13)
+    
+    ' NOVO: INJEÇÃO AUTOMÁTICA DO SCRIPT COMPATÍVEL COM O INDEX.HTML
+    htmlCompleto = htmlCompleto & "    <script>" & Chr(13)
+    htmlCompleto = htmlCompleto & "        function lerTabelaESalvar() {" & Chr(13)
+    htmlCompleto = htmlCompleto & "            let acoes = [];" & Chr(13)
+    htmlCompleto = htmlCompleto & "            let linhas = document.querySelectorAll(""tbody tr"");" & Chr(13)
+    htmlCompleto = htmlCompleto & "            linhas.forEach(linha => {" & Chr(13)
+    htmlCompleto = htmlCompleto & "                let colunas = linha.querySelectorAll(""td"");" & Chr(13)
+    htmlCompleto = htmlCompleto & "                if (colunas.length > 0) {" & Chr(13)
+    htmlCompleto = htmlCompleto & "                    let ticker = colunas[1].innerText.trim();" & Chr(13)
+    htmlCompleto = htmlCompleto & "                    let textoVariacao = colunas[3].innerText.trim();" & Chr(13)
+    htmlCompleto = htmlCompleto & "                    let sinal = textoVariacao.includes(""▼"") ? -1 : 1;" & Chr(13)
+    htmlCompleto = htmlCompleto & "                    let numeroLimpo = textoVariacao.replace(""▲"", """").replace(""▼"", """").replace(""%"", """").replace("","", ""."").trim();" & Chr(13)
+    htmlCompleto = htmlCompleto & "                    let variacaoNumeric = parseFloat(numeroLimpo) * sinal;" & Chr(13)
+    htmlCompleto = htmlCompleto & "                    acoes.push({ ticker: ticker, variacao: variacaoNumeric });" & Chr(13)
+    htmlCompleto = htmlCompleto & "                }" & Chr(13)
+    htmlCompleto = htmlCompleto & "            });" & Chr(13)
+    htmlCompleto = htmlCompleto & "            localStorage.setItem('acoes', JSON.stringify(acoes));" & Chr(13)
+    htmlCompleto = htmlCompleto & "        }" & Chr(13)
+    htmlCompleto = htmlCompleto & "        window.onload = lerTabelaESalvar;" & Chr(13)
+    htmlCompleto = htmlCompleto & "    </script>" & Chr(13)
+    
+    htmlCompleto = htmlCompleto & "</body>" & Chr(13)
+    htmlCompleto = htmlCompleto & "</html>"
+    
+    ' Grava o arquivo final mercado.html limpo e sem bugs de sintaxe
+    Dim oSimpleFileAccess As Object
+    Dim oOutputStream As Object
+    Dim oTextStream As Object
+    oSimpleFileAccess = CreateUnoService("com.sun.star.ucb.SimpleFileAccess")
+    
+    If oSimpleFileAccess.exists(ConvertToUrl(sHtmlPath)) Then
+        oSimpleFileAccess.kill(ConvertToUrl(sHtmlPath))
+    End If
+    
+    oOutputStream = oSimpleFileAccess.openFileWrite(ConvertToUrl(sHtmlPath))
+    oTextStream = CreateUnoService("com.sun.star.io.TextOutputStream")
+    oTextStream.setOutputStream(oOutputStream)
+    oTextStream.setEncoding("UTF-8")
+    oTextStream.writeString(htmlCompleto)
+    oTextStream.closeOutput()
 End Sub
-
 
 Sub SalvarHistorico
 
@@ -646,7 +621,7 @@ Sub SalvarHistorico
     Loop
 
 
-    MsgBox "Histórico salvo!"
+ 
 
 End Sub
 Sub ExportarGraficoLegendaLateral
@@ -655,12 +630,18 @@ Sub ExportarGraficoLegendaLateral
     Dim iRow As Integer, iCol As Integer
     Dim sDataLabels As String
     Dim sCaminhoArquivo As String
-    Dim iNumeroArquivo As Integer
+    
+    ' --- VARIÁVEIS PARA ARQUIVO UTF-8 ---
+    Dim oSimpleFileAccess As Object
+    Dim oOutputStream As Object
+    Dim oTextStream As Object
     
     ' --- CONFIGURAÇÃO ---
     oDoc = ThisComponent
     oSheet = oDoc.Sheets.getByName("HISTÓRICO") ' Garanta que o nome da aba está correto
-    sCaminhoArquivo = "C:\Users\victo\OneDrive\Desktop\BOLSA\graficos.html" ' Mude para o seu caminho de salvamento
+    
+    ' ATENÇÃO: Convertendo o caminho para o formato URL exigido pelo LibreOffice
+    sCaminhoArquivo = ConvertToURL("C:\Users\victo\OneDrive\Desktop\BOLSA\graficos.html")
     ' ---------------------
 
     sDataLabels = ""
@@ -673,42 +654,53 @@ Sub ExportarGraficoLegendaLateral
     Loop
     If Len(sDataLabels) > 0 Then sDataLabels = Left(sDataLabels, Len(sDataLabels) - 1)
 
-    iNumeroArquivo = FreeFile
-    Open sCaminhoArquivo For Output As #iNumeroArquivo
+    ' --- ABRE O ARQUIVO EM UTF-8 ---
+    oSimpleFileAccess = CreateUnoService("com.sun.star.ucb.SimpleFileAccess")
+    
+    ' Apaga o arquivo anterior se ele já existir para não duplicar texto
+    If oSimpleFileAccess.exists(sCaminhoArquivo) Then
+        oSimpleFileAccess.kill(sCaminhoArquivo)
+    End If
+    
+    oOutputStream = oSimpleFileAccess.openFileWrite(sCaminhoArquivo)
+    oTextStream = CreateUnoService("com.sun.star.io.TextOutputStream")
+    oTextStream.setOutputStream(oOutputStream)
+    oTextStream.setEncoding("UTF-8") ' <-- Aqui garante que os acentos funcionem perfeitamente!
     
     ' Gerando o HTML com CSS aprimorado
-    Print #iNumeroArquivo, "<!DOCTYPE html>"
-    Print #iNumeroArquivo, "<html lang='pt-BR'>"
-    Print #iNumeroArquivo, "<head>"
-    Print #iNumeroArquivo, "    <meta charset='UTF-8'>"
-    Print #iNumeroArquivo, "    <title>Simulador de Bolsa - Painel Histórico</title>"
-    Print #iNumeroArquivo, "    <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>"
-    Print #iNumeroArquivo, "    <style>"
-    Print #iNumeroArquivo, "        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #121214; color: #fff; padding: 30px; margin: 0; }"
-    Print #iNumeroArquivo, "        .container { max-width: 1100px; margin: 30px auto; background: #1e1e22; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); border: 1px solid #29292e; }"
-    Print #iNumeroArquivo, "        h2 { margin: 0 0 5px 0; color: #e1e1e6; font-weight: 600; }"
-    Print #iNumeroArquivo, "        p { color: #7c7c8a; font-size: 14px; margin: 0 0 30px 0; }"
-    Print #iNumeroArquivo, "    </style>"
-    Print #iNumeroArquivo, "</head>"
-    Print #iNumeroArquivo, "<body>"
-    Print #iNumeroArquivo, "    <div class='container'>"
-    Print #iNumeroArquivo, "        <h2>Histórico de Ações da Simulação</h2>"
-    Print #iNumeroArquivo, "        <p>📊 Seleção: Clique nos nomes das empresas à direita para ocultar ou exibir as linhas no gráfico.</p>"
-    Print #iNumeroArquivo, "        <canvas id='graficoBolsa'></canvas>"
-    Print #iNumeroArquivo, "    </div>"
-    Print #iNumeroArquivo, "    <script>"
-    Print #iNumeroArquivo, "        const ctx = document.getElementById('graficoBolsa').getContext('2d');"
-    Print #iNumeroArquivo, "        new Chart(ctx, {"
-    Print #iNumeroArquivo, "            type: 'line',"
-    Print #iNumeroArquivo, "            data: {"
-    Print #iNumeroArquivo, "                labels: [" & sDataLabels & "],"
-    Print #iNumeroArquivo, "                datasets: ["
+    oTextStream.writeString("<!DOCTYPE html>" & CHR(10))
+    oTextStream.writeString("<html lang='pt-BR'>" & CHR(10))
+    oTextStream.writeString("<head>" & CHR(10))
+    oTextStream.writeString("    <meta charset='UTF-8'>" & CHR(10))
+    oTextStream.writeString("    <title>Simulador de Bolsa - Painel Histórico</title>" & CHR(10))
+    oTextStream.writeString("    <script src='https://cdn.jsdelivr.net/npm/chart.js'></script>" & CHR(10))
+    oTextStream.writeString("    <style>" & CHR(10))
+    oTextStream.writeString("        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #fff; padding: 30px; margin: 0; }" & CHR(10))
+    oTextStream.writeString("        .container { max-width: 1100px; margin: 30px auto; background: #1e1e22; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3); border: 1px solid #29292e; }" & CHR(10))
+    oTextStream.writeString("        h2 { margin: 0 0 5px 0; color: #e1e1e6; font-weight: 600; }" & CHR(10))
+    oTextStream.writeString("        p { color: #7c7c8a; font-size: 14px; margin: 0 0 30px 0; }" & CHR(10))
+    oTextStream.writeString("    </style>" & CHR(10))
+    oTextStream.writeString("</head>" & CHR(10))
+    oTextStream.writeString("<body>" & CHR(10))
+    oTextStream.writeString("    <div class='container'>" & CHR(10))
+    oTextStream.writeString("        <h2>Histórico de Ações da Simulação</h2>" & CHR(10))
+    oTextStream.writeString("        <p>📊 Seleção: Clique nos nomes das empresas à direita para ocultar ou exibir as linhas no gráfico.</p>" & CHR(10))
+    oTextStream.writeString("        <canvas id='graficoBolsa'></canvas>" & CHR(10))
+    oTextStream.writeString("    </div>" & CHR(10))
+    oTextStream.writeString("    <script>" & CHR(10))
+    oTextStream.writeString("        const ctx = document.getElementById('graficoBolsa').getContext('2d');" & CHR(10))
+    oTextStream.writeString("        new Chart(ctx, {" & CHR(10))
+    oTextStream.writeString("            type: 'line'," & CHR(10))
+    oTextStream.writeString("            data: {" & CHR(10))
+    oTextStream.writeString("                labels: [" & sDataLabels & "]," & CHR(10))
+    oTextStream.writeString("                datasets: [" & CHR(10))
     
     ' Loop pelas colunas (Empresas)
     iCol = 1 
     Dim sNomeEmpresa As String
     Dim sValores As String
     Dim sCores As Variant
+    Dim r As Integer
     
     ' Paleta expandida com 10 cores marcantes e diferentes para o modo escuro
     sCores = Array("#00b37e", "#f75a68", "#4e8fe7", "#ffb84d", "#9966ff", "#00d2df", "#ff79c6", "#50fa7b", "#ffb86c", "#bd93f9")
@@ -720,56 +712,66 @@ Sub ExportarGraficoLegendaLateral
         sValores = ""
         
         For r = 1 To iRow - 1
-            sValores = sValores & Replace(oSheet.getCellByPosition(iCol, r).Value, ",", ".") & ","
+            ' Convertendo vírgula para ponto decimal para o Javascript entender os números
+            sValores = sValores & Replace(Str(oSheet.getCellByPosition(iCol, r).Value), ",", ".") & ","
         Next r
         If Len(sValores) > 0 Then sValores = Left(sValores, Len(sValores) - 1)
         
-        Print #iNumeroArquivo, "                    {"
-        Print #iNumeroArquivo, "                        label: '" & sNomeEmpresa & "',"
-        Print #iNumeroArquivo, "                        data: [" & sValores & "],"
-        Print #iNumeroArquivo, "                        borderColor: '" & sCores(iCorIdx Mod 10) & "',"
-        Print #iNumeroArquivo, "                        backgroundColor: 'transparent',"
-        Print #iNumeroArquivo, "                        tension: 0.2,"
-        Print #iNumeroArquivo, "                        pointRadius: 3,"
-        Print #iNumeroArquivo, "                        pointHoverRadius: 6,"
-        Print #iNumeroArquivo, "                        borderWidth: 2"
-        Print #iNumeroArquivo, "                    },"
+        oTextStream.writeString("                    {" & CHR(10))
+        oTextStream.writeString("                        label: '" & sNomeEmpresa & "'," & CHR(10))
+        oTextStream.writeString("                        data: [" & sValores & "]," & CHR(10))
+        oTextStream.writeString("                        borderColor: '" & sCores(iCorIdx Mod 10) & "'," & CHR(10))
+        oTextStream.writeString("                        backgroundColor: 'transparent'," & CHR(10))
+        oTextStream.writeString("                        tension: 0.2," & CHR(10))
+        oTextStream.writeString("                        pointRadius: 3," & CHR(10))
+        oTextStream.writeString("                        pointHoverRadius: 6," & CHR(10))
+        oTextStream.writeString("                        borderWidth: 2" & CHR(10))
+        
+        ' Remove a vírgula do último item para evitar erro de sintaxe JS, ou mantém nas outras
+        oSheet.getCellByPosition(iCol + 1, 0)
+        If oSheet.getCellByPosition(iCol + 1, 0).String <> "" Then
+            oTextStream.writeString("                    }," & CHR(10))
+        Else
+            oTextStream.writeString("                    }" & CHR(10))
+        End If
         
         iCorIdx = iCorIdx + 1
         iCol = iCol + 1
     Loop
     
     ' Fechamento com a legenda posicionada na lateral direita ('right')
-    Print #iNumeroArquivo, "                ]"
-    Print #iNumeroArquivo, "            },"
-    Print #iNumeroArquivo, "            options: {"
-    Print #iNumeroArquivo, "                responsive: true,"
-    Print #iNumeroArquivo, "                interaction: { mode: 'index', intersect: false },"
-    Print #iNumeroArquivo, "                plugins: {"
-    Print #iNumeroArquivo, "                    legend: {"
-    Print #iNumeroArquivo, "                        position: 'right',"
-    Print #iNumeroArquivo, "                        align: 'center',"
-    Print #iNumeroArquivo, "                        labels: {"
-    Print #iNumeroArquivo, "                            color: '#e1e1e6',"
-    Print #iNumeroArquivo, "                            font: { size: 13, family: 'Segoe UI' },"
-    Print #iNumeroArquivo, "                            padding: 20,"
-    Print #iNumeroArquivo, "                            usePointStyle: true,"
-    Print #iNumeroArquivo, "                            pointStyle: 'circle'"
-    Print #iNumeroArquivo, "                        }"
-    Print #iNumeroArquivo, "                    }"
-    Print #iNumeroArquivo, "                },"
-    Print #iNumeroArquivo, "                scales: {"
-    Print #iNumeroArquivo, "                    x: { grid: { color: '#29292e' }, ticks: { color: '#7c7c8a' } },"
-    Print #iNumeroArquivo, "                    y: { grid: { color: '#29292e' }, ticks: { color: '#7c7c8a' } }"
-    Print #iNumeroArquivo, "                }"
-    Print #iNumeroArquivo, "            }"
-    Print #iNumeroArquivo, "        });"
-    Print #iNumeroArquivo, "    </script>"
-    Print #iNumeroArquivo, "</body>"
-    Print #iNumeroArquivo, "</html>"
+    oTextStream.writeString("                ]" & CHR(10))
+    oTextStream.writeString("            }," & CHR(10))
+    oTextStream.writeString("            options: {" & CHR(10))
+    oTextStream.writeString("                responsive: true," & CHR(10))
+    oTextStream.writeString("                interaction: { mode: 'index', intersect: false }," & CHR(10))
+    oTextStream.writeString("                plugins: {" & CHR(10))
+    oTextStream.writeString("                    legend: {" & CHR(10))
+    oTextStream.writeString("                        position: 'right'," & CHR(10))
+    oTextStream.writeString("                        align: 'center'," & CHR(10))
+    oTextStream.writeString("                        labels: {" & CHR(10))
+    oTextStream.writeString("                            color: '#e1e1e6'," & CHR(10))
+    oTextStream.writeString("                            font: { size: 13, family: 'Segoe UI' }," & CHR(10))
+    oTextStream.writeString("                            padding: 20," & CHR(10))
+    oTextStream.writeString("                            usePointStyle: true," & CHR(10))
+    oTextStream.writeString("                            pointStyle: 'circle'" & CHR(10))
+    oTextStream.writeString("                        }" & CHR(10))
+    oTextStream.writeString("                    }" & CHR(10))
+    oTextStream.writeString("                }," & CHR(10))
+    oTextStream.writeString("                scales: {" & CHR(10))
+    oTextStream.writeString("                    x: { grid: { color: '#29292e' }, ticks: { color: '#7c7c8a' } }," & CHR(10))
+    oTextStream.writeString("                    y: { grid: { color: '#29292e' }, ticks: { color: '#7c7c8a' } }" & CHR(10))
+    oTextStream.writeString("                }" & CHR(10))
+    oTextStream.writeString("            }" & CHR(10))
+    oTextStream.writeString("        });" & CHR(10))
+    oTextStream.writeString("    </script>" & CHR(10))
+    oTextStream.writeString("</body>" & CHR(10))
+    oTextStream.writeString("</html>" & CHR(10))
     
-    Close #iNumeroArquivo
-    MsgBox "Painel atualizado! Abra o HTML para ver o novo design com legenda lateral.", 64, "Sucesso"
+    ' Fecha adequadamente os fluxos de escrita do arquivo
+    oTextStream.closeOutput()
+    
+
 End Sub
 
 
@@ -911,7 +913,7 @@ Sub GerarMercadoHTML()
 
     Close #arquivo
 
-    MsgBox "mercado.html criado com sucesso!"
+
 
 End Sub
 
@@ -957,11 +959,7 @@ Sub ImportarOrdensCSV()
 End Sub
 
 
-
-
-
 Sub ExportarCarteirasJS()
-
 
 Dim planilha As Object
 
@@ -977,28 +975,29 @@ Dim valorTexto As String
 
 Dim js As String
 
-Dim arquivo As Integer
+Dim somaAcoes As Double
+Dim valorFinanceiro As Double
+
+Dim oSimpleFileAccess As Object
+Dim oOutputStream As Object
+Dim oTextStream As Object
+Dim sCaminhoArquivo As String
+
+' --- Nova variável para controlar as vírgulas do JS sem erros ---
+Dim primeiroItem As Boolean
 
 planilha = ThisComponent.Sheets.getByName("CARTEIRAS")
 
 ultimaLinha = 1
-
 Do While planilha.getCellByPosition(0, ultimaLinha).String <> ""
-
     ultimaLinha = ultimaLinha + 2
-
 Loop
-
 ultimaLinha = ultimaLinha - 2
 
 ultimaColuna = 1
-
 Do While planilha.getCellByPosition(ultimaColuna, 0).String <> ""
-
     ultimaColuna = ultimaColuna + 1
-
 Loop
-
 ultimaColuna = ultimaColuna - 1
 
 js = "const carteiras = {" & Chr(10)
@@ -1006,46 +1005,112 @@ js = "const carteiras = {" & Chr(10)
 For linha = 1 To ultimaLinha Step 2
 
     conta = planilha.getCellByPosition(0, linha).String
-
     js = js & Chr(34) & conta & Chr(34) & ": {" & Chr(10)
+
+    somaAcoes = 0
+    primeiroItem = True ' Sinaliza que é o primeiro dado da conta atual
 
     For coluna = 1 To ultimaColuna
 
         empresa = planilha.getCellByPosition(coluna, 0).String
 
-        valorTexto = Replace(CStr(planilha.getCellByPosition(coluna, linha).Value), ",", ".")
+        If UCase(empresa) <> "VALOR EM AÇÕES" Then
+            
+            ' Se não for o primeiro item impresso na conta, adiciona a vírgula do item anterior
+            If Not primeiroItem Then
+                js = js & "," & Chr(10)
+            End If
+            primeiroItem = False
 
-        js = js & Chr(34) & empresa & Chr(34) & ": " & valorTexto
+            valorFinanceiro = planilha.getCellByPosition(coluna, linha + 1).Value
 
-        If coluna < ultimaColuna Then
-            js = js & ","
+            If UCase(empresa) = "OCIOSO" Then
+                If valorFinanceiro = 0 Then
+                    valorTexto = "R$ 0,00"
+                Else
+                    valorTexto = Format(valorFinanceiro, "R$ #,##0.00")
+                End If
+                js = js & "    " & Chr(34) & empresa & Chr(34) & ": " & Chr(34) & valorTexto & Chr(34)
+
+            ElseIf UCase(empresa) = "TOTAL" Then
+                If valorFinanceiro = 0 Then
+                    valorTexto = "R$ 0,00"
+                Else
+                    valorTexto = Format(valorFinanceiro, "R$ #,##0.00")
+                End If
+                js = js & "    " & Chr(34) & empresa & Chr(34) & ": " & Chr(34) & valorTexto & Chr(34)
+
+            Else
+                somaAcoes = somaAcoes + valorFinanceiro
+                valorTexto = Replace(CStr(planilha.getCellByPosition(coluna, linha).Value), ",", ".")
+                js = js & "    " & Chr(34) & empresa & Chr(34) & ": " & valorTexto
+            End If
+
         End If
-
-        js = js & Chr(10)
 
     Next coluna
 
+    ' --- INSERE O "VALOR EM AÇÕES" CALCULADO COM A VÍRGULA CORRETA ---
+    If somaAcoes = 0 Then
+        valorTexto = "R$ 0,00"
+    Else
+        valorTexto = Format(somaAcoes, "R$ #,##0.00")
+    End If
+
+    ' Se adicionamos algum item antes, coloca a vírgula antes de injetar o VALOR EM AÇÕES
+    If Not primeiroItem Then
+        js = js & "," & Chr(10)
+    End If
+    
+    js = js & "    " & Chr(34) & "VALOR EM AÇÕES" & Chr(34) & ": " & Chr(34) & valorTexto & Chr(34) & Chr(10)
     js = js & "}"
 
     If linha < ultimaLinha Then
         js = js & ","
     End If
-
     js = js & Chr(10)
 
 Next linha
 
 js = js & "};"
 
-arquivo = FreeFile
+' --- GRAVAÇÃO EM UTF-8 PURO ---
+sCaminhoArquivo = ConvertToURL("C:\Users\victo\OneDrive\Desktop\BOLSA\carteiras.js")
 
-Open "C:\Users\victo\OneDrive\Desktop\BOLSA\carteiras.js" For Output As #arquivo
+oSimpleFileAccess = CreateUnoService("com.sun.star.ucb.SimpleFileAccess")
 
-Print #arquivo, js
+If oSimpleFileAccess.exists(sCaminhoArquivo) Then
+    oSimpleFileAccess.kill(sCaminhoArquivo)
+End If
 
-Close #arquivo
+oOutputStream = oSimpleFileAccess.openFileWrite(sCaminhoArquivo)
+oTextStream = CreateUnoService("com.sun.star.io.TextOutputStream")
+oTextStream.setOutputStream(oOutputStream)
+oTextStream.setEncoding("UTF-8")
 
-MsgBox "carteiras.js criado com sucesso!"
+oTextStream.writeString(js)
+oTextStream.closeOutput()
+
+
+
+End Sub
+
+
+
+
+Sub ExecutarTudo
+
+Call ProximaRodada
+
+Call AtualizarMercado
+
+Call GerarHtmlMercado
+
+Call SalvarHistorico
+
+Call ExportarCarteirasJs
+
+Call ExportarGraficoLegendaLateral
 
 
 End Sub

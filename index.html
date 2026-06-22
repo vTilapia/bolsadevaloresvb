@@ -2,295 +2,313 @@
 <html lang="pt-BR">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolsa Escolar</title>
 
-<meta charset="UTF-8">
+    <style>
+        body{
+            margin:0;
+            font-family:Arial, sans-serif;
+            background:#111827;
+            color:white;
+        }
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        /* TOPO */
+        header{
+            background:linear-gradient(135deg,#1f2937,#111827);
+            padding:40px 20px;
+            text-align:center;
+            border-bottom:2px solid #f4b400;
+        }
 
-<title>Bolsa Escolar</title>
+        header h1{
+            margin:0;
+            font-size:38px;
+        }
 
-<style>
+        header p{
+            color:#9ca3af;
+            margin-top:10px;
+        }
 
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:#111827;
-    color:white;
-}
+        /* MENU */
+        .menu{
+            display:flex;
+            justify-content:center;
+            gap:15px;
+            padding:20px;
+            flex-wrap:wrap;
+        }
 
-/* TOPO */
+        .menu a{
+            text-decoration:none;
+            background:#f4b400;
+            color:black;
+            padding:12px 22px;
+            border-radius:10px;
+            font-weight:bold;
+            transition:0.2s;
+        }
 
-header{
-    background:linear-gradient(135deg,#1f2937,#111827);
-    padding:40px 20px;
-    text-align:center;
-    border-bottom:2px solid #f4b400;
-}
+        .menu a:hover{
+            transform:scale(1.05);
+        }
 
-header h1{
-    margin:0;
-    font-size:38px;
-}
+        /* HERO */
+        .hero{
+            padding:30px 20px;
+            text-align:center;
+        }
 
-header p{
-    color:#9ca3af;
-    margin-top:10px;
-}
+        .hero h2{
+            font-size:30px;
+            margin-bottom:10px;
+        }
 
-/* MENU */
+        .hero p{
+            color:#d1d5db;
+            max-width:700px;
+            margin:auto;
+            line-height:1.6;
+        }
 
-.menu{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    padding:20px;
-    flex-wrap:wrap;
-}
+        /* CARDS */
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+            gap:20px;
+            padding:30px;
+        }
 
-.menu a{
-    text-decoration:none;
-    background:#f4b400;
-    color:black;
-    padding:12px 22px;
-    border-radius:10px;
-    font-weight:bold;
-    transition:0.2s;
-}
+        .card{
+            background:#1f2937;
+            border-radius:15px;
+            padding:25px;
+            transition:0.2s;
+            border:1px solid #374151;
+        }
 
-.menu a:hover{
-    transform:scale(1.05);
-}
+        .card:hover{
+            transform:translateY(-5px);
+            border-color:#f4b400;
+        }
 
-/* HERO */
+        .card h3{
+            margin-top:0;
+            font-size:24px;
+        }
 
-.hero{
-    padding:30px 20px;
-    text-align:center;
-}
+        .card p{
+            color:#d1d5db;
+            line-height:1.5;
+        }
 
-.hero h2{
-    font-size:30px;
-    margin-bottom:10px;
-}
+        .card a{
+            display:inline-block;
+            margin-top:15px;
+            text-decoration:none;
+            background:#f4b400;
+            color:black;
+            padding:10px 18px;
+            border-radius:8px;
+            font-weight:bold;
+        }
 
-.hero p{
-    color:#d1d5db;
-    max-width:700px;
-    margin:auto;
-    line-height:1.6;
-}
+        /* INDICADORES */
+        .indicadores{
+            display:flex;
+            justify-content:center;
+            gap:20px;
+            flex-wrap:wrap;
+            padding:20px;
+        }
 
-/* CARDS */
+        .indicador{
+            background:#1f2937;
+            padding:20px;
+            border-radius:12px;
+            min-width:180px;
+            text-align:center;
+            border:1px solid #374151;
+        }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
-    padding:30px;
-}
+        .indicador h2{
+            margin:0;
+            font-size:24px; /* Ajustado levemente para caber tickers longos */
+        }
 
-.card{
-    background:#1f2937;
-    border-radius:15px;
-    padding:25px;
-    transition:0.2s;
-    border:1px solid #374151;
-}
+        .alta{
+            color:#22c55e;
+        }
 
-.card:hover{
-    transform:translateY(-5px);
-    border-color:#f4b400;
-}
+        .baixa{
+            color:#ef4444;
+        }
 
-.card h3{
-    margin-top:0;
-    font-size:24px;
-}
+        .neutro{
+            color:#9ca3af;
+        }
 
-.card p{
-    color:#d1d5db;
-    line-height:1.5;
-}
+        /* RODAPÉ */
+        footer{
+            text-align:center;
+            padding:30px;
+            color:#9ca3af;
+        }
 
-.card a{
-    display:inline-block;
-    margin-top:15px;
-    text-decoration:none;
-    background:#f4b400;
-    color:black;
-    padding:10px 18px;
-    border-radius:8px;
-    font-weight:bold;
-}
+        /* MOBILE */
+        @media screen and (max-width:600px){
+            header h1{
+                font-size:28px;
+            }
 
-/* INDICADORES */
+            .hero h2{
+                font-size:22px;
+            }
 
-.indicadores{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    flex-wrap:wrap;
-    padding:20px;
-}
-
-.indicador{
-    background:#1f2937;
-    padding:20px;
-    border-radius:12px;
-    min-width:180px;
-    text-align:center;
-    border:1px solid #374151;
-}
-
-.indicador h2{
-    margin:0;
-    font-size:28px;
-}
-
-.alta{
-    color:#22c55e;
-}
-
-.baixa{
-    color:#ef4444;
-}
-
-/* RODAPÉ */
-
-footer{
-    text-align:center;
-    padding:30px;
-    color:#9ca3af;
-}
-
-/* MOBILE */
-
-@media screen and (max-width:600px){
-
-    header h1{
-        font-size:28px;
-    }
-
-    .hero h2{
-        font-size:22px;
-    }
-
-    .menu a{
-        width:100%;
-        text-align:center;
-    }
-
-}
-
-</style>
-
+            .menu a{
+                width:100%;
+                text-align:center;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
 <header>
-
     <h1>📈 Bolsa Escolar</h1>
-
     <p>Simulação de mercado financeiro em tempo real</p>
-
 </header>
 
 <div class="menu">
-
- 
-
-    <a href="mercado.html"> Mercado</a>
-
-    <a href="graficos.html"> Gráficos</a>
-	
-	<a href="empresas.html"> Empresas</a>
-
-    <a href="noticias.html"> Notícias</a>
-	
-	<a href="carteiras.html"> Carteiras</a>
-	
-    <a href="ORDENS.html"> Ordens</a>
-
-
+    <a href="mercado.html">Mercado</a>
+    <a href="graficos.html">Gráficos</a>
+    <a href="empresas.html">Empresas</a>
+    <a href="noticias.html">Notícias</a>
+    <a href="carteiras.html">Carteiras</a>
+    <a href="ORDENS.html">Ordens</a>
 </div>
 
 <section class="hero">
-
     <h2>Bem-vindo ao pregão</h2>
-
     <p>
         Acompanhe as ações, notícias econômicas e o desempenho das empresas
         na Bolsa Escolar. Atualizações em tempo real diretamente do sistema
         do pregão.
     </p>
-
 </section>
 
 <section class="indicadores">
-
     <div class="indicador">
-
         <h3>IBOV Escolar</h3>
-
-        <h2 class="alta">+2.4%</h2>
-
+        <h2 id="valor-ibov" class="neutro">0.00%</h2>
     </div>
 
     <div class="indicador">
-
         <h3>Maior Alta</h3>
-
-        <h2 class="alta">PETR4</h2>
-
+        <h2 id="valor-alta" class="alta">---</h2>
     </div>
 
     <div class="indicador">
-
         <h3>Maior Queda</h3>
-
-        <h2 class="baixa">VALE3</h2>
-
+        <h2 id="valor-queda" class="baixa">---</h2>
     </div>
-
 </section>
 
 <section class="cards">
-
     <div class="card">
-
         <h3>📊 Mercado</h3>
-
         <p>
             Veja as ações, cotações, variações e desempenho das empresas
             durante o pregão.
         </p>
-
         <a href="mercado.html">Abrir mercado</a>
-
     </div>
 
     <div class="card">
-
         <h3>📰 Notícias</h3>
-
         <p>
             Acompanhe notícias econômicas e acontecimentos que afetam
             o mercado financeiro.
         </p>
-
         <a href="noticias.html">Ver notícias</a>
-
     </div>
-
 </section>
 
 <footer>
-
     Bolsa Escolar • Projeto educacional de mercado financeiro
-
 </footer>
 
-</body>
+<script>
+    function atualizarIndicadores() {
+        // Tenta buscar a lista de ações salva no localStorage pelo seu sistema de simulação
+        // Se não encontrar nada, ele usa uma lista padrão de testes baseada no seu projeto
+        let dadosAcoes = localStorage.getItem('acoes');
+        let acoes = [];
 
+        if (dadosAcoes) {
+            acoes = JSON.parse(dadosAcoes);
+        } else {
+            // Lista padrão caso o simulador ainda não tenha rodado nenhuma vez
+            acoes = [
+                { ticker: "REVS3", variacao: 0.00 },
+                { ticker: "PETR4", variacao: 0.00 },
+                { ticker: "VALE3", variacao: 0.00 }
+            ];
+        }
+
+        if (acoes.length === 0) return;
+
+        let acaoMaiorAlta = acoes[0];
+        let acaoMaiorQueda = acoes[0];
+        let somaVariacoes = 0;
+
+        // Passa por todas as ações para calcular as maiores variações e a média do índice
+        acoes.forEach(acao => {
+            somaVariacoes += acao.variacao;
+
+            if (acao.variacao > acaoMaiorAlta.variacao) {
+                acaoMaiorAlta = acao;
+            }
+            if (acao.variacao < acaoMaiorQueda.variacao) {
+                acaoMaiorQueda = acao;
+            }
+        });
+
+        // 1. Atualiza o Índice (Média ponderada ou simples das variações do mercado)
+        let mediaMercado = somaVariacoes / acoes.length;
+        let elementoIbov = document.getElementById("valor-ibov");
+        elementoIbov.innerText = (mediaMercado >= 0 ? "+" : "") + mediaMercado.toFixed(2) + "%";
+        
+        // Altera a cor do índice (verde se positivo, vermelho se negativo)
+        elementoIbov.className = mediaMercado >= 0 ? "alta" : "baixa";
+
+        // 2. Atualiza a Maior Alta
+        let elementoAlta = document.getElementById("valor-alta");
+        if (acaoMaiorAlta.variacao > 0) {
+            elementoAlta.innerText = `${acaoMaiorAlta.ticker} (+${acaoMaiorAlta.variacao.toFixed(2)}%)`;
+            elementoAlta.className = "alta";
+        } else {
+            elementoAlta.innerText = "Nenhuma";
+            elementoAlta.className = "neutro";
+        }
+
+        // 3. Atualiza a Maior Queda
+        let elementoQueda = document.getElementById("valor-queda");
+        if (acaoMaiorQueda.variacao < 0) {
+            elementoQueda.innerText = `${acaoMaiorQueda.ticker} (${acaoMaiorQueda.variacao.toFixed(2)}%)`;
+            elementoQueda.className = "baixa";
+        } else {
+            elementoQueda.innerText = "Nenhuma";
+            elementoQueda.className = "neutro";
+        }
+    }
+
+    // Executa a atualização assim que a página abre
+    window.onload = atualizarIndicadores;
+</script>
+
+</body>
 </html>
