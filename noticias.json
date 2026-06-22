@@ -1,5 +1,42 @@
 [
 
+  {
+    "dia": "Dia 4",
+    "empresa": "STUR3",
+    "titulo": "Pane no sistema de telemetria atrasa lançamento de foguete da SpaceTur (STUR3)",
+    "impacto": "Impacto em Aeroespacial e Turismo",
+    "evento": -0.30,
+    "justificativa_evento": "Evento negativo moderado (no mesmo peso de problemas sanitários). Um erro técnico grave que atrasa o cronograma e gera custos de revisão, arranhando a confiança de curto prazo, mas sem destruir ou falir a empresa.",
+    "texto": "A SpaceTur confirmou em nota técnica o adiamento por tempo indeterminado do lançamento da missão Orbital-X, previsto para esta manhã, após os computadores de bordo detectarem uma oscilação inesperada no sistema de telemetria secundário durante a contagem regressiva. A equipe de engenharia já iniciou os protocolos de diagnóstico para identificar se a falha exige a substituição de componentes físicos ou apenas uma atualização de software. O contratempo frustrou as expectativas de analistas que esperavam a validação rápida dos novos sistemas de voo. A reação do mercado foi de forte cautela, provocando uma onda de ordens de venda que pressionou as ações STUR3 a fecharem em queda expressiva no pregão de hoje."
+  },
+  {
+    "dia": "Dia 4",
+    "empresa": "TCPT3",
+    "titulo": "TechPato (TCPT3) anuncia expansão internacional e abre escritórios na Europa",
+    "impacto": "Impacto em Tecnologia",
+    "evento": 0.20,
+    "justificativa_evento": "Evento positivo moderado. Expansão de mercado saudável que aumenta o alcance global da marca, gerando valor consistente de forma previsível.",
+    "texto": "Consolidando o seu ciclo de forte crescimento no setor tecnológico, a TechPato anunciou a abertura simultânea de suas novas sedes operacionais em Lisboa e Berlim. O movimento visa acelerar a comercialização de seus softwares de gestão corporativa e soluções em nuvem para o mercado europeu, aproveitando incentivos fiscais locais voltados para inovação digital. Analistas internacionais avaliaram a expansão como um passo estratégico maduro e bem planejado, capaz de diversificar a receita da companhia em moedas fortes como o Euro. Investidores institucionais responderam aumentando suas posições de longo prazo na empresa, garantindo uma alta sólida nas ações TCPT3."
+  },
+  {
+    "dia": "Dia 4",
+    "empresa": "PIZZ4",
+    "titulo": "Pizza Cósmica (PIZZ4) lança serviço de assinatura mensal e surpreende mercado",
+    "impacto": "Impacto em Consumo e Alimentos",
+    "evento": 0.15,
+    "justificativa_evento": "Evento levemente positivo. Criação de receita recorrente previsível que mitiga riscos sazonais, gerando um ganho de valor sutil e seguro.",
+    "texto": "Buscando inovar no setor de alimentação rápida, a Pizza Cósmica lançou oficialmente o 'Clube da Pizza', um modelo de assinatura recorrente onde os clientes pagam um valor fixo mensal para receber combos exclusivos semanalmente. Testes piloto realizados no mês anterior apontaram um aumento de 22% na fidelização de clientes e uma melhora significativa na previsibilidade do fluxo de caixa das franquias participantes. O mercado financeiro recebeu bem o novo modelo de negócios, visto como uma forma inteligente de estabilizar o faturamento em períodos de menor movimento. Os papéis PIZZ4 registraram ganhos leves e estáveis, recuperando-se de oscilações anteriores."
+  },
+  {
+    "dia": "Dia 4",
+    "empresa": "GERAL",
+    "titulo": "Banco Central reduz taxa básica de juros e estimula mercado de ações",
+    "impacto": "Impacto Geral no Mercado (Macroeconômico)",
+    "evento": 0.25,
+    "justificativa_evento": "Evento macroeconômico positivo expressivo. Juros mais baixos tornam a renda fixa menos atraente e barateiam o crédito corporativo, impulsionando a bolsa de forma generalizada.",
+    "texto": "Em decisão unânime, o Comitê de Política Monetária do Banco Central anunciou uma redução de 0,50 ponto percentual na taxa básica de juros da economia, surpreendendo parte dos analistas que previam a manutenção da taxa atual. O corte foi justificado pela desaceleração recente dos índices de inflação e pela necessidade de estimular a atividade econômica e o crédito produtivo. A medida provocou uma migração imediata de capital de fundos de renda fixa em direção ao mercado de renda variável. Com o dinheiro ficando mais barato para as empresas investirem e os consumidores comprarem, o otimismo tomou conta do pregão, empurrando o índice geral da bolsa para uma forte alta disseminada em quase todos os setores."
+  }
+
 
   {
     "dia": "Dia 3",
