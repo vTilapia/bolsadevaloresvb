@@ -1,18 +1,18 @@
 const carteiras = {
 "1027": {
     "TCPT3": 0,
-    "PIZZ4": 0,
+    "PIZZ4": 50,
     "ROBO3": 0,
     "MLUA3": 0,
     "AGRD3": 0,
-    "AMAR3": 0,
+    "AMAR3": 20,
     "ECOE3": 0,
-    "MECH3": 0,
+    "MECH3": 10,
     "FAST3": 0,
     "STUR3": 0,
-    "OCIOSO": "R$ 10.000,00",
+    "OCIOSO": "R$ 2.037,20",
     "TOTAL": "R$ 10.000,00",
-    "VALOR EM AÇÕES": "R$ 0,00"
+    "VALOR EM AÇÕES": "R$ 8.227,62"
 },
 "1348": {
     "TCPT3": 0,
@@ -33,16 +33,16 @@ const carteiras = {
     "TCPT3": 0,
     "PIZZ4": 0,
     "ROBO3": 0,
-    "MLUA3": 5,
+    "MLUA3": 2,
     "AGRD3": 0,
     "AMAR3": 0,
     "ECOE3": 0,
-    "MECH3": 0,
+    "MECH3": 4,
     "FAST3": 0,
     "STUR3": 0,
-    "OCIOSO": "R$ 9.576,06",
+    "OCIOSO": "R$ 9.472,25",
     "TOTAL": "R$ 10.000,00",
-    "VALOR EM AÇÕES": "R$ 397,43"
+    "VALOR EM AÇÕES": "R$ 499,41"
 },
 "2036": {
     "TCPT3": 0,
