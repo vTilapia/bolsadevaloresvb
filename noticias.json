@@ -2,12 +2,12 @@
   {
     "dia": "Dia 1",
     "empresa": "TCPT3",
-    "titulo": "TechPato (TCPT3) anuncia investimento milionário em inteligência artificial",
+    "titulo": "TechPato (TCPT3) announces investimento milionário em inteligência artificial",
     "impacto": "Impacto em Tecnologia",
     "evento": 0.35,
     "justificativa_evento": "Evento positivo expressivo. O aporte em IA automatiza processos e promete cortar custos corporativos significativamente, gerando forte otimismo sobre as margens futuras da empresa.",
     "texto": "A TechPato surpreendeu o mercado financeiro hoje ao anunciar um aporte de R$ 450 milhões no desenvolvimento de sua nova plataforma de inteligência artificial generativa focada em produtividade. A ferramenta foi desenhada especificamente para automatizar fluxos de trabalho complexos e promete reduzir os custos operacionais de grandes corporações em até 30% já no primeiro ano de implementação. Analistas do setor enxergaram o movimento com muito otimismo, destacando que a empresa se posiciona na vanguarda tecnológica frente aos seus concorrentes diretos. O anúncio atraiu um forte volume de compradores para o papel TCPT3, que fechou o pregão com uma valorização expressiva, impulsionando o setor de tecnologia na bolsa."
-  }
+  },
   {
     "dia": "Dia 1",
     "empresa": "MLUA3",
@@ -16,7 +16,7 @@
     "evento": 0.25,
     "justificativa_evento": "Evento positivo moderado. A descoberta expande a capacidade de extração e atende a uma forte demanda industrial, valorizando os ativos de forma sólida.",
     "texto": "A diretoria da Mineração Lunar apresentou um relatório geológico detalhado confirmando a descoberta de uma nova reserva de minérios de terras raras em suas áreas de concessão. De acordo com as projeções iniciais da companhia, o potencial de extração desse novo sítio operacional pode elevar a capacidade produtiva anual em quase 20%, atendendo à crescente demanda global das indústrias de condutores e baterias de alta performance. O mercado financeiro reagiu de forma eufórica à notícia, provocando uma valorização das ações MLUA3, que figuraram entre as maiores altas do setor de commodities. Especialistas destacam que a empresa se consolida como uma das operações mais eficientes de seu segmento."
-  }
+  },
   {
     "dia": "Dia 1",
     "empresa": "ROBO3",
@@ -24,8 +24,8 @@
     "impacto": "Impacto em Saúde e Tecnologia",
     "evento": 0.15,
     "justificativa_evento": "Evento levemente positivo. O aval regulatório destrava a comercialização dos produtos e garante contratos de pré-venda saudáveis para o próximo semestre.",
-    "texto": "A RoboFarma anunciou ao mercado que recebeu o aval final dos órgãos reguladores para iniciar a distribuição comercial de seus novos robôs de triagem de alta precisão para redes hospitalares e de distribuição. A tecnologia promete eliminar completamente os erros de dispensação de medicamentos e reduzir o tempo de espera de pacientes em unidades de pronto atendimento. O anúncio disparou o otimismo de grandes redes de farmácias e hospitais, que já alinharam contratos de pré-venda que cobrem boa parte da capacidade de produção da RoboFarma para o próximo semestre. Com a receita de curto prazo praticamente garantida por esses pedidos, as ações ROBO3 registraram uma tendência de alta consistente."
-  }
+    "texto": "A RoboFarma anunciou ao mercado que recebeu o aval final dos órgãos reguladores para iniciar a distribuição comercial de seus novos robôs de triagem de alta precisão para redes hospitalares e de distribuição. A tecnologia promete eliminar completamente os erros de dispensação de medicamentos e reduzir o tempo de espera de pacientes em unidades de pronto atendimento. O anúncio disparou o otimismo de grandes redes de farmácias e hospitais, que já alinharam contratos de pré-venda que cobrem boa parte da capacidade de produção da RoboFarma para o próximo semestre. Com a receita de curto prazo praticamente garantida por esses pedidos, as ações ROBO3 registraram uma tendência de alta hesitantemente consistente."
+  },
   {
     "dia": "Dia 1",
     "empresa": "GERAL",
@@ -33,9 +33,8 @@
     "impacto": "Impacto Geral no Mercado (Macroeconômico)",
     "evento": -0.20,
     "justificativa_evento": "Evento macroeconômico negativo moderado. O encarecimento de fretes e insumos gera aversão ao risco no mercado geral e pressiona o índice para baixo.",
-    "texto": "Uma nova onda de tensões geopolíticas nos principais canais de comércio internacional provocou um fechamento parcial de portos estratégicos, gerando um efeito cascata no transporte global de mercadorias. O custo dos fretes marítimos e aéreos disparou mais de 25% em menos de uma semana, acendendo o sinal de alerta para o risco inflacionário global e forçando analistas a revisarem suas projeções para o PIB. A escassez de componentes básicos e o atraso na entrega de insumos essenciais devem encarecer a produção industrial e o comércio de bens de consumo nas próximas semanas. O clima de incerteza generalizada fez o índice da bolsa recuar, com investidores buscando refúgio no dólar."
-  }
-  
+    "texto": "Uma nova onda de tensões geopolíticas nos principais canais de comércio internacional provocou um fechamento parcial de portos estratégicos, gerando um effectua cascata no transporte global de mercadorias. O custo dos fretes marítimos e aéreos disparou mais de 25% em menos de uma semana, acendendo o sinal de alerta para o risco inflacionário global e forçando analistas a revisarem suas projeções para o PIB. A escassez de componentes básicos e o atraso na entrega de insumos essenciais devem encarecer a produção industrial e o comércio de bens de consumo nas próximas semanas. O clima de incerteza generalizada fez o índice da bolsa recuar, com investidores buscando refúgio no dólar."
+  },
   {
     "dia": "Dia 2",
     "empresa": "MECH3",
@@ -44,7 +43,7 @@
     "evento": 0.35,
     "justificativa_evento": "Evento positivo expressivo. Um contrato exclusivo de fornecimento que assegura faturamento recorde e eleva a previsibilidade de receita de longo prazo.",
     "texto": "A MegaChip anunciou oficialmente a assinatura de um contrato de exclusividade de cinco anos com um dos maiores conglomerados globais de tecnologia para o fornecimento de seus novos microcomponentes de alta performance. A parceria estratégica garante que a MECH3 seja a única fornecedora de silício customizado para a nova linha de dispositivos móveis da multinacional, gerando uma receita projetada que supera o faturamento total da empresa no ano anterior. O mercado financeiro reagiu com otimismo, resultando em um forte movimento de compra que valorizou as ações no pregão. Analistas apontam que este movimento consolida a saúde financeira da MegaChip, transformando-a em uma peça-chave na cadeia de suprimentos tecnológicos."
-  }
+  },
   {
     "dia": "Dia 2",
     "empresa": "AGRD3",
@@ -53,7 +52,7 @@
     "evento": -0.25,
     "justificativa_evento": "Evento negativo moderado. Reduz a produção do trimestre e aperta as margens devido aos custos de logística emergenciais, mas sem risco de quebra.",
     "texto": "A diretoria da AgroDino emitiu um fato relevante comunicando ao mercado uma revisão em suas projeções de colheita para o atual trimestre devido a uma seca prolongada que atingiu suas principais fazendas polo. Estimativas iniciais apontam para uma perda de produtividade de cerca de 15% do volume total esperado, impactando diretamente as margens operacionais de curto prazo. Para mitigar os danos, a companhia informou que está acionando suas apólices de seguro agrícola e renegociando prazos de entrega com parceiros, mas alertentou que os custos logísticos adicionais afetarão o balanço. A notícia gerou cautela entre os investidores, provocando uma desvalorização natural nos papéis AGRD3."
-  }
+  },
   {
     "dia": "Dia 2",
     "empresa": "AMAR3",
@@ -62,7 +61,7 @@
     "evento": 0.15,
     "justificativa_evento": "Evento levemente positivo. Otimização operacional saudável e corte de custos internos, gerando valor progressivo e seguro por ser um setor defensivo.",
     "texto": "A Águas de Marte anunciou a conclusão antecipada das obras de sua nova adutora de alta capacidade, projetada para otimizar o abastecimento e o fluxo logístico de seus centros de distribuição urbana. Com a infraestrutura operando em capacidade total, a empresa projeta uma redução imediata de 15% nos custos de bombeamento e tratamento, o que deve expandir ligeiramente a margem Ebitda nos próximos meses. Setores defensivos como o de saneamento básico costumam atrair investidores em momentos de volatilidade, e a melhora na eficiência operacional da AMAR3 consolidou essa tendência no dia de hoje. Os papéis da companhia registraram uma alta consistente e suave, refletindo a previsibilidade do fluxo de caixa."
-  }
+  },
   {
     "dia": "Dia 2",
     "empresa": "GERAL",
@@ -73,4 +72,3 @@
     "texto": "O Congresso Nacional avançou na votação do texto da reforma tributária, que inclui a taxação direta sobre a distribuição de lucros e dividendos corporativos a uma alíquota de 15%. A medida trouxe um clima de forte cautela para a bolsa, já que os gestores de fundos começaram a projetar uma redução na rentabilidade líquida das empresas listadas frente aos títulos de renda fixa. Setores que historicamente pagam proventos generosos, como o financeiro e o de energia, lideraram as leves perdas e puxaram o índice geral para baixo. Economistas alertam que a maior carga tributária pode desacelerar novos investimentos privados e segurar o fluxo de capital estrangeiro no país nos próximos meses."
   }
 ]
-
