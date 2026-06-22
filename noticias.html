@@ -48,7 +48,7 @@
         async function carregarNoticiasDoJson() {
             try {
                 // Ele busca o arquivo na mesma pasta
-                const resposta = await fetch('/bolsadevaloresvb/noticias.json');
+                const resposta = await fetch('noticias.json');
                 bancoDeNoticias = await resposta.json();
                 
                 // Configura os filtros e exibe as notícias na tela
