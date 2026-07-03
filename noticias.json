@@ -1,110 +1,6 @@
 [
 
-  {
-    "dia": "Dia 4",
-    "empresa": "STUR3",
-    "titulo": "Pane no sistema de telemetria atrasa lançamento de foguete da SpaceTur (STUR3)",
-    "impacto": "Impacto em Aeroespacial e Turismo",
-    "evento": -0.30,
-    "justificativa_evento": "Evento negativo moderado (no mesmo peso de problemas sanitários). Um erro técnico grave que atrasa o cronograma e gera custos de revisão, arranhando a confiança de curto prazo, mas sem destruir ou falir a empresa.",
-    "texto": "A SpaceTur confirmou em nota técnica o adiamento por tempo indeterminado do lançamento da missão Orbital-X, previsto para esta manhã, após os computadores de bordo detectarem uma oscilação inesperada no sistema de telemetria secundário durante a contagem regressiva. A equipe de engenharia já iniciou os protocolos de diagnóstico para identificar se a falha exige a substituição de componentes físicos ou apenas uma atualização de software. O contratempo frustrou as expectativas de analistas que esperavam a validação rápida dos novos sistemas de voo. A reação do mercado foi de forte cautela, provocando uma onda de ordens de venda que pressionou as ações STUR3 a fecharem em queda expressiva no pregão de hoje."
-  },
-  {
-    "dia": "Dia 4",
-    "empresa": "TCPT3",
-    "titulo": "TechPato (TCPT3) anuncia expansão internacional e abre escritórios na Europa",
-    "impacto": "Impacto em Tecnologia",
-    "evento": 0.20,
-    "justificativa_evento": "Evento positivo moderado. Expansão de mercado saudável que aumenta o alcance global da marca, gerando valor consistente de forma previsível.",
-    "texto": "Consolidando o seu ciclo de forte crescimento no setor tecnológico, a TechPato anunciou a abertura simultânea de suas novas sedes operacionais em Lisboa e Berlim. O movimento visa acelerar a comercialização de seus softwares de gestão corporativa e soluções em nuvem para o mercado europeu, aproveitando incentivos fiscais locais voltados para inovação digital. Analistas internacionais avaliaram a expansão como um passo estratégico maduro e bem planejado, capaz de diversificar a receita da companhia em moedas fortes como o Euro. Investidores institucionais responderam aumentando suas posições de longo prazo na empresa, garantindo uma alta sólida nas ações TCPT3."
-  },
-  {
-    "dia": "Dia 4",
-    "empresa": "PIZZ4",
-    "titulo": "Pizza Cósmica (PIZZ4) lança serviço de assinatura mensal e surpreende mercado",
-    "impacto": "Impacto em Consumo e Alimentos",
-    "evento": 0.15,
-    "justificativa_evento": "Evento levemente positivo. Criação de receita recorrente previsível que mitiga riscos sazonais, gerando um ganho de valor sutil e seguro.",
-    "texto": "Buscando inovar no setor de alimentação rápida, a Pizza Cósmica lançou oficialmente o 'Clube da Pizza', um modelo de assinatura recorrente onde os clientes pagam um valor fixo mensal para receber combos exclusivos semanalmente. Testes piloto realizados no mês anterior apontaram um aumento de 22% na fidelização de clientes e uma melhora significativa na previsibilidade do fluxo de caixa das franquias participantes. O mercado financeiro recebeu bem o novo modelo de negócios, visto como uma forma inteligente de estabilizar o faturamento em períodos de menor movimento. Os papéis PIZZ4 registraram ganhos leves e estáveis, recuperando-se de oscilações anteriores."
-  },
-  {
-    "dia": "Dia 4",
-    "empresa": "GERAL",
-    "titulo": "Banco Central reduz taxa básica de juros e estimula mercado de ações",
-    "impacto": "Impacto Geral no Mercado (Macroeconômico)",
-    "evento": 0.25,
-    "justificativa_evento": "Evento macroeconômico positivo expressivo. Juros mais baixos tornam a renda fixa menos atraente e barateiam o crédito corporativo, impulsionando a bolsa de forma generalizada.",
-    "texto": "Em decisão unânime, o Comitê de Política Monetária do Banco Central anunciou uma redução de 0,50 ponto percentual na taxa básica de juros da economia, surpreendendo parte dos analistas que previam a manutenção da taxa atual. O corte foi justificado pela desaceleração recente dos índices de inflação e pela necessidade de estimular a atividade econômica e o crédito produtivo. A medida provocou uma migração imediata de capital de fundos de renda fixa em direção ao mercado de renda variável. Com o dinheiro ficando mais barato para as empresas investirem e os consumidores comprarem, o otimismo tomou conta do pregão, empurrando o índice geral da bolsa para uma forte alta disseminada em quase todos os setores."
-  },
-
-
-  {
-    "dia": "Dia 3",
-    "empresa": "PIZZ4",
-    "titulo": "Vigilância Sanitária encontra irregularidades em lote de insumos da Pizza Cósmica (PIZZ4)",
-    "impacto": "Impacto em Consumo e Alimentos",
-    "evento": -0.30,
-    "justificativa_evento": "Evento negativo moderado, usando a nossa régua padrão. Afeta a reputação e gera custos imediatos com multas e descarte, mas não ameaça a estrutura a longo prazo.",
-    "texto": "A Pizza Cósmica informou ao mercado que suspendeu temporariamente as operações de seu principal centro de distribuição após uma inspeção surpresa da Vigilância Sanitária detectar problemas no armazenamento de um lote específico de laticínios. A empresa agiu rápido, emitindo uma nota oficial afirmando que todos os produtos suspeitos já foram descartados e que está colaborando integralmente com os órgãos fiscalizadores para readequar os processos. Apesar do posicionamento ágil, a notícia gerou desconforto entre os consumidores e acendeu um sinal de alerta para os investidores de curto prazo. Como reflexo, as ações PIZZ4 enfrentaram uma sessão de liquidação, fechando o dia em queda na bolsa."
-  },
-  {
-    "dia": "Dia 3",
-    "empresa": "STUR3",
-    "titulo": "SpaceTur (STUR3) assina protocolo de intenções para homologar nova rota de turismo orbital",
-    "impacto": "Impacto em Aeroespacial e Turismo",
-    "evento": 0.20,
-    "justificativa_evento": "Evento positivo moderado. Abre margem para crescimento futuro e valida a tecnologia da empresa, mas o impacto financeiro real ainda depende de prazos longos.",
-    "texto": "A operadora de turismo orbital SpaceTur anunciou a assinatura de um memorando de entendimento com uma agência aeroespacial internacional para dar início à homologação de uma nova rota de viagens de curta duração na baixa órbita terrestre. Se aprovada, a nova rota permitirá dobrar a frequência de voos comerciais da companhia a partir do próximo ano, reduzindo significativamente o custo fixo por lançamento. Analistas de mercado receberam o anúncio como um passo importante de maturação do modelo de negócios da STUR3, o que atraiu investidores focados em inovação e teses de crescimento de longo prazo. O papel registrou uma valorização consistente ao longo do dia."
-  },
-  {
-    "dia": "Dia 3",
-    "empresa": "FAST3",
-    "titulo": "FastDrone Express (FAST3) expande frota e inicia entregas comerciais em três novas capitais",
-    "impacto": "Impacto em Logística e Tecnologia",
-    "evento": 0.15,
-    "justificativa_evento": "Evento levemente positivo. Demonstra expansão comercial saudável e aumento de participação no mercado, com flutuação positiva previsível.",
-    "texto": "A FastDrone Express comunicou a expansão oficial de seus serviços de entrega autônoma de pequenas cargas para mais três grandes capitais do país, consolidando sua presença nas principais regiões metropolitanas. A empresa investiu na aquisição de 120 novos drones de última geração e na estrutura de mini-hubs logísticos para garantir que o tempo médio de entrega permaneça abaixo dos 20 minutos nessas novas localidades. O mercado financeiro enxergou o movimento como um avanço estratégico crucial para ganhar liderança de mercado antes da chegada de novos concorrentes de peso. As ações FAST3 operaram em terreno positivo durante todo o pregão."
-  },
-  {
-    "dia": "Dia 3",
-    "empresa": "GERAL",
-    "titulo": "Preço internacional do petróleo salta após corte inesperado na produção de grandes exportadores",
-    "impacto": "Impacto Geral no Mercado (Commodities / Inflação)",
-    "evento": -0.15,
-    "justificativa_evento": "Evento macroeconômico negativo leve. O petróleo mais caro pressiona a inflação global e os custos logísticos generalizados, gerando cautela generalizada no índice.",
-    "texto": "O mercado financeiro global enfrentou um dia de volatilidade após o cartel dos principais países produtores de petróleo anunciar um corte surpresa em suas metas de extração diária para os próximos meses. A redução na oferta global fez o preço do barril saltar mais de 4% em poucas horas, levantando preocupações generalizadas sobre o repasse desse aumento para o preço dos combustíveis e fretes domésticos. No cenário nacional, esse choque de custos gera o temor de novas pressões inflacionárias, o que pode forçar o Banco Central a manter os juros altos por mais tempo. O clima de aversão ao risco predominou entre os operadores, empurrando o índice geral da bolsa para uma leve retração no fechamento."
-  },
-
-
-  
-  {
-    "dia": "Dia 2",
-    "empresa": "AGRD3",
-    "titulo": "AgroDino (AGRD3) enfrenta quebra de safra devido a estiagem severa nas regiões produtoras",
-    "impacto": "Impacto em Agronegócio e Alimentos",
-    "evento": -0.25,
-    "justificativa_evento": "Evento negativo moderado. Reduz a produção do trimestre e aperta as margens devido aos custos de logística emergenciais, mas sem risco de quebra.",
-    "texto": "A diretoria da AgroDino emitiu um fato relevante comunicando ao mercado uma revisão em suas projeções de colheita para o atual trimestre devido a uma seca prolongada que atingiu suas principais fazendas polo. Estimativas iniciais apontam para uma perda de produtividade de cerca de 15% do volume total esperado, impactando diretamente as margens operacionais de curto prazo. Para mitigar os danos, a companhia informou que está acionando suas apólices de seguro agrícola e renegociando prazos de entrega com parceiros, mas alertentou que os custos logísticos adicionais afetarão o balanço. A notícia gerou cautela entre os investidores, provocando uma desvalorização natural nos papéis AGRD3."
-  },
-  {
-    "dia": "Dia 2",
-    "empresa": "AMAR3",
-    "titulo": "Águas de Marte (AMAR3) conclui nova adutora e reduz custos de distribuição em 15%",
-    "impacto": "Impacto em Saneamento e Utilidade Pública",
-    "evento": 0.15,
-    "justificativa_evento": "Evento levemente positivo. Otimização operacional saudável e corte de custos internos, gerando valor progressivo e seguro por ser um setor defensivo.",
-    "texto": "A Águas de Marte anunciou a conclusão antecipada das obras de sua nova adutora de alta capacidade, projetada para otimizar o abastecimento e o fluxo logístico de seus centros de distribuição urbana. Com a infraestrutura operando em capacidade total, a empresa projeta uma redução imediata de 15% nos custos de bombeamento e tratamento, o que deve expandir ligeiramente a margem Ebitda nos próximos meses. Setores defensivos como o de saneamento básico costumam atrair investidores em momentos de volatilidade, e a melhora na eficiência operacional da AMAR3 consolidou essa tendência no dia de hoje. Os papéis da companhia registraram uma alta consistente e suave, refletindo a previsibilidade do fluxo de caixa."
-  },
-  {
-    "dia": "Dia 2",
-    "empresa": "GERAL",
-    "titulo": "Discussão sobre nova reforma tributária eleva impostos sobre dividendos e traz cautela à bolsa",
-    "impacto": "Impacto Geral no Mercado (Macroeconômico)",
-    "evento": -0.18,
-    "justificativa_evento": "Evento macroeconômico negativo moderado. A perspectiva de taxação diminui o ganho líquido de acionistas de todas as empresas listadas, freando o ímpeto comprador.",
-    "texto": "O Congresso Nacional avançou na votação do texto da reforma tributária, que inclui a taxação direta sobre a distribuição de lucros e dividendos corporativos a uma alíquota de 15%. A medida trouxe um clima de forte cautela para a bolsa, já que os gestores de fundos começaram a projetar uma redução na rentabilidade líquida das empresas listadas frente aos títulos de renda fixa. Setores que historicamente pagam proventos generosos, como o financeiro e o de energia, lideraram as leves perdas e puxaram o índice geral para baixo. Economistas alertam que a maior carga tributária pode desacelerar novos investimentos privados e segurar o fluxo de capital estrangeiro no país nos próximos meses."
-  },
-{
+ {
     "dia": "Dia 1",
     "empresa": "TCPT3",
     "titulo": "TechPato (TCPT3) anuncia investimento milionário em inteligência artificial",
@@ -150,5 +46,6 @@
     "justificativa_evento": "Evento positivo expressivo. Um contrato exclusivo de fornecimento que assegura faturamento recorde e eleva a previsibilidade de receita de longo prazo.",
     "texto": "A MegaChip anunciou oficialmente a assinatura de um contrato de exclusividade de cinco anos com um dos maiores conglomerados globais de tecnologia para o fornecimento de seus novos microcomponentes de alta performance. A parceria estratégica garante que a MECH3 seja a única fornecedora de silício customizado para a nova linha de dispositivos móveis da multinacional, gerando uma receita projetada que supera o faturamento total da empresa no ano anterior. O mercado financeiro reagiu com otimismo, resultando em um forte movimento de compra que valorizou as ações no pregão. Analistas apontam que este movimento consolida a saúde financeira da MegaChip, transformando-a em uma peça-chave na cadeia de suprimentos tecnológicos."
   }
+
 ]
 
