@@ -1,6 +1,6 @@
 const carteiras = {
 "1027": {
-    "TCPT3": 15,
+    "TCPT3": 0,
     "PIZZ4": 0,
     "ROBO3": 0,
     "MLUA3": 0,
@@ -10,9 +10,9 @@ const carteiras = {
     "MECH3": 0,
     "FAST3": 0,
     "STUR3": 0,
-    "OCIOSO": "R$ 8.377,97",
+    "OCIOSO": "R$ 10.000,00",
     "TOTAL": "R$ 10.000,00",
-    "VALOR EM AÇÕES": "R$ 2.303,06"
+    "VALOR EM AÇÕES": "R$ 0,00"
 },
 "1348": {
     "TCPT3": 0,
