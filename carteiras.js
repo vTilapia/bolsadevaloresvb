@@ -10,7 +10,7 @@ const carteiras = {
     "MECH3": 0,
     "FAST3": 0,
     "STUR3": 0,
-    "OCIOSO": "R$ 10.000,00",
+    "OCIOSO": "R$ 10.681,04",
     "TOTAL": "R$ 10.000,00",
     "VALOR EM AÇÕES": "R$ 0,00"
 },
