@@ -70,7 +70,42 @@
     "evento": -0.18,
     "justificativa_evento": "Evento macroeconômico negativo moderado. A perspectiva de taxação diminui o ganho líquido de acionistas de todas as empresas listadas, freando o ímpeto comprador.",
     "texto": "O Congresso Nacional avançou na votação do texto da reforma tributária, que inclui a taxação direta sobre a distribuição de lucros e dividendos corporativos a uma alíquota de 15%. A medida trouxe um clima de forte cautela para a bolsa, já que os gestores de fundos começaram a projetar uma redução na rentabilidade líquida das empresas listadas frente aos títulos de renda fixa. Setores que historicamente pagam proventos generosos, como o financeiro e o de energia, lideraram as leves perdas e puxaram o índice geral para baixo. Economistas alertam que a maior carga tributária pode desacelerar novos investimentos privados e segurar o fluxo de capital estrangeiro no país nos próximos meses."
+  },
+  {
+    "dia": "Dia 3",
+    "empresa": "PIZZ4",
+    "titulo": "Vigilância Sanitária encontra irregularidades em lote de insumos da Pizza Cósmica (PIZZ4)",
+    "impacto": "Impacto em Consumo e Alimentos",
+    "evento": -0.30,
+    "justificativa_evento": "Evento negativo moderado, usando a nossa régua padrão. Afeta a reputação e gera custos imediatos com multas e descarte, mas não ameaça a estrutura a longo prazo.",
+    "texto": "A Pizza Cósmica informou ao mercado que suspendeu temporariamente as operações de seu principal centro de distribuição após uma inspeção surpresa da Vigilância Sanitária detectar problemas no armazenamento de um lote específico de laticínios. A empresa agiu rápido, emitindo uma nota oficial afirmando que todos os produtos suspeitos já foram descartados e que está colaborando integralmente com os órgãos fiscalizadores para readequar os processos. Apesar do posicionamento ágil, a notícia gerou desconforto entre os consumidores e acendeu um sinal de alerta para os investidores de curto prazo. Como reflexo, as ações PIZZ4 enfrentaram uma sessão de liquidação, fechando o dia em queda na bolsa."
+  },
+  {
+    "dia": "Dia 3",
+    "empresa": "STUR3",
+    "titulo": "SpaceTur (STUR3) assina protocolo de intenções para homologar nova rota de turismo orbital",
+    "impacto": "Impacto em Aeroespacial e Turismo",
+    "evento": 0.20,
+    "justificativa_evento": "Evento positivo moderado. Abre margem para crescimento futuro e valida a tecnologia da empresa, mas o impacto financeiro real ainda depende de prazos longos.",
+    "texto": "A operadora de turismo orbital SpaceTur anunciou a assinatura de um memorando de entendimento com uma agência aeroespacial internacional para dar início à homologação de uma nova rota de viagens de curta duração na baixa órbita terrestre. Se aprovada, a nova rota permitirá dobrar a frequência de voos comerciais da companhia a partir do próximo ano, reduzindo significativamente o custo fixo por lançamento. Analistas de mercado receberam o anúncio como um passo importante de maturação do modelo de negócios da STUR3, o que atraiu investidores focados em inovação e teses de crescimento de longo prazo. O papel registrou uma valorização consistente ao longo do dia."
+  },
+  {
+    "dia": "Dia 3",
+    "empresa": "FAST3",
+    "titulo": "FastDrone Express (FAST3) expande frota e inicia entregas comerciais em três novas capitais",
+    "impacto": "Impacto em Logística e Tecnologia",
+    "evento": 0.15,
+    "justificativa_evento": "Evento levemente positivo. Demonstra expansão comercial saudável e aumento de participação no mercado, com flutuação positiva previsível.",
+    "texto": "A FastDrone Express comunicou a expansão oficial de seus serviços de entrega autônoma de pequenas cargas para mais três grandes capitais do país, consolidando sua presença nas principais regiões metropolitanas. A empresa investiu na aquisição de 120 novos drones de última geração e na estrutura de mini-hubs logísticos para garantir que o tempo médio de entrega permaneça abaixo dos 20 minutos nessas novas localidades. O mercado financeiro enxergou o movimento como um avanço estratégico crucial para ganhar liderança de mercado antes da chegada de novos concorrentes de peso. As ações FAST3 operaram em terreno positivo durante todo o pregão."
+  },
+  {
+    "dia": "Dia 3",
+    "empresa": "GERAL",
+    "titulo": "Preço internacional do petróleo salta após corte inesperado na produção de grandes exportadores",
+    "impacto": "Impacto Geral no Mercado (Commodities / Inflação)",
+    "evento": -0.15,
+    "justificativa_evento": "Evento macroeconômico negativo leve. O petróleo mais caro pressiona a inflação global e os custos logísticos generalizados, gerando cautela generalizada no índice.",
+    "texto": "O mercado financeiro global enfrentou um dia de volatilidade após o cartel dos principais países produtores de petróleo anunciar um corte surpresa em suas metas de extração diária para os próximos meses. A redução na oferta global fez o preço do barril saltar mais de 4% em poucas horas, levantando preocupações generalizadas sobre o repasse desse aumento para o preço dos combustíveis e fretes domésticos. No cenário nacional, esse choque de custos gera o temor de novas pressões inflacionárias, o que pode forçar o Banco Central a manter os juros altos por mais tempo. O clima de aversão ao risco predominou entre os operadores, empurrando o índice geral da bolsa para uma leve retração no fechamento."
   }
-  
 ]
   
