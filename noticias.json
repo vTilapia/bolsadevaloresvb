@@ -142,6 +142,42 @@
     "evento": 0.25,
     "justificativa_evento": "Evento macroeconômico positivo expressivo. Juros mais baixos tornam a renda fixa menos atraente e barateiam o crédito corporativo, impulsionando a bolsa de forma generalizada.",
     "texto": "Em decisão unânime, o Comitê de Política Monetária do Banco Central anunciou uma redução de 0,50 ponto percentual na taxa básica de juros da economia, surpreendendo parte dos analistas que previam a manutenção da taxa atual. O corte foi justificado pela desaceleração recente dos índices de inflação e pela necessidade de estimular a atividade econômica e o crédito produtivo. A medida provocou uma migração imediata de capital de fundos de renda fixa em direção ao mercado de renda variável. Com o dinheiro ficando mais barato para as empresas investirem e os consumidores comprarem, o otimismo tomou conta do pregão, empurrando o índice geral da bolsa para uma forte alta disseminada em quase todos os setores."
+  },
+  {
+    "dia": "Dia 5",
+    "empresa": "MLUA3",
+    "titulo": "ESCÂNDALO: Auditoria independente descobre fraude contábil bilionária na Mineração Lunar (MLUA3)",
+    "impacto": "Impacto Drástico em Mineração",
+    "evento": -0.45,
+    "justificativa_evento": "Evento negativo drástico. Fraude em balanço destrói a confiança de investidores e despenca o valor da empresa imediatamente devido ao risco de governança.",
+    "texto": "O mercado financeiro entrou em estado de choque após a divulgação de um relatório de auditoria independente apontando que a Mineração Lunar inflou artificialmente seus lucros e reservas minerais nos últimos três anos em mais de R$ 1,2 bilhão. O CEO da companhia renunciou ao cargo poucas horas após o escândalo vir a público, e a Comissão de Valores Mobiliários (CVM) já abriu um processo administrativo de urgência para investigar o caso. Fundos de investimento nacionais e estrangeiros iniciaram uma corrida desesperada para vender suas posições antes que as ações fossem congeladas, empurrando o papel MLUA3 para uma queda histórica no pregão."
+  },
+  {
+    "dia": "Dia 5",
+    "empresa": "TCPT3",
+    "titulo": "TechPato (TCPT3) fecha contrato para equipar frotas governamentais com seus sistemas de IA",
+    "impacto": "Impacto em Tecnologia",
+    "evento": 0.20,
+    "justificativa_evento": "Evento positivo moderado. Garante receita recorrente e carimba o selo de segurança institucional na tecnologia da empresa.",
+    "texto": "A TechPato confirmou a assinatura de um contrato de longo prazo com o Ministério da Infraestrutura para implementar suas soluções de inteligência artificial na otimização do tráfego e logística rodoviária de todo o país. O projeto, estimado em R$ 180 milhões, valida a robustez dos sistemas da TCPT3 e abre portas para parcerias similares com outros órgãos estatais. Investidores reagiram de forma positiva, mantendo o viés de alta da empresa na bolsa, o que ajudou a segurar o índice tecnológico em um dia de forte tensão externa."
+  },
+  {
+    "dia": "Dia 5",
+    "empresa": "ROBO3",
+    "titulo": "RoboFarma (ROBO3) registra leve atraso na entrega de componentes importados",
+    "impacto": "Impacto em Saúde e Logística",
+    "evento": -0.10,
+    "justificativa_evento": "Evento negativo leve. Um contratempo puramente operacional e de curto prazo, sem afetar os fundamentos da empresa.",
+    "texto": "A RoboFarma informou aos seus acionistas que o cronograma de entrega da sua nova linha de robôs hospitalares pode sofrer um atraso de até duas semanas devido a gargalos na liberação alfandegária de sensores importados. A administração destacou que a situação já está sendo contornada junto aos fornecedores e que o impacto financeiro será imaterial para o trimestre. O mercado demonstrou uma reação fria, resultando em uma oscilação negativa muito sutil no preço das ações ao longo do dia."
+  },
+  {
+    "dia": "Dia 5",
+    "empresa": "GERAL",
+    "titulo": "Bolsa fecha estável com investidores divididos entre o escândalo corporativo e o cenário internacional",
+    "impacto": "Impacto Geral no Mercado (Equilíbrio)",
+    "evento": -0.05,
+    "justificativa_evento": "Evento macroeconômico de neutralidade. O pânico com a fraude de uma grande empresa listada foi balanceado pela entrada de capital estrangeiro.",
+    "texto": "O índice geral da bolsa de valores operou em forte volatilidade, mas terminou o dia praticamente estável, com uma variação negativa quase imperceptível. De um lado, a forte queda do setor de mineração puxou o índice para baixo, assustando investidores de commodities. Do outro, dados econômicos positivos vindos dos Estados Unidos e a queda na taxa de desemprego local mantiveram o apetite ao risco de investidores focados em varejo e tecnologia, gerando um fechamento de pregão equilibrado."
   }
 ]
   
