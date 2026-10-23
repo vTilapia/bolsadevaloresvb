@@ -178,6 +178,42 @@
     "evento": -0.05,
     "justificativa_evento": "Evento macroeconômico de neutralidade. O pânico com a fraude de uma grande empresa listada foi balanceado pela entrada de capital estrangeiro.",
     "texto": "O índice geral da bolsa de valores operou em forte volatilidade, mas terminou o dia praticamente estável, com uma variação negativa quase imperceptível. De um lado, a forte queda do setor de mineração puxou o índice para baixo, assustando investidores de commodities. Do outro, dados econômicos positivos vindos dos Estados Unidos e a queda na taxa de desemprego local mantiveram o apetite ao risco de investidores focados em varejo e tecnologia, gerando um fechamento de pregão equilibrado."
+  },
+  {
+    "dia": "Dia 6",
+    "empresa": "MLUA3",
+    "titulo": "VIRADA HISTÓRICA: Mineração Lunar (MLUA3) descobre jazida gigante de Lítio e atrai gigante de veículos elétricos",
+    "impacto": "Impacto Drástico Positivo em Mineração",
+    "evento": 0.45,
+    "justificativa_evento": "Evento positivo drástico. Descoberta de grande porte e parceria global que redefinem o patamar financeiro da empresa.",
+    "texto": "A Mineração Lunar deu uma verdadeira cartada de mestre no mercado ao anunciar a descoberta da maior reserva de lítio das Américas em suas áreas de exploração. Além da descoberta, a companhia assinou uma parceria de fornecimento exclusivo com uma gigante multinacional de veículos elétricos. O anúncio causou uma verdadeira corrida compradora na bolsa, fazendo os papéis MLUA3 dispararem e liderarem disparados as maiores altas do ano."
+  },
+  {
+    "dia": "Dia 6",
+    "empresa": "PIZZ4",
+    "titulo": "Pizza Cósmica (PIZZ4) bate recorde de vendas após campanha viral nas redes sociais",
+    "impacto": "Impacto em Consumo",
+    "evento": 0.20,
+    "justificativa_evento": "Evento positivo moderado. Aumento direto no volume de vendas de curto prazo com forte engajamento da marca.",
+    "texto": "A nova campanha publicitária da Pizza Cósmica viralizou na internet, impulsionando os pedidos via aplicativo a patamares nunca antes registrados pela rede. As franquias relataram estoques esgotados em várias cidades durante o fim de semana. A resposta rápida do consumidor agradou aos investidores de varejo, impulsionando a cotação da PIZZ4 no pregão."
+  },
+  {
+    "dia": "Dia 6",
+    "empresa": "STUR3",
+    "titulo": "SpaceTur (STUR3) resolve pendência técnica e remarca voo espacial com lotação esgotada",
+    "impacto": "Impacto em Aeroespacial",
+    "evento": 0.15,
+    "justificativa_evento": "Evento levemente positivo. Recuperação de credibilidade após pequenos atrasos anteriores.",
+    "texto": "A engenharia da SpaceTur concluiu com sucesso a atualização dos sistemas de telemetria e remarcou a missão Orbital-X. Todos os assentos da nave já estão vendidos e confirmados. A resolução rápida do problema aliviou os investidores e permitiu uma recuperação gradual dos papéis no mercado."
+  },
+  {
+    "dia": "Dia 6",
+    "empresa": "GERAL",
+    "titulo": "Inflação fica abaixo do esperado e estimula compras na bolsa de valores",
+    "impacto": "Impacto Geral no Mercado (Macroeconômico)",
+    "evento": 0.15,
+    "justificativa_evento": "Evento macroeconômico positivo leve. Cenário econômico controlado que favorece a renda variável.",
+    "texto": "O índice oficial de inflação divulgado pelo governo veio abaixo de todas as projeções dos economistas para o mês. O resultado positivo reforça a perspectiva de estabilidade econômica e juros baixos, encorajando mais investidores a migrarem da renda fixa para o mercado de ações."
   }
 ]
   
