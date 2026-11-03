@@ -214,6 +214,42 @@
     "evento": 0.15,
     "justificativa_evento": "Evento macroeconômico positivo leve. Cenário econômico controlado que favorece a renda variável.",
     "texto": "O índice oficial de inflação divulgado pelo governo veio abaixo de todas as projeções dos economistas para o mês. O resultado positivo reforça a perspectiva de estabilidade econômica e juros baixos, encorajando mais investidores a migrarem da renda fixa para o mercado de ações."
+  },
+  {
+    "dia": "Dia 7",
+    "empresa": "MECH3",
+    "titulo": "MegaChip (MECH3) lança novo processador ultraeficiente e conquista liderança de mercado",
+    "impacto": "Impacto em Tecnologia",
+    "evento": 0.30,
+    "justificativa_evento": "Evento positivo expressivo. Salto tecnológico relevante que coloca a empresa à frente da concorrência.",
+    "texto": "A MegaChip apresentou ao mercado global sua nova geração de microchips focados em baixo consumo de energia para dispositivos móveis. Os testes de benchmarking mostraram que o componente é 40% mais rápido que os concorrentes diretos. O lançamento rendeu elogios da imprensa especializada e disparou uma forte onda compradora para os papéis MECH3."
+  },
+  {
+    "dia": "Dia 7",
+    "empresa": "AGRD3",
+    "titulo": "AgroDino (AGRD3) registra colheita recorde e amplia exportações para a Ásia",
+    "impacto": "Impacto em Agronegócio",
+    "evento": 0.25,
+    "justificativa_evento": "Evento positivo moderado. Aumento forte nas exportações que recupera totalmente os prejuízos de climas passados.",
+    "texto": "Superando os impactos de secas anteriores, a AgroDino fechou novos contratos de exportação de grãos com compradores asiáticos após registrar um volume recorde de colheita em suas fazendas do centro-oeste. O fluxo de dólares entrando no caixa da empresa garantiu uma forte valorização de suas ações na bolsa."
+  },
+  {
+    "dia": "Dia 7",
+    "empresa": "AMAR3",
+    "titulo": "Águas de Marte (AMAR3) vence licitação para expansão de saneamento em três regiões metropolitanas",
+    "impacto": "Impacto em Saneamento",
+    "evento": 0.15,
+    "justificativa_evento": "Evento levemente positivo. Crescimento institucional seguro e de longo prazo.",
+    "texto": "A Águas de Marte sagrou-se vencedora do leilão de concessão pública para operar os serviços de água e esgoto em novas áreas urbanas pelos próximos 20 anos. Por se tratar de um setor muito seguro e previsível, a notícia agradou os investidores focados em dividendos, sustentando alta nas ações."
+  },
+  {
+    "dia": "Dia 7",
+    "empresa": "GERAL",
+    "titulo": "Mercado opera em leve acomodação de lucros após sequência de dias positivos",
+    "impacto": "Impacto Geral no Mercado (Neutro / Oscilação)",
+    "evento": -0.05,
+    "justificativa_evento": "Evento de oscilação natural. Pequena realização de lucros sem afetar a tendência de alta.",
+    "texto": "Após várias sessões seguidas de valorização, o índice geral da bolsa passou por uma sessão de leve ajuste técnico, com alguns investidores vendendo parte das posições para realizar lucros de curto prazo. O movimento foi considerado saudável e perfeitamente normal pelos analistas de mercado."
   }
 ]
   
