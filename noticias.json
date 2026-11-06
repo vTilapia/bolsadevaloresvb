@@ -250,6 +250,42 @@
     "evento": -0.05,
     "justificativa_evento": "Evento de oscilação natural. Pequena realização de lucros sem afetar a tendência de alta.",
     "texto": "Após várias sessões seguidas de valorização, o índice geral da bolsa passou por uma sessão de leve ajuste técnico, com alguns investidores vendendo parte das posições para realizar lucros de curto prazo. O movimento foi considerado saudável e perfeitamente normal pelos analistas de mercado."
+  },
+  {
+    "dia": "Dia 8",
+    "empresa": "ROBO3",
+    "titulo": "RoboFarma (ROBO3) obtém patente internacional e inicia venda de robôs cirúrgicos",
+    "impacto": "Impacto em Saúde e Tecnologia",
+    "evento": 0.30,
+    "justificativa_evento": "Evento positivo expressivo. Proteção intelectual de alto valor que abre margens de lucro elevadíssimas.",
+    "texto": "A RoboFarma anunciou a aprovação da patente global para seu novo braço robótico voltado para cirurgias de alta complexidade. A conquista garante exclusividade comercial para a empresa pelos próximos 15 anos no segmento médico premium. As ações ROBO3 dispararam no pregão com a perspectiva de margens de lucro extraordinárias."
+  },
+  {
+    "dia": "Dia 8",
+    "empresa": "FAST3",
+    "titulo": "FastDrone Express (FAST3) firma parceria com gigante do e-commerce para entregas no mesmo dia",
+    "impacto": "Impacto em Logística",
+    "evento": 0.20,
+    "justificativa_evento": "Evento positivo moderado. Aliança comercial estratégica que eleva o volume diário de entregas.",
+    "texto": "A FastDrone fechou uma grande aliança logística com a maior plataforma de e-commerce do país para realizar entregas expressas via drone em até 2 horas. A parceria promete quadruplicar o número de entregas diárias da empresa, animando os investidores que apostam no crescimento da marca."
+  },
+  {
+    "dia": "Dia 8",
+    "empresa": "TCPT3",
+    "titulo": "TechPato (TCPT3) registra estabilidade com analistas reforçando recomendação de compra",
+    "impacto": "Impacto em Tecnologia",
+    "evento": 0.10,
+    "justificativa_evento": "Evento levemente positivo. Manutenção da confiança com tom otimista de analistas.",
+    "texto": "Os principais bancos de investimentos revisaram seus relatórios para a TechPato, mantendo a recomendação de compra para os papéis da companhia e elevando o preço-alvo para o fim do ano. A movimentação manteve as ações sustentadas em terreno positivo."
+  },
+  {
+    "dia": "Dia 8",
+    "empresa": "GERAL",
+    "titulo": "Relatório econômico aponta crescimento do PIB e reforça otimismo no mercado financeiro",
+    "impacto": "Impacto Geral no Mercado (Macroeconômico)",
+    "evento": 0.20,
+    "justificativa_evento": "Evento macroeconômico positivo moderado. Crescimento da economia impulsiona o mercado como um todo.",
+    "texto": "O Ministério da Economia divulgou a prévia do Produto Interno Bruto (PIB) do país, mostrando que a atividade econômica cresceu acima de todas as estimativas. O ambiente de crescimento saudável estimulou novas ordens de compra e fez a bolsa de valores fechar em alta disseminada."
   }
 ]
   
