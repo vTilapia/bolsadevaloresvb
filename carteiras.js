@@ -26,8 +26,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 9.902,94",
-    "TOTAL": "R$ 9.982,54",
-    "VALOR EM AÇÕES": "R$ 79,60"
+    "TOTAL": "R$ 9.986,05",
+    "VALOR EM AÇÕES": "R$ 83,11"
 },
 "1582": {
     "TCPT3": 0,
@@ -41,8 +41,8 @@ const carteiras = {
     "FAST3": 1,
     "STUR3": 2,
     "OCIOSO": "R$ 9.644,99",
-    "TOTAL": "R$ 10.059,27",
-    "VALOR EM AÇÕES": "R$ 414,28"
+    "TOTAL": "R$ 10.134,36",
+    "VALOR EM AÇÕES": "R$ 489,37"
 },
 "2036": {
     "TCPT3": 4,
@@ -56,23 +56,23 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 9.169,74",
-    "TOTAL": "R$ 9.999,00",
-    "VALOR EM AÇÕES": "R$ 829,26"
+    "TOTAL": "R$ 10.065,53",
+    "VALOR EM AÇÕES": "R$ 895,79"
 },
 "2471": {
     "TCPT3": 4,
-    "PIZZ4": 4,
+    "PIZZ4": 14,
     "ROBO3": 0,
-    "MLUA3": 0,
-    "AGRD3": 2,
+    "MLUA3": 7,
+    "AGRD3": 10,
     "AMAR3": 0,
-    "ECOE3": 4,
+    "ECOE3": 14,
     "MECH3": 10,
     "FAST3": 0,
-    "STUR3": 0,
-    "OCIOSO": "R$ 7.978,87",
-    "TOTAL": "R$ 10.035,38",
-    "VALOR EM AÇÕES": "R$ 2.056,51"
+    "STUR3": 8,
+    "OCIOSO": "R$ 4.288,70",
+    "TOTAL": "R$ 10.562,52",
+    "VALOR EM AÇÕES": "R$ 6.273,82"
 },
 "3189": {
     "TCPT3": 10,
@@ -86,11 +86,11 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 8.705,18",
-    "TOTAL": "R$ 10.057,21",
-    "VALOR EM AÇÕES": "R$ 1.352,03"
+    "TOTAL": "R$ 10.126,06",
+    "VALOR EM AÇÕES": "R$ 1.420,89"
 },
 "4025": {
-    "TCPT3": 55,
+    "TCPT3": 45,
     "PIZZ4": 10,
     "ROBO3": 0,
     "MLUA3": 15,
@@ -100,9 +100,9 @@ const carteiras = {
     "MECH3": 0,
     "FAST3": 0,
     "STUR3": 0,
-    "OCIOSO": "R$ 1.065,75",
-    "TOTAL": "R$ 10.303,07",
-    "VALOR EM AÇÕES": "R$ 9.237,32"
+    "OCIOSO": "R$ 2.417,78",
+    "TOTAL": "R$ 10.815,90",
+    "VALOR EM AÇÕES": "R$ 8.398,13"
 },
 "4367": {
     "TCPT3": 8,
@@ -116,8 +116,8 @@ const carteiras = {
     "FAST3": 7,
     "STUR3": 10,
     "OCIOSO": "R$ 5.702,41",
-    "TOTAL": "R$ 9.805,71",
-    "VALOR EM AÇÕES": "R$ 4.103,30"
+    "TOTAL": "R$ 10.450,03",
+    "VALOR EM AÇÕES": "R$ 4.747,63"
 },
 "5214": {
     "TCPT3": 3,
@@ -131,23 +131,23 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 8.021,89",
-    "TOTAL": "R$ 9.931,30",
-    "VALOR EM AÇÕES": "R$ 1.909,41"
+    "TOTAL": "R$ 10.025,73",
+    "VALOR EM AÇÕES": "R$ 2.003,85"
 },
 "5873": {
     "TCPT3": 0,
     "PIZZ4": 15,
-    "ROBO3": 8,
-    "MLUA3": 0,
+    "ROBO3": 0,
+    "MLUA3": 20,
     "AGRD3": 0,
     "AMAR3": 0,
     "ECOE3": 10,
     "MECH3": 0,
     "FAST3": 7,
-    "STUR3": 30,
-    "OCIOSO": "R$ 3.896,28",
-    "TOTAL": "R$ 10.821,29",
-    "VALOR EM AÇÕES": "R$ 6.925,01"
+    "STUR3": 0,
+    "OCIOSO": "R$ 6.849,26",
+    "TOTAL": "R$ 11.327,92",
+    "VALOR EM AÇÕES": "R$ 4.478,66"
 },
 "6408": {
     "TCPT3": 0,
@@ -161,8 +161,8 @@ const carteiras = {
     "FAST3": 2,
     "STUR3": 0,
     "OCIOSO": "R$ 9.725,36",
-    "TOTAL": "R$ 9.998,01",
-    "VALOR EM AÇÕES": "R$ 272,65"
+    "TOTAL": "R$ 10.062,50",
+    "VALOR EM AÇÕES": "R$ 337,14"
 },
 "7152": {
     "TCPT3": 0,
@@ -176,8 +176,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 9.537,36",
-    "TOTAL": "R$ 9.935,38",
-    "VALOR EM AÇÕES": "R$ 398,02"
+    "TOTAL": "R$ 9.952,91",
+    "VALOR EM AÇÕES": "R$ 415,56"
 },
 "8031": {
     "TCPT3": 0,
@@ -206,8 +206,8 @@ const carteiras = {
     "FAST3": 4,
     "STUR3": 2,
     "OCIOSO": "R$ 8.630,26",
-    "TOTAL": "R$ 9.939,44",
-    "VALOR EM AÇÕES": "R$ 1.309,18"
+    "TOTAL": "R$ 10.164,51",
+    "VALOR EM AÇÕES": "R$ 1.534,25"
 },
 "9725": {
     "TCPT3": 0,
@@ -221,8 +221,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 9.259,81",
-    "TOTAL": "R$ 9.862,88",
-    "VALOR EM AÇÕES": "R$ 603,07"
+    "TOTAL": "R$ 9.963,62",
+    "VALOR EM AÇÕES": "R$ 703,82"
 },
 "1094": {
     "TCPT3": 0,
@@ -236,8 +236,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 8.610,79",
-    "TOTAL": "R$ 9.993,04",
-    "VALOR EM AÇÕES": "R$ 1.382,25"
+    "TOTAL": "R$ 10.038,04",
+    "VALOR EM AÇÕES": "R$ 1.427,26"
 },
 "1276": {
     "TCPT3": 0,
@@ -251,8 +251,8 @@ const carteiras = {
     "FAST3": 10,
     "STUR3": 11,
     "OCIOSO": "R$ 7.055,03",
-    "TOTAL": "R$ 10.160,72",
-    "VALOR EM AÇÕES": "R$ 3.105,69"
+    "TOTAL": "R$ 10.767,34",
+    "VALOR EM AÇÕES": "R$ 3.712,31"
 },
 "1419": {
     "TCPT3": 0,
@@ -266,8 +266,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 3,
     "OCIOSO": "R$ 7.801,96",
-    "TOTAL": "R$ 9.806,49",
-    "VALOR EM AÇÕES": "R$ 2.004,54"
+    "TOTAL": "R$ 10.026,76",
+    "VALOR EM AÇÕES": "R$ 2.224,80"
 },
 "1653": {
     "TCPT3": 1,
@@ -281,8 +281,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 9.801,85",
-    "TOTAL": "R$ 10.010,37",
-    "VALOR EM AÇÕES": "R$ 208,52"
+    "TOTAL": "R$ 10.013,37",
+    "VALOR EM AÇÕES": "R$ 211,53"
 },
 "1788": {
     "TCPT3": 8,
@@ -296,8 +296,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 1,
     "OCIOSO": "R$ 8.338,41",
-    "TOTAL": "R$ 10.042,58",
-    "VALOR EM AÇÕES": "R$ 1.704,18"
+    "TOTAL": "R$ 10.160,35",
+    "VALOR EM AÇÕES": "R$ 1.821,95"
 },
 "1942": {
     "TCPT3": 6,
@@ -311,23 +311,23 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 9.274,84",
-    "TOTAL": "R$ 10.086,06",
-    "VALOR EM AÇÕES": "R$ 811,22"
+    "TOTAL": "R$ 10.127,37",
+    "VALOR EM AÇÕES": "R$ 852,53"
 },
 "2147": {
-    "TCPT3": 0,
+    "TCPT3": 10,
     "PIZZ4": 10,
-    "ROBO3": 0,
+    "ROBO3": 10,
     "MLUA3": 0,
-    "AGRD3": 0,
-    "AMAR3": 0,
+    "AGRD3": 10,
+    "AMAR3": 10,
     "ECOE3": 0,
-    "MECH3": 20,
-    "FAST3": 0,
-    "STUR3": 0,
-    "OCIOSO": "R$ 7.587,91",
-    "TOTAL": "R$ 9.826,20",
-    "VALOR EM AÇÕES": "R$ 2.238,30"
+    "MECH3": 40,
+    "FAST3": 10,
+    "STUR3": 10,
+    "OCIOSO": "R$ 233,42",
+    "TOTAL": "R$ 11.187,03",
+    "VALOR EM AÇÕES": "R$ 10.953,61"
 },
 "2295": {
     "TCPT3": 0,
@@ -341,26 +341,26 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 9.546,63",
-    "TOTAL": "R$ 9.949,24",
-    "VALOR EM AÇÕES": "R$ 402,61"
+    "TOTAL": "R$ 9.977,48",
+    "VALOR EM AÇÕES": "R$ 430,85"
 },
 "2518": {
     "TCPT3": 0,
     "PIZZ4": 3,
     "ROBO3": 6,
-    "MLUA3": 7,
+    "MLUA3": 17,
     "AGRD3": 2,
     "AMAR3": 5,
     "ECOE3": 0,
     "MECH3": 1,
     "FAST3": 7,
     "STUR3": 7,
-    "OCIOSO": "R$ 7.009,40",
-    "TOTAL": "R$ 10.328,35",
-    "VALOR EM AÇÕES": "R$ 3.318,95"
+    "OCIOSO": "R$ 6.339,32",
+    "TOTAL": "R$ 11.094,81",
+    "VALOR EM AÇÕES": "R$ 4.755,48"
 },
 "2674": {
-    "TCPT3": 0,
+    "TCPT3": 2,
     "PIZZ4": 0,
     "ROBO3": 0,
     "MLUA3": 0,
@@ -370,9 +370,9 @@ const carteiras = {
     "MECH3": 0,
     "FAST3": 0,
     "STUR3": 2,
-    "OCIOSO": "R$ 9.801,05",
-    "TOTAL": "R$ 10.045,49",
-    "VALOR EM AÇÕES": "R$ 244,44"
+    "OCIOSO": "R$ 9.530,64",
+    "TOTAL": "R$ 10.107,74",
+    "VALOR EM AÇÕES": "R$ 577,10"
 },
 "2831": {
     "TCPT3": 0,
@@ -386,8 +386,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 9.664,39",
-    "TOTAL": "R$ 9.960,33",
-    "VALOR EM AÇÕES": "R$ 295,94"
+    "TOTAL": "R$ 9.993,08",
+    "VALOR EM AÇÕES": "R$ 328,69"
 },
 "2967": {
     "TCPT3": 0,
@@ -401,8 +401,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 9.813,39",
-    "TOTAL": "R$ 9.970,02",
-    "VALOR EM AÇÕES": "R$ 156,63"
+    "TOTAL": "R$ 10.030,25",
+    "VALOR EM AÇÕES": "R$ 216,86"
 },
 "3245": {
     "TCPT3": 3,
@@ -410,14 +410,14 @@ const carteiras = {
     "ROBO3": 2,
     "MLUA3": 0,
     "AGRD3": 4,
-    "AMAR3": 0,
+    "AMAR3": 5,
     "ECOE3": 2,
     "MECH3": 0,
     "FAST3": 0,
     "STUR3": 5,
-    "OCIOSO": "R$ 8.421,03",
-    "TOTAL": "R$ 10.089,38",
-    "VALOR EM AÇÕES": "R$ 1.668,35"
+    "OCIOSO": "R$ 8.054,44",
+    "TOTAL": "R$ 10.298,36",
+    "VALOR EM AÇÕES": "R$ 2.243,92"
 },
 "3398": {
     "TCPT3": 0,
@@ -444,25 +444,25 @@ const carteiras = {
     "ECOE3": 0,
     "MECH3": 0,
     "FAST3": 0,
-    "STUR3": 0,
-    "OCIOSO": "R$ 9.809,63",
-    "TOTAL": "R$ 9.967,55",
-    "VALOR EM AÇÕES": "R$ 157,92"
+    "STUR3": 1,
+    "OCIOSO": "R$ 9.687,41",
+    "TOTAL": "R$ 10.025,41",
+    "VALOR EM AÇÕES": "R$ 338,00"
 },
 "3672": {
     "TCPT3": 3,
-    "PIZZ4": 7,
+    "PIZZ4": 27,
     "ROBO3": 0,
-    "MLUA3": 30,
+    "MLUA3": 50,
     "AGRD3": 0,
     "AMAR3": 8,
     "ECOE3": 10,
     "MECH3": 8,
     "FAST3": 5,
     "STUR3": 0,
-    "OCIOSO": "R$ 4.715,76",
-    "TOTAL": "R$ 10.097,05",
-    "VALOR EM AÇÕES": "R$ 5.381,29"
+    "OCIOSO": "R$ 1.783,51",
+    "TOTAL": "R$ 10.988,17",
+    "VALOR EM AÇÕES": "R$ 9.204,66"
 },
 "3816": {
     "TCPT3": 0,
@@ -510,7 +510,7 @@ const carteiras = {
     "VALOR EM AÇÕES": "R$ 0,00"
 },
 "4259": {
-    "TCPT3": 12,
+    "TCPT3": 22,
     "PIZZ4": 0,
     "ROBO3": 0,
     "MLUA3": 0,
@@ -520,12 +520,12 @@ const carteiras = {
     "MECH3": 10,
     "FAST3": 0,
     "STUR3": 0,
-    "OCIOSO": "R$ 7.643,42",
-    "TOTAL": "R$ 9.986,98",
-    "VALOR EM AÇÕES": "R$ 2.343,56"
+    "OCIOSO": "R$ 6.291,39",
+    "TOTAL": "R$ 10.235,92",
+    "VALOR EM AÇÕES": "R$ 3.944,54"
 },
 "4483": {
-    "TCPT3": 5,
+    "TCPT3": 1,
     "PIZZ4": 0,
     "ROBO3": 0,
     "MLUA3": 11,
@@ -535,13 +535,13 @@ const carteiras = {
     "MECH3": 0,
     "FAST3": 0,
     "STUR3": 5,
-    "OCIOSO": "R$ 7.862,14",
-    "TOTAL": "R$ 9.959,66",
-    "VALOR EM AÇÕES": "R$ 2.097,52"
+    "OCIOSO": "R$ 8.402,95",
+    "TOTAL": "R$ 10.206,99",
+    "VALOR EM AÇÕES": "R$ 1.804,04"
 },
 "4591": {
-    "TCPT3": 7,
-    "PIZZ4": 6,
+    "TCPT3": 14,
+    "PIZZ4": 3,
     "ROBO3": 4,
     "MLUA3": 7,
     "AGRD3": 0,
@@ -550,24 +550,24 @@ const carteiras = {
     "MECH3": 0,
     "FAST3": 0,
     "STUR3": 5,
-    "OCIOSO": "R$ 7.331,66",
-    "TOTAL": "R$ 10.149,12",
-    "VALOR EM AÇÕES": "R$ 2.817,46"
+    "OCIOSO": "R$ 6.624,05",
+    "TOTAL": "R$ 10.576,05",
+    "VALOR EM AÇÕES": "R$ 3.952,00"
 },
 "4736": {
     "TCPT3": 2,
     "PIZZ4": 0,
-    "ROBO3": 0,
-    "MLUA3": 0,
+    "ROBO3": 2,
+    "MLUA3": 2,
     "AGRD3": 0,
     "AMAR3": 0,
     "ECOE3": 0,
     "MECH3": 0,
     "FAST3": 1,
     "STUR3": 5,
-    "OCIOSO": "R$ 9.165,59",
-    "TOTAL": "R$ 10.143,61",
-    "VALOR EM AÇÕES": "R$ 978,03"
+    "OCIOSO": "R$ 8.874,94",
+    "TOTAL": "R$ 10.391,69",
+    "VALOR EM AÇÕES": "R$ 1.516,75"
 },
 "4862": {
     "TCPT3": 0,
@@ -581,8 +581,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 9.907,47",
-    "TOTAL": "R$ 9.987,08",
-    "VALOR EM AÇÕES": "R$ 79,60"
+    "TOTAL": "R$ 9.990,58",
+    "VALOR EM AÇÕES": "R$ 83,11"
 },
 "5039": {
     "TCPT3": 0,
@@ -596,8 +596,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 9.404,16",
-    "TOTAL": "R$ 10.021,65",
-    "VALOR EM AÇÕES": "R$ 617,49"
+    "TOTAL": "R$ 10.017,23",
+    "VALOR EM AÇÕES": "R$ 613,07"
 },
 "5186": {
     "TCPT3": 0,
@@ -626,8 +626,8 @@ const carteiras = {
     "FAST3": 2,
     "STUR3": 3,
     "OCIOSO": "R$ 9.443,93",
-    "TOTAL": "R$ 10.076,95",
-    "VALOR EM AÇÕES": "R$ 633,02"
+    "TOTAL": "R$ 10.206,77",
+    "VALOR EM AÇÕES": "R$ 762,85"
 },
 "5498": {
     "TCPT3": 10,
@@ -641,23 +641,23 @@ const carteiras = {
     "FAST3": 10,
     "STUR3": 0,
     "OCIOSO": "R$ 3.117,57",
-    "TOTAL": "R$ 9.808,48",
-    "VALOR EM AÇÕES": "R$ 6.690,91"
+    "TOTAL": "R$ 10.801,02",
+    "VALOR EM AÇÕES": "R$ 7.683,46"
 },
 "5621": {
-    "TCPT3": 0,
+    "TCPT3": 15,
     "PIZZ4": 15,
-    "ROBO3": 0,
-    "MLUA3": 40,
+    "ROBO3": 20,
+    "MLUA3": 0,
     "AGRD3": 0,
     "AMAR3": 0,
     "ECOE3": 0,
     "MECH3": 0,
-    "FAST3": 12,
+    "FAST3": 22,
     "STUR3": 24,
-    "OCIOSO": "R$ 3.220,86",
-    "TOTAL": "R$ 11.186,78",
-    "VALOR EM AÇÕES": "R$ 7.965,92"
+    "OCIOSO": "R$ 1.341,59",
+    "TOTAL": "R$ 13.197,55",
+    "VALOR EM AÇÕES": "R$ 11.855,95"
 },
 "5764": {
     "TCPT3": 1,
@@ -671,8 +671,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 1,
     "OCIOSO": "R$ 9.084,37",
-    "TOTAL": "R$ 10.018,11",
-    "VALOR EM AÇÕES": "R$ 933,74"
+    "TOTAL": "R$ 10.063,72",
+    "VALOR EM AÇÕES": "R$ 979,35"
 },
 "5918": {
     "TCPT3": 1,
@@ -686,8 +686,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 2,
     "OCIOSO": "R$ 9.230,64",
-    "TOTAL": "R$ 10.049,38",
-    "VALOR EM AÇÕES": "R$ 818,74"
+    "TOTAL": "R$ 10.147,40",
+    "VALOR EM AÇÕES": "R$ 916,77"
 },
 "6083": {
     "TCPT3": 0,
@@ -701,8 +701,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 2,
     "OCIOSO": "R$ 9.393,09",
-    "TOTAL": "R$ 9.985,19",
-    "VALOR EM AÇÕES": "R$ 592,10"
+    "TOTAL": "R$ 10.059,49",
+    "VALOR EM AÇÕES": "R$ 666,40"
 },
 "6237": {
     "TCPT3": 20,
@@ -716,8 +716,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 5.036,98",
-    "TOTAL": "R$ 10.092,83",
-    "VALOR EM AÇÕES": "R$ 5.055,85"
+    "TOTAL": "R$ 10.265,84",
+    "VALOR EM AÇÕES": "R$ 5.228,86"
 },
 "6519": {
     "TCPT3": 20,
@@ -731,8 +731,8 @@ const carteiras = {
     "FAST3": 0,
     "STUR3": 0,
     "OCIOSO": "R$ 7.787,11",
-    "TOTAL": "R$ 10.491,17",
-    "VALOR EM AÇÕES": "R$ 2.704,06"
+    "TOTAL": "R$ 10.628,88",
+    "VALOR EM AÇÕES": "R$ 2.841,77"
 },
 "6642": {
     "TCPT3": 0,

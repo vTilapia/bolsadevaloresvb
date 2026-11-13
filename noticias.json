@@ -286,6 +286,43 @@
     "evento": 0.20,
     "justificativa_evento": "Evento macroeconômico positivo moderado. Crescimento da economia impulsiona o mercado como um todo.",
     "texto": "O Ministério da Economia divulgou a prévia do Produto Interno Bruto (PIB) do país, mostrando que a atividade econômica cresceu acima de todas as estimativas. O ambiente de crescimento saudável estimulou novas ordens de compra e fez a bolsa de valores fechar em alta disseminada."
+  },
+  {
+    "dia": "Dia 9",
+    "empresa": "STUR3",
+    "titulo": "SpaceTur (STUR3) realiza voo comercial com sucesso absoluto e repercussão mundial",
+    "impacto": "Impacto em Aeroespacial",
+    "evento": 0.35,
+    "justificativa_evento": "Evento positivo expressivo. Validação total do modelo de negócios e forte ganho de reputação global.",
+    "texto": "A SpaceTur concluiu com perfeição o voo orbital da missão Orbital-X, trazendo todos os passageiros de volta à Terra com segurança. A transmissão ao vivo alcançou milhões de espectadores no mundo inteiro, consolidando a empresa como líder no setor de turismo espacial. O feito histórico fez as ações STUR3 decolarem na bolsa de valores."
+  },
+  {
+    "dia": "Dia 9",
+    "empresa": "PIZZ4",
+    "titulo": "Pizza Cósmica (PIZZ4) anuncia plano de expansão com 50 novas franquias",
+    "impacto": "Impacto em Consumo",
+    "evento": 0.15,
+    "justificativa_evento": "Evento levemente positivo. Expansão física contínua e aumento de market share.",
+    "texto": "Dando sequência ao seu plano de crescimento, a diretoria da Pizza Cósmica confirmou a abertura de 50 novas unidades franqueadas até o encerramento do semestre. A expansão reforça a força da marca no setor de alimentação e garantiu ganhos moderados para as ações PIZZ4."
+  },
+  {
+    "dia": "Dia 9",
+    "empresa": "MLUA3",
+    "titulo": "Mineração Lunar (MLUA3) realiza primeiro embarque de lítio para o exterior",
+    "impacto": "Impacto em Mineração",
+    "evento": 0.20,
+    "justificativa_evento": "Evento positivo moderado. Início do faturamento real da nova jazida.",
+    "texto": "O primeiro navio carregado com o lítio extraído da nova jazida da Mineração Lunar zarpou hoje com destino aos compradores internacionais. O evento marca o início do faturamento efetivo do projeto, mantendo a trajetória de valorização consistente dos papéis da empresa."
+  },
+  {
+    "dia": "Dia 9",
+    "empresa": "GERAL",
+    "titulo": "Bolsa bate recorde histórico de pontos impulsionada por setores de inovação e consumo",
+    "impacto": "Impacto Geral no Mercado (Macroeconômico)",
+    "evento": 0.25,
+    "justificativa_evento": "Evento macroeconômico positivo expressivo. Atingimento de topo histórico estimula a entrada de novos investidores.",
+    "texto": "Com a combinação de resultados corporativos excelentes e um ambiente macroeconômico favorável, o índice geral da bolsa atingiu sua maior pontuação da história. O clima de otimismo contagiou o mercado e atraiu um volume recorde de negociações no dia."
   }
+ 
 ]
   
